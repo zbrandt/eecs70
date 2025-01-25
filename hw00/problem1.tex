@@ -1,69 +1,59 @@
-\begin{homeworkProblem}
-    Give an appropriate positive constant \(c\) such that \(f(n) \leq c \cdot
-    g(n)\) for all \(n > 1\).
+\begin{homeworkProblem}{Administrivia}
+    \begin{itemize}
+        \item[(a)] Make sure you are on the course Ed (for Q\&A) and 
+        Gradescope (for submitting homeworks, including this one). Find and 
+        familiarize yourself with the course website. What is its 
+        homepage’s URL?
+        \item[(b)] Read the policies page on the course website.
+            \begin{itemize}
+                \item[(i)] What is the breakdown of how your grade is 
+                calculated, for both the homework and the no-homework 
+                option? 
+                \item[(ii)] What is the attendance policy for discussions?
+                \item[(iii)] When are homeworks released and when are they 
+                due? 
+                \item[(iv)] How many ``drops" do you get for homeworks? How 
+                many mini-vitamins will contribute to your grade? 
+                \item[(v)] When is the final exam?
+                \item[(vi)] What percentage score is needed to earn full 
+                credit on a homework?
+            \end{itemize}
+    \end{itemize}
 
-    \begin{enumerate}
-        \item \(f(n) = n^2 + n + 1\), \(g(n) = 2n^3\)
-        \item \(f(n) = n\sqrt{n} + n^2\), \(g(n) = n^2\)
-        \item \(f(n) = n^2 - n + 1\), \(g(n) = n^2 / 2\)
-    \end{enumerate}
+    \solution
 
-    \textbf{Solution}
-
-    We solve each solution algebraically to determine a possible constant
-    \(c\).
-    \\
-
-    \textbf{Part One}
-
-    \[
-        \begin{split}
-            n^2 + n + 1 &=
-            \\
-            &\leq n^2 + n^2 + n^2
-            \\
-            &= 3n^2
-            \\
-            &\leq c \cdot 2n^3
-        \end{split}
-    \]
-
-    Thus a valid \(c\) could be when \(c = 2\).
-    \\
-
-    \textbf{Part Two}
-
-    \[
-        \begin{split}
-            n^2 + n\sqrt{n} &=
-            \\
-            &= n^2 + n^{3/2}
-            \\
-            &\leq n^2 + n^{4/2}
-            \\
-            &= n^2 + n^2
-            \\
-            &= 2n^2
-            \\
-            &\leq c \cdot n^2
-        \end{split}
-    \]
-
-    Thus a valid \(c\) is \(c = 2\).
-    \\
-
-    \textbf{Part Three}
-
-    \[
-        \begin{split}
-            n^2 - n + 1 &=
-            \\
-            &\leq n^2
-            \\
-            &\leq c \cdot n^2/2
-        \end{split}
-    \]
-
-    Thus a valid \(c\) is \(c = 2\).
+    \begin{itemize}
+        \item[(a)] \href{http://www.eecs70.org/}{http://www.eecs70.org/}
+        \item[(b)] Policies:
+            \begin{itemize}
+                \item[(i)] Homework and no-homework grading:
+                    \begin{multicols}{2}
+                        \begin{itemize}
+                            \item Discussion attendance: 5\%
+                            \item Mini-Vitamins: 5\% (top 13 scores)
+                            \item Homeworks: 15\% (lowest 3 dropped)
+                            \item Midterm: 30\%
+                            \item Final: 45\%
+                        \end{itemize}
+                        
+                        \columnbreak % Forces a column break, if needed.
+                        
+                        
+                        \begin{itemize}
+                            \item Discussion attendance: 5\%
+                            \item Mini-Vitamins: 5\% (top 13 scores)
+                            \item Midterm: 36\%
+                            \item Final: 54\%
+                        \end{itemize}
+                    \end{multicols}
+                    
+                    
+                \item[(ii)] You need to attend at least 13 discussions to recieve full credit.
+                \item[(iii)] Homeworks are released on Sunday and due Saturday of the next week at 4:00 pm.
+                \item[(iv)] You get three drops for your homework. Only the top 13 scores for the Mini-Vitamins contribute towards your grade.
+                \item[(v)] May 16, 2025 from 7:00 pm until 10:00 pm
+                \item[(vi)] 73\%
+            \end{itemize}
+    \end{itemize}
 
 \end{homeworkProblem}

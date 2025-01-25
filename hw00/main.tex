@@ -8,6 +8,8 @@
 \usepackage{tikz}
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{multicol}
 
 \usetikzlibrary{automata,positioning}
 
@@ -26,7 +28,7 @@
 
 \pagestyle{fancy}
 \lhead{\hmwkAuthorName}
-\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\chead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle}
 \rhead{\firstxmark}
 \lfoot{\lastxmark}
 \cfoot{\thepage}
@@ -65,11 +67,11 @@
 % assignment aren't sequential. See the last 3 problems of this template for an
 % example.
 %
-\newenvironment{homeworkProblem}[1][-1]{
+\newenvironment{homeworkProblem}[2][-1]{
     \ifnum#1>0
         \setcounter{homeworkProblemCounter}{#1}
     \fi
-    \section{Problem \arabic{homeworkProblemCounter}}
+    \section{Problem \arabic{homeworkProblemCounter}: #2}
     \setcounter{partCounter}{1}
     \enterProblemHeader{homeworkProblemCounter}
 }{
@@ -101,7 +103,7 @@
     \vspace{2in}
     \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
     \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 4:00pm}\\
-    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
     \vspace{3in}
 }
 
@@ -147,9 +149,9 @@
 
 \input{hw00/problem2}
 
-\input{hw00/problem3}
-
 \pagebreak
+
+\input{hw00/problem3}
 
 \input{hw00/problem4}
 
