@@ -10,19 +10,23 @@
         solution to $x^3 = k$
         \item[(b)] If $p$ is a prime number, then for any two natural numbers $a$ and $b$, if $p$ doesn’t divide $a$ and $p$ divides $ab$, then $p$ divides $b$.
         \item[(c)] $(\forall x, y \in \mathbb{R})[(xy = 0) \implies ((x = 0) \vee (y = 0))] $
-        \item[(d)] $\neg ((\exists y \in \mathbb{N})[(\forall x \in \mathbb{N})[(x > y) \implies (( x | y) \vee P(x))]])$
+        \item[(d)] $\neg ((\exists y \in \mathbb{N})[(\forall x \in \mathbb{N})[(x > y) \implies (( y | x) \vee P(x))]])$
     \end{itemize}
 
     \solution
     
     \begin{itemize}
-        \item[(a)] $(\forall x \in \mathbb{R})[(\exists k \in \mathbb{R})
+        \item[(a)] $(\forall k \in \mathbb{R})[(\exists !x \in \mathbb{R})
         (x^3 = k)]$
-        \item[(b)] $(\exists k \in \mathbb{Z})[(\exists p \in \mathbb{R})(p 
-        = 2k+1)] \implies (\forall a, b \in \mathbb{N})[[(\neg p | a) 
-        \wedge (p | ab)] \implies (p|b)]$
-        \item[(c)] For all numbers $x$ and $y$ in the set of real numbers, if the product $xy$ is equal to zero, then $x$ equals zero or $y$ equals zero.
-        \item[(d)] It is not the case that there exists a number $y$ in the set of real numbers, such that for all numbers $x$ in the set of real numbers, if $x$ is greater than $y$, then $x$ divides $y$ or $x$ is a prime number. 
+        \item[(b)] $(\forall p \in \mathbb{R})(P(p) \implies (\forall a, b \in \mathbb{N})[[\neg(p | a) 
+        \wedge (p | ab)] \implies (p|b)])$
+        \item[(c)] For all numbers $x$ and $y$ in the set of real numbers, 
+        if the product $xy$ is equal to zero, then $x$ equals zero or $y$ 
+        equals zero.
+        \item[(d)] It is not the case that there exists a number $y$ in the 
+        set of natural numbers, such that for all numbers $x$ in the set of 
+        natural numbers, if $x$ is greater than $y$, then $y$ divides $x$ 
+        or $x$ is a prime number. 
     \end{itemize}
     
 \end{homeworkProblem}
