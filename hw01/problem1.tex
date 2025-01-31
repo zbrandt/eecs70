@@ -1,0 +1,48 @@
+\begin{homeworkProblem}{Calculus Review}
+
+    In the probability section of this course, you will be expected to compute 
+    derivatives, integrals, and double integrals. This question contains a couple 
+    examples of the kinds of calculus you will encounter
+
+    \begin{itemize}
+        \item[A)] Compute the following integral
+            \[
+                \begin{split}
+                    \int_{0}^{\infty} \sin(t)e^{-t} \, \mathrm{d}t        
+                \end{split}
+            \]
+        \item[B)] Compute the double integral  
+            \[
+                \begin{split}
+                    \iint_{R} 2x+y \, \mathrm{d}A,
+                \end{split}
+            \]
+            where $R$ is the region bounded by the lines $x=1, y = 0,$ and $y=x$.
+    \end{itemize}
+    
+    \part
+
+    \[
+        \begin{split}
+            \int_0^\infty \sin(t) e^{-t} \mathrm{d}t &= \left( -\sin(t)e^{-t} \right)_0^\infty - \int_0^\infty - \cos(t)e^{-t} \mathrm{d}t \\
+            &= 0 + \int_0^\infty \cos(t)e^{-t} \mathrm{d}t \\
+            &= \left( -\cos(t)e^{-t} \right)_0^\infty - \int_0^\infty \sin(t)e^{-t} \mathrm{d}t  \\
+            2\int_0^\infty \sin(t) e^{-t} \mathrm{d}t &= - \left( -\cos(0)e^{0}\right) \\
+            \int_0^\infty \sin(t) e^{-t} \mathrm{d}t &= \frac{1}{2}
+        \end{split}
+    \]
+    
+    \part
+
+    \[
+        \begin{split}
+            \iint_R 2x+y\,\mathrm{d}A &= \int_0^1 \int_0^x 2x + y \, \mathrm{d}y \, \mathrm{d}x \\
+            &= \int_0^1 \left( 2xy + \frac{1}{2} y^2\right)_0^x \, \mathrm{d}x \\
+            &= \int_0^1 2x^2 + \frac{1}{2} x^2 \, \mathrm{d}x \\
+            &= \left( \frac{2}{3} x^3 + \frac{1}{6} x^3 \right)_0^1 \\
+            &= \frac{2}{3} + \frac{1}{6} \\
+            &= \frac{5}{6}
+        \end{split}
+    \]
+    
+\end{homeworkProblem}
