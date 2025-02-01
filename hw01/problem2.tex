@@ -1,0 +1,22 @@
+\begin{homeworkProblem}{More Logical Equivalences}
+
+    Evaluate whether the expressions on the left and right sides are equivalent in each part, and briefly justify your answers.
+
+    \begin{itemize}
+        \item[A)] $\forall x (P(x) \implies Q(x)) \overset{?}{\equiv} \forall x P(x) \implies \forall x Q(x)$
+        \item[B)] $\neg (\exists x (P(x) \vee Q(x))) \overset{?}{\equiv} \forall x (\neg P(x) \wedge \neg Q(x))$
+        \item[C)] $\forall x ((P(x) \implies Q(x)) \wedge Q(x)) \overset{?}{\equiv} \forall x P(x)$ 
+    \end{itemize}
+
+    \textbf{Justification}
+    \\ \\
+    \textbf{Part A} \\
+    The expression $\forall x (P(x) \implies Q(x))$ is not logically equivalent to $\forall x P(x) \implies \forall x Q(x)$. Consider the case where there exists an $x_1$ where $P(x_1)$ is false and there exists a different $x_2$ where $Q(x_2)$ is false, but for all other $x$ the respective predicates are true. This would make the right-hand side expression vacuously true as $\forall x P(x)$ is false. However, there could be a case on the left-hand side where $P(x_1) \implies Q(x_1)$ is vacuously true while $P(x_2) \implies Q(x_2)$ is false, therefore making the entire left-hand side expression false. 
+    \\ \\
+    \textbf{Part B} \\
+    This is an application of De Morgan's Laws, and the expressions are logically equivalent. Since $\neg \forall x R(x) \equiv \exists \neg R(x)$, consider $P(x) \vee Q(x)$ to be that predicate $R(x)$. Then the negation flips the existential quantifer of the left-hand side expression to match the universal quantifier of the right-hand side expression. We then have $\neg ((P(x) \vee Q(x))$, and since $\neg (P(x) \vee Q(x)) \equiv (\neg P(x) \wedge \neg Q(x))$, we arrive at the right-hand side expression from driving the negation through.
+    \\ \\
+    \textbf{Part C} \\
+    The expression $\forall x ((P(x) \implies Q(x)) \wedge Q(x))$ is not logically equivalent to $\forall x P(x)$. Consider a case where the predicate $P(x)$ is true for all $x$ and for the predicate $Q(x)$ this is not true. Therefore, the right-hand side expression would be true, but there would exist an $x$ where the implication $P(x) \implies Q(x)$ would be false. This would make the left-hand side expression false. 
+    
+\end{homeworkProblem}
