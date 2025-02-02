@@ -1,0 +1,10 @@
+\begin{homeworkProblem}{Airport}
+    Suppose that there are $2n + 1$ airports, where $n$ is a positive integer. The distances between any two airports are all different. For each airport, exactly one airplane departs from it and is destined for the closest airport. Prove by induction that there is an airport which has no airplanes destined for it.
+    \\ \\
+    \textbf{Justification}
+    
+    For our base case, when $n=1$, that means there are 3 airports A, B, and C. The airports form a triangle with three different side lengths. If the side length A to C is the longest and side length B to C is the second longest, C will not have a plane destined for it, as the plane from A will go to B, and the plane from B will go to A.
+    \\ \\
+    For the inductive hypothesis, assume for some arbitrary positive integer $n$ that there still is one of the $2n+1$ airports that does not recieve an airplane. Then, for the inductive step, add one to $n$ to get $2n+3$ airports, i.e., there are two more airports. Here we can derive a contradiction, we assume that every airport has a plane destined for it now. That means that every airport has a unique closest airport after adding two more aiports to the system (any plane only goes to the closest airport). But since every distance is unique, that must mean there are two airports that are closer together than any other two airports. These two airports must then share the same closest route. This means that there is one less ``unique" closest route, meaning the number of unique closest routes is one less than the number of airports. This contradicts our assumption for the inductive step because now there must be an airport that does not recieve a plane by the Pidgeon Hole principle. Therefore, there is an airport which has no airplanes destined for it for both $n$ and $n+1$.
+\end{homeworkProblem}
+

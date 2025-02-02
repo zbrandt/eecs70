@@ -1,0 +1,32 @@
+\begin{homeworkProblem}{Prove or Disprove}
+
+For each of the following, either prove the statement, or disprove by finding a counterexample.
+
+\begin{enumerate}
+    \item[A)] $(\forall n \in \mathbb{N})$ if $n$ is odd then $n^2 + 4n$ is odd.
+    \item[B)] $(\forall a, b \in \mathbb{R})$ if $a + b \leq 15$ then $a \leq 11$ or $b \leq 4$.
+    \item[C)] $(\forall r \in \mathbb{R})$ if $r^2$ is irrational, then $r$ is irrational.
+    \item[D)] $(\forall n \in \mathbb{Z}^+)$ $5n^3 > n!$. 
+    \item[E)] The product of a non-zero rational number and an irrational number is irrational.
+    \item[F)] If $A \subseteq B$, then $\mathscr{P}(A) \subseteq \mathscr{P}(B)$.  
+\end{enumerate}
+
+\textbf{Part A} \\
+If $n$ is an odd number, then it can be expressed in the form $n=2k+1$, where $k$ is an integer. Therefore, $n^2+4n = (2k+1)^2+4(2k+1) = 4k^2+4k+1+8k+4 = 4k^2+12k+4+1$. This can then be expressed as $n^2+4n=2(2k^2+6k+2)+1$, and therefore $n^2+4n$ is also an odd number. 
+\\ \\
+\textbf{Part B} \\
+Start with $a+b \leq 15$ and then assume it's not the case that $a \leq 11 \vee b \leq 4$, that is $a > 11 \wedge b > 4$. Summing these two inequalities, $a + b > 15$, which contradicts the proposition $a+b \leq 15$. Therefore, if $a+b \leq 15$, then $a \leq 11$ or $b \leq 4$.
+\\ \\
+\textbf{Part C} \\
+To prove this, we can instead prove that if $r$ is a rational number, then $r^2$ is also a rational number. If $r$ is a rational number, then it can be expressed as $r = \frac{a}{b}$, where $a$ and $b$ are integers. Squaring this, $r^2 = \left( \frac{a}{b} \right)^2 = \frac{a^2}{b^2}$, and $a^2$ and $b^2$ are both still integers. 
+\\ \\
+\textbf{Part D} \\
+To disprove this I will provide an $n$ in the positive integers where the inequality does not hold. For example, consider $n=10$, $5 \cdot 10^3 = 5000$ whereas $10! = 3628800$. Therefore, this inequality does not hold for all $n$ in the positive integers.
+\\ \\
+\textbf{Part E} \\
+Assume that instead the product is rational. If $x$ is the non-zero rational number, and $y$ is the irrational number, then $z = xy$. Then, it becomes possible to express $y$ as $y=\frac{z}{x}$. Since both $x$ and $z$ are rational, the latter one being assumed rational, that means $y$ is also rational, deriving a contradiction. Therefore, the product of a non-zero rational number and an irrational number is irrational.
+\\ \\
+\textbf{Part F} \\
+If $k$ is an element in $\mathscr{P}(A)$ then it is also a subset of $A$, $k \subseteq A$. Therefore, it must also be a subset of $B$, that is $k \subseteq B$. Since $k$ is a subset of B it is also an element of $\mathscr{P}(B)$. Since I didn't specify what $k$ was exactly this proves it for every element and therefore the statement itself. 
+    
+\end{homeworkProblem}

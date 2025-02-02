@@ -1,0 +1,28 @@
+\begin{homeworkProblem}{Grid Induction}
+
+    Pacman is walking on an infinite 2D grid. He starts at some location $(i, j) \in \mathbb{N}^2$ in the first quadrant, and is constrained to stay in the first quadrant (say, by walls along the $x$ and $y$ axes). 
+    \\ \\
+    Every second he does one of the following (if possible):
+    \begin{enumerate}
+        \item[(i)] Walk one step down, to $(i, j-1)$
+        \item[(ii)] Walk one step left, to $(i-1, j)$
+    \end{enumerate}
+    
+    For example, if he is at (5, 0), his only option is to walk left to (4, 0); if Pacman is instead at (3, 2), he could walk either to (2, 2) or (3, 1).
+    \\ \\
+    Prove by induction that no matter how he walks, he will always reach (0, 0) in finite time
+    \\ \\
+    \textbf{Justification}
+
+    To strengthen the hypothesis, I will say that no matter how Pacman walks, he will reach (0, 0) in finite time, specifically $i+j$ seconds. 
+    \\ \\
+    For the base case, assume he starts at (0, 0), then he already is at the end in zero seconds, which the math also shows, $i+j=0+0=0$ as well.
+    \\ \\
+    For the inductive hypothesis, assume that this theory is true for all locations in $\mathbb{N}^2$ in the first quadrant less than or equal to some arbitrary $(i, j)$. That is, for locations where the x-position is less than or equal to $i$ and where the y-position is less than or equal to $j$.
+    \\ \\
+    For the inductive step, I'll prove that a location one step removed, either $(i+1, j)$ or $(i, j+1)$, from this aformentioned location also reaches (0, 0) in finite time, specifically $i+j+1$ seconds. We have two cases, either he walks down one or walks one to the left. If he is at $(i+1, j)$ and moves one to the left, then we are back at $(i, j)$ which we assume reaches (0, 0) in $i+j$ time, for a total of $i+j+1$ seconds. If he moves one down to $(i +1, j-1)$, he will then either have to move to the left in the next step, in which case he will be in a position where we know he'll reach (0, 0) in a total finite time of $i+j+1$ seconds, or move down in one second. Eventually, he will either have to go left or move down in $j$ seconds (once he reaches the x-axis) and go left in $i$ seconds for a total time of $i+j+1$ seconds. This whole situation applies vice versa for if he started at $(i, j+1)$ instead. 
+    \\ \\
+    Since we have shown with strong induction and a strengthened hypothesis that for any position $(i, j) \in \mathbb{N}^2$ in the first quadrant he will reach (0, 0) in $i+j$ seconds, he will always reach (0, 0) in finite time. 
+    
+    
+\end{homeworkProblem}
