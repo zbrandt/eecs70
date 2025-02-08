@@ -1,0 +1,53 @@
+\begin{homeworkProblem}{Proofs in Graphs}
+
+    \begin{itemize}
+        \item[A)] Suppose California has $n$ cities ($n \geq 2$) such that for every pair of cities $X$ and $Y$, either $X$ has a road to $Y$ or $Y$ has a road to $X$. Further, suppose that all roads are one-way streets.
+        
+        Prove that regardless of the configuration of roads, there always exists a city which is reachable from every other city by traveling through at most 2 roads.
+        
+        [\textit{Hint}: Induction]
+        
+        \item[B)] Consider a connected graph $G$ with $n$ vertices which has exactly $2m$ vertices of odd degree, where $m > 0$. Prove that there are $m$ walks that \textit{together} cover all the edges of $G$ (i.e., each edge of $G$ occurs in exactly one of the $m$ walks and each of the walks should not contain any particular edge more than once).
+
+        [\textit{Hint}: In lecture, we have shown that a connected undirected graph has an Eulerian tour if and only if every vertex has even degree. This fact may be useful in the proof.]
+
+        \item[C)] Prove that any graph $G$ is bipartite if and only if it has no tours of odd length. 
+
+        [\textit{Hint}: In one of the directions, consider the lengths of paths starting from a given vertex.]
+        
+    \end{itemize}
+
+    \part 
+
+    To prove that, regardless of the configuration of roads, there always exists a city which is reachable from every other city by traveling through at most 2 roads, I will prove the \textit{base case} and the \textit{induction step}.
+
+    \begin{itemize}
+        \item \textit{Base case}: When $n=2$, the claim holds since there is only one directed edge (one, one-way road) to travel from one city to another.
+        \item \textit{Inductive hypothesis}: Assume that the claim holds for all $2 \leq k \leq n$ where $n$ is arbitrary and $k\in \mathbb{N}$.
+        \item \textit{Inductive step}: Now, consider $k=n+1$. Remove a city $P$ from the road configuration, leaving a road configuration with only $n$ cities. By the inductive hypothesis, there exists a city $B$ in this smaller road configuration for which the claim holds. Now there are two cases:
+
+        \begin{itemize}
+            \item Case 1: $P$ has a road to $B$. Then, it is reachable by traveling through one road. Since all cities can reach $B$ in at most two roads the claim holds.
+            \item Case 2: $B$ has a road to $P$. Then, $B$ is in the set of cities with a road to $P$. Since, from the inductive hypothesis, every city with a road from $P$ has a road to a city with a road to $P$, they can reach $P$ in two steps. $P$ is the city which is reachable from every other city. 
+        \end{itemize}
+
+        Thus, by the principle of induction we have shown that the claim holds regardless of the configuartion of roads. 
+    \end{itemize}
+
+    \part 
+
+    Since there are $2m$ vertices of odd degree, it is possible to modify the graph $G$ by connecting arbitrary pairs of these odd degree vertices with $m$ edges, thereby making them all even. From lecture, we know that a connected, undirected graph has an Eulerian tour if and only if every vertex has even degree. In this modified graph, every vertex has even degree, and it possible to construct a Eulerian tour, a cycle in which every edge is traversed exactly once and you return at the starting vertex. 
+    \\ \\
+    The $m$ walks come from picking an Eulerian tour that starts with one of the added edges. After removing the edges from the graph, this splits the tour into $m$ walks that start and end at the odd degree vertices. Since the Eulerian tour did not contain any particular edge more than once, neither does each of the walks, while together covering all the edges of $G$.
+    
+    \part 
+    
+    To prove the claim, we must prove it in both directions, i.e., first, any graph $G$ being bipartite implies that it has no tours of odd length, and second, if a graph $G$ has no tours of odd length that implies it is bipartite. 
+    \\ \\
+    To prove the first direction, assume that, for a graph $G$ that is bipartite, there is a tour of odd length. This means it is possible to traverse edges in such a way that you can reach the start after crossing an odd number of edges. In a bipartite graph, edges only go between the groups of vertices that have no edges within the groups. Since every edge crossing brings you from one group to the other, for an odd tour, the second to the last edge crossing must bring you back to the starting group. The final edge must then be within a group to finish the tour. This contradicts what it means to be bipartite. Therefore, if a graph $G$ is bipartite, there is no tour of odd length.
+    \\ \\
+    To prove the second direction, if the graph $G$ has no tours of odd length, it is possible to start at a given vertex and assign vertices uniquely, in an alternating fashion, to two different groups, such that all the edges only connect vertices across groups. Starting at any given vertex, the length of the path from the current vertex to the start determines the group assignment, such that the vertices are split into even and odd distance groups. Since every edge only connects an odd group and an even group vertex, the graph $G$ is bipartite. The only time this would not work is if there existed an odd length tour, as it would be possible to start at a certain vertex, assigning it to one group, and then arrive again at that same vertex and assign it to another group. But since there are no tours of odd length, this is impossible. Therefore, if the graph $G$ has no tours of odd length, it is bipartite. 
+    \\ \\
+    Since we were able to prove implications in both directions, we have shown that any graph $G$ is bipartite if and only if it has no tours of odd length. 
+    
+\end{homeworkProblem}
