@@ -1,0 +1,16 @@
+\begin{homeworkProblem}{Upper Bound}
+
+    In the notes, we show that the stable matching algorithm terminates in at most $n^2$ days. Prove the following stronger result: the stable matching algorithm will always terminate in at most $(n-1)^2+1=n^2-2n+2$ days.
+    \\ \\
+    \solution
+
+    I will prove that the stable matching algorithm will alaways terminate in at most $(n-1)^2+1=n^2-2n+2$ days by first considering that the total number of proposals made by the algorithm is at most $(n-1)^2+1$ since algorithm days are exactly proposals. 
+    \\ \\
+    Under the propose and reject algorithm, jobs propose to candidates who have not rejected them. A candidate will therefore recieve at most $n$ proposals in any execution of the algorithm. However, a candidate can only reject at most $n-1$ proposals. If they instead rejected $n$ proposals, the candidate would be without a job and the process would never halt. 
+    \\ \\
+    Additionally, only at most $n-1$ candidates can reject $n-1$ proposals. This is because, in at least any execution of the algorithm, there is at least one candidate $C$ who only recieves a single proposal. To show this, consider an algorithm that takes $k$ days to terminate. On day $k$, no job rejected a proposal and therefore only recieved one proposal. Then, on day $k-1$, it must be the case that $C$ did not recieve a proposal, otherwise the process would have halted on day $k-1$ instead. It is also the case that candidate $C$ did not recieve a proposal on any previous day. To show this, assume the contrary, that the candidate $C$ could have recieved a proposal on a previous day. From the improvement lemma, we know every candidate will only say `maybe' to better job offers as time goes on. Since any job proposal is preferred to no job by the candidates, the candidate $C$ will continuously recieve proposals by either the same job or better jobs, up until day $k-1$, contradicting our assumption. Therefore, we know that there must be a candidate $C$ in any execution of the algorithm that recieves exactly one proposal. Addtiionally, we know that $C$ recieves their proposal on the last day of the algorithm. 
+    \\ \\
+    All together, we have shown that that there are $n-1$ candidates that can reject at most $n-1$ proposals and that there is one additional offer made to the last candidate. Therefore, there can be at most $(n-1) \cdot (n-1) + 1 = (n-1)^2+1$ proposals made, and the stable matching algorithm will terminate in at most $(n-1)^2+1=n^2-2n+2$ days.
+    
+    
+\end{homeworkProblem}
