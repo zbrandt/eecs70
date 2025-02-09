@@ -24,14 +24,14 @@
     \begin{itemize}
         \item \textit{Base case}: When $n=2$, the claim holds since there is only one directed edge (one, one-way road) to travel from one city to another.
         \item \textit{Inductive hypothesis}: Assume that the claim holds for all $2 \leq k \leq n$ where $n$ is arbitrary and $k\in \mathbb{N}$.
-        \item \textit{Inductive step}: Now, consider $k=n+1$. Remove a city $P$ from the road configuration, leaving a road configuration with only $n$ cities. By the inductive hypothesis, there exists a city $B$ in this smaller road configuration for which the claim holds. Now there are two cases:
+        \item \textit{Inductive step}: Now, consider $k=n+1$. Remove a city $P$ from the road configuration, leaving a road configuration with only $n$ cities. By the inductive hypothesis, there exists a city $B$ in this smaller road configuration for which the claim holds. This defines two sets of cities, those with a road to $B$, and those that $B$ has a road to (a.k.a. those cities two roads away from $B$). Now there are two cases, since every road in the $k$ road configuration must have a road to or from $P$:
 
         \begin{itemize}
-            \item Case 1: $P$ has a road to $B$. Then, it is reachable by traveling through one road. Since all cities can reach $B$ in at most two roads the claim holds.
-            \item Case 2: $B$ has a road to $P$. Then, $B$ is in the set of cities with a road to $P$. Since, from the inductive hypothesis, every city with a road from $P$ has a road to a city with a road to $P$, they can reach $P$ in two steps. $P$ is the city which is reachable from every other city. 
+            \item Case 1: $P$ has at least one road to $B$, or the set of cities one road away from $B$. Then, $B$ is reachable by traveling through at most 2 roads. Since all cities can reach $B$ in at most two roads the claim holds.
+            \item Case 2: All roads from $B$ and the set of cities one road away from $B$ point to $P$. Then, $P$ is reachable by every city two roads away from $B$ as well, because these cities have a road to a city one city away from $B$ and just need to take one more road to get to $P$. 
         \end{itemize}
 
-        Thus, by the principle of induction we have shown that the claim holds regardless of the configuartion of roads. 
+        In both Case 1 and Case 2, there exists a city after adding an additional city for $k+1$ that is reachable through at most 2 roads. Thus, by the principle of induction we have shown that the claim holds regardless of the configuration of roads. 
     \end{itemize}
 
     \part 
@@ -39,7 +39,7 @@
     Since there are $2m$ vertices of odd degree, it is possible to modify the graph $G$ by connecting arbitrary pairs of these odd degree vertices with $m$ edges, thereby making them all even. From lecture, we know that a connected, undirected graph has an Eulerian tour if and only if every vertex has even degree. In this modified graph, every vertex has even degree, and it possible to construct a Eulerian tour, a cycle in which every edge is traversed exactly once and you return at the starting vertex. 
     \\ \\
     The $m$ walks come from picking an Eulerian tour that starts with one of the added edges. After removing the edges from the graph, this splits the tour into $m$ walks that start and end at the odd degree vertices. Since the Eulerian tour did not contain any particular edge more than once, neither does each of the walks, while together covering all the edges of $G$.
-    
+    \\ \\
     \part 
     
     To prove the claim, we must prove it in both directions, i.e., first, any graph $G$ being bipartite implies that it has no tours of odd length, and second, if a graph $G$ has no tours of odd length that implies it is bipartite. 
