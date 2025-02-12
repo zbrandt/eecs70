@@ -1,0 +1,32 @@
+\begin{homeworkProblem}{Edge Colorings}
+
+    An edge coloring of a graph is an assignment of colors to edges in a graph where any two edges incident to the same vertex have different colors. An example is shown on the left.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \clip (-1, -1) rectangle (8, 2.1);
+    
+            \node[circ] (n1) at (0, 0) {};
+            \node[circ] (n2) at (1, {sqrt(3)}) {};
+            \node[circ] (n3) at (2, 0) {};
+            \draw (n1) -- node[above left] {color 1} (n2)
+            -- node[above right] {color 2} (n3)
+            -- node[below] {color 3} (n1);
+    
+            \node[circ] (m1) at (5, 0) {};
+            \node[circ] (m2) at (5, 2) {};
+            \node[circ] (m3) at (7, 2) {};
+            \node[circ] (m4) at (7, 0) {};
+            \draw (m1) -- (m2) -- (m3) -- (m4) -- (m1);
+            \draw (m2) -- (m4);
+            \draw (m1) edge[out=-60, in=-30, looseness=2.5] (m3);
+        \end{tikzpicture}
+    \end{center}
+
+    \begin{itemize}
+        \item[A)] (You may use the numbers $1,2,3$ for colors. A figure is shown on the right.)
+        \item[B)] Prove that any graph with maximum degree $d \geq 1$ can be edge colored with $2d-1$ colors. 
+        \item[C)] Prove that a tree can be edge colored with $d$ colors where $d$ is the maximum degree of any vertex.
+    \end{itemize}
+    
+\end{homeworkProblem}
