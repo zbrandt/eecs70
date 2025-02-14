@@ -1,6 +1,8 @@
 \begin{homeworkProblem}{Edge Colorings}
 
-    An edge coloring of a graph is an assignment of colors to edges in a graph where any two edges incident to the same vertex have different colors. An example is shown on the left.
+    An edge coloring of a graph is an assignment of colors to edges in a graph 
+    where any two edges incident to the same vertex have different colors. An 
+    example is shown on the left.
 
     \begin{center}
         \begin{tikzpicture}
@@ -24,9 +26,70 @@
     \end{center}
 
     \begin{itemize}
-        \item[A)] (You may use the numbers $1,2,3$ for colors. A figure is shown on the right.)
-        \item[B)] Prove that any graph with maximum degree $d \geq 1$ can be edge colored with $2d-1$ colors. 
-        \item[C)] Prove that a tree can be edge colored with $d$ colors where $d$ is the maximum degree of any vertex.
+        \item[A)] Show that the 4 vertex complete graph above can be 3 edge colored.
+        (You may use the numbers $1,2,3$ for colors. A figure is shown on the right.)
+        \item[B)] Prove that any graph with maximum degree $d \geq 1$ can be edge 
+        colored with $2d-1$ colors. 
+        \item[C)] Prove that a tree can be edge colored with $d$ colors where $d$
+         is the maximum degree of any vertex.
     \end{itemize}
+
+    \part 
+
+    Below is the 4-vertex graph with edges colored such that only 3 colors are used.
+
+    \begin{flushleft}
+        \begin{tikzpicture}
+            \clip (-1, -1) rectangle (8, 2.1);
+    
+            \node[circ] (m1) at (5, 0) {};
+            \node[circ] (m2) at (5, 2) {};
+            \node[circ] (m3) at (7, 2) {};
+            \node[circ] (m4) at (7, 0) {};
+            \draw[red, thick] (m1) -- (m2);
+            \draw[blue, thick] (m2) -- (m3);
+            \draw[red, thick] (m3) -- (m4);
+            \draw[blue, thick] (m4) -- (m1);
+            \draw[brown, thick] (m2) -- (m4);
+            \draw[brown, thick] (m1) edge[out=-60, in=-30, looseness=2.5] (m3);
+        \end{tikzpicture}
+    \end{flushleft}
+
+    \part 
+    % Since a graph can be edge colored when any two edges incident to the same 
+    % vertex have different colors, any graph with maximum degree $d \geq 1$ can
+    % be edge colored with $2d-1$ colors. $2d-1$ is always greater than or equal 
+    % to $d$ when $d \geq 1$, and it is always possible to 
+
+    To prove that any graph with maximum degree $d \geq 1$ can be edge colored with
+    $2d -1$ colors I will use the principle of induction. 
+
+    \begin{itemize}
+        \item \textit{Base case}: When the maximum degree of a graph is $d=1$ 
+        there can only be two vertices and one edge. It therefore only takes $2d
+        - 1 = 2(1)-1 = 1$ colors to color the edges and the claim holds. 
+        \item \textit{Inductive hypothesis}: Assume that any graph with maximum 
+        degree $d \geq 1$ can be edge colored with $2d-1$ colors for some $1 \leq d 
+        \leq k$ where $k \in \mathbb{N}$
+        \item \textit{Inductive step}: For $d = k + 1$, we can show that any graph
+        can be edge colored with $2d -1$ colors. There exists at least one vertex
+        with degree $k+1$, which we can remove along with its incident edges. The
+        remaining graph has a maximum degree of $k$, since the other vertices lost 
+        their connection and dropped in degree. By the inductive hypothesis, the 
+        remaining graph can be edge colored with $2k-1$ colors. Coloring the graph
+        with the removed vertex requires $k+1$ colors (one color for each edge).
+        There are $2(k+1)-1=2k+1$ colors at our disposal, which is enough to color
+        each edge uniquely. Therefore, the graph can be colored with $2(k+1)-1$
+        colors. Therefore, any graph with maximum degree $d \geq 1$ can be edge
+        colored with $2d-1$ colors.
+    \end{itemize}
+
+    \part 
+
+    The maximum degree of any vertex in a tree must be two, otherwise there would
+    be a cycle. Therefore, $d$ is equal to 2. To be edge colored, any two edges 
+    incident to the same vertex must have different colors. Since there are two
+    colors available, it is possible to edge color the tree. 
+
     
 \end{homeworkProblem}
