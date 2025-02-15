@@ -3,9 +3,54 @@
     Wilson's Theorem states the following is true if and only if $p$ is prime:
     \[(p - 1)! \equiv -1 \pmod{p}.\]
     Prove both directions (it holds if AND only if $p$ is prime).
+    \\ \\
+    Hint for the if direction: Consider rearranging the terms in $(p - 1)! = 1 
+    \cdot 2 \cdot \cdots \cdot (p - 1)$ to pair up terms with their inverses, when 
+    possible. What terms are left unpaired?
+    \\ \\
+    Hint for the only if direction: If $p$ is composite, then it has some prime 
+    factor $q$.  What can we say about $(p-1)! \pmod{q}$?
+    \\ \\
+    \solution 
 
-    Hint for the if direction: Consider rearranging the terms in $(p - 1)! = 1 \cdot 2 \cdot \cdots \cdot (p - 1)$ to pair up terms with their inverses, when possible. What terms are left unpaired?
+    For the if direction, we can rearrange the terms in the equivalency to pair up 
+    terms with their inverses. 
+    \[
+        \begin{split}
+            (p - 1)! \equiv -1 & \pmod{p} \\
+            1 \cdot 2 \cdot \dots \cdot (p -1 ) \equiv -1 & \pmod{p}
+        \end{split}
+    \]
+    
+    Since $p$ is prime, it's greatest common divisor with any other number is 1. 
+    Therefore, each number in the product series $1, 2, \dots, (p-1)$ has a unique 
+    multiplicative inverse modulo $p$. Since every prime number is odd (if there 
+    existed an even prime number, it would be divisible by 2, and no longer be 
+    prime), there are an even number of terms in the $(p-1)!$ product series. It 
+    seems to be that, since there are an even number of terms, and each term has 
+    a unique inverse, that the series is equivalent to 1. However, the term 1 is 
+    its own inverse, and so is not paired up with any other term. Additionally,
+    $p-1$ is also its own inverse, $(p-1) \cdot (p-1) = p^2 + 2p + 1 \equiv 1
+    \pmod{p}$. Therefore, the product series of $(p-1)!$ is equivalent to $p-1$.
+    And since $p$ is a multiple of $p$, this demonstrates the equivalency of $(p-1)!$
+    and -1. 
+    \[
+        \begin{split}
+            1 \cdot 2 \cdot \dots \cdot (p -1 ) \equiv -1 & \pmod{p} \\
+            p-1 \equiv -1 & \pmod{p} \\
+            -1 \equiv -1 & \pmod{p} \\
+        \end{split}
+    \]
 
-    Hint for the only if direction: If $p$ is composite, then it has some prime factor $q$.  What can we say about $(p-1)! \pmod{q}$?
+    For the only if direction, assume that $p$ is not prime yet the equivalency 
+    remains true. Therefore, if it is not prime, and greater than 1, $p$ is composite,
+    and has some prime factor $q$. We then know that $(p-1)! \equiv 0 \pmod{q}$,
+    since $q$ is less than $p$, $q$ is somewhere in the $(p-1)!$ product series,
+    which can then be expressed as some multiple of $q$, i.e. $(p-1)! = kq$ for 
+    some $k \in \mathbb{N}$. The original equivalency can be expressed as $(p-1)!
+    = lp -1$. But since $p$ is composite, $(p-1)! = kq - 1$, which contradicts
+    what we initially found, that $(p-1)!$ is a multiple of $q$ without any remainder.
+    Therefore, $p$ cannot be composite and must be prime. 
+
     
 \end{homeworkProblem}
