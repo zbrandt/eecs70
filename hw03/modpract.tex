@@ -1,13 +1,98 @@
 \begin{homeworkProblem}{Modular Practice}
 
-    Solve the following modular arithmetic equations for $x$ and $y$. For each subpart, show your work and justify your answers.
+    Solve the following modular arithmetic equations for $x$ and $y$. For each 
+    subpart, show your work and justify your answers.
 
     \begin{itemize}
         \item[A)] $9x+5 \equiv 7 \pmod{13}$.
+        \[
+            \begin{split}      
+                9x + 5 \equiv 7 & \pmod{13} \\
+                % 9x \equiv 7 - 5 & \pmod{13} \\
+                9x \equiv 2 & \pmod{13} \\
+                x = 5 &
+            \end{split}
+        \]
+        When $x = 5$, the left-hand side of the equation becomes 54, which can be 
+        expressed as $54 = 13 \cdot 4 + 2$, which under $\pmod{13}$, is equivalent,
+        i.e., $54 \equiv 2 \pmod{13}$.
+
         \item[B)] Prove that $3x+12 \equiv 4 \pmod{21}$ does not have a solution.
-        \item[C)] The system of simultaneous equations $5x+4y \equiv 0 \pmod{7}$ and $2x+y \equiv 4 \pmod{7}$. 
+        \[
+            \begin{split}
+                3x + 12 \equiv 4 & \pmod{21} \\
+                3x \equiv -8 & \pmod{21} \\
+                3x \equiv 5 & \pmod{21}
+            \end{split}
+        \]
+        % To solve this equivalency, we would need to find an $x$ such that dividing
+        % $3x$ by 13 results in a remainder of -8. However, from our definition of 
+        % ``$x$ modulo $m$'', the remainder $r$ must be positive. Therefore, there
+        % does not exist a solution to this equivalency. 
+        Notice first that I can do the negative thing 
+        This equivalency has no solution for $x$. This is because $\gcd(3, 21) = 3$,
+        and 3 does not divide 5. We would need to find a solution for $x$ in an 
+        equation of the form $3x = k \cdot 21 + 5$, where $k \in \mathbb{N}$. If 3
+        and 21 did have a greatest common denominator that divided 5, it would be 
+        possible to divide out 3 to see that there exists a $k$ multiple of 21 with
+        an integer remainder. However, this is not the case. 
+
+        \item[C)] The system of simultaneous equations $5x+4y \equiv 0 \pmod{7}$ 
+        and $2x+y \equiv 4 \pmod{7}$. 
+        \begin{multicols}{2}
+            \[
+                \begin{split}
+                    5x + 4y &\equiv 0 \pmod{7} \\
+                    2x + y &\equiv 4 \pmod{7} \\
+                    -3x &\equiv -16 \pmod{7} \\
+                    3x &\equiv 16 \pmod{7} \\
+                    3x &\equiv 2 \pmod{7} \\
+                    x &= 3
+                \end{split}
+            \]
+
+            \[
+                \begin{split}
+                    6 + y &\equiv 4 \pmod{7} \\
+                    y &\equiv -2 \pmod{7} \\
+                    y &\equiv 5 \pmod{7} \\
+                    y &= 12
+                \end{split}
+            \]
+        \end{multicols}
+
         \item[D)] $13^{2023} \equiv x \pmod{12}$.
+        \[
+            \begin{split}
+                13^{2023} \equiv x & \pmod{12} \\
+                13^{2 \cdot 1011 + 1} \equiv x & \pmod{12} \\ 
+                (13^2)^{1011} \cdot 13 \equiv x & \pmod{12} \\
+                1^{1011} \cdot 1 \equiv x & \pmod{12} \\
+                1 \equiv x & \pmod{12}
+            \end{split}
+        \]
+
         \item[E)] $7^{62} \equiv x \pmod{11}$.
+        \[
+            \begin{split}
+                7^{62} \equiv x & \pmod{11} \\
+                7^{2 \cdot 31} \equiv x & \pmod{11} \\ 
+                (7^2)^{31} \equiv x & \pmod{11} \\
+                5^{31} \equiv x & \pmod{11} \\
+                5^{2 \cdot 15 + 1} \equiv x & \pmod{11} \\
+                (5^2)^{15} \cdot 5 \equiv x & \pmod{11} \\
+                (3)^{15} \cdot 5 \equiv x & \pmod{11} \\
+                (3^3)^5 \cdot 5 \equiv x & \pmod{11} \\
+                (4)^5 \cdot 5 \equiv x & \pmod{11} \\
+                (4)^{2 \cdot 2 + 1} \cdot 5 \equiv x & \pmod{11} \\
+                (4^2)^{2} \cdot 20 \equiv x & \pmod{11} \\
+                (5)^{2} \cdot 9 \equiv x & \pmod{11} \\
+                3 \cdot 9 \equiv x & \pmod{11} \\
+                5 \equiv x & \pmod{11}
+            \end{split}
+        \]
     \end{itemize}
     
+
+
 \end{homeworkProblem}
