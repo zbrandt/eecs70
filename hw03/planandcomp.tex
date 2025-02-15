@@ -1,13 +1,41 @@
 \begin{homeworkProblem}{Planarity and Graph Complements}
 
-    Let $G = (V, E)$ be an undirected graph.  We define the complement of $G$ as $\overline{G} = (V, \overline{E})$ where $\overline{E} = \{(i,j) \mid i,j \in V, i \neq j\} - E$; that is, $\overline{G}$ has the same set of vertices as $G$, but an edge $e$ exists is $\overline{G}$ if and only if it does not exist in $G$.
+    Let $G = (V, E)$ be an undirected graph.  We define the complement of $G$ as
+    $\overline{G} = (V, \overline{E})$ where $\overline{E} = \{(i,j) \mid i,j \in
+    V, i \neq j\} - E$; that is, $\overline{G}$ has the same set of vertices as 
+    $G$, but an edge $e$ exists is $\overline{G}$ if and only if it does not exist
+    in $G$.
 
     \begin{itemize}
-        \item[A)] Suppose $G$ has $v$ vertices and $e$ edges.  How many edges does $\overline{G}$ have?
-        \item[B)] Prove that for any graph with at least 13 vertices, $G$ being planar implies that $\overline{G}$ is non-planar.
-        \item[C)] Now consider the converse of the previous part, i.e., for any graph $G$ with at least 13 vertices, if $\overline{G}$ is non-planar, then $G$ is planar. Construct a counterexample to show that the converse does not hold.
+        \item[A)] Suppose $G$ has $v$ vertices and $e$ edges.  How many edges does 
+        $\overline{G}$ have?
+        \item[B)] Prove that for any graph with at least 13 vertices, $G$ being planar 
+        implies that $\overline{G}$ is non-planar.
+        \item[C)] Now consider the converse of the previous part, i.e., for any graph 
+        $G$ with at least 13 vertices, if $\overline{G}$ is non-planar, then $G$ is 
+        planar. Construct a counterexample to show that the converse does not hold.
     \end{itemize}
 
-    \textit{Hint: Recall that if a graph contains a copy of $K_5$, then it is non-planar. Can this fact be used to construct a counterexample?}
-        
+    \textit{Hint: Recall that if a graph contains a copy of $K_5$, then it is non-planar.
+    Can this fact be used to construct a counterexample?}
+    \\ \\
+    \part 
+
+    The maximum number of edges $G$ can have is $\frac{v(v-1)}{2}$, because in a 
+    complete graph, each vertex can have a maximum degree of $v-1$. Since there
+    are $v$ vertices and each edge is incident to two vertices, $\frac{v(v-1)}{2}$
+    is the maximum number of edges $G$ can have. Therefore, $\overline{G}$ has 
+    $v(v-1) - e$ edges. 
+    \\ \\
+    \part 
+
+    If a graph $G$ is planar, then the following inequality must be true, $e \leq 
+    3v-6$. If $G$ has at least 13 vertices, then $e \leq 3(13)-6=33$. $\overline{G}$ 
+    must therefore have $\frac{13(13-1)}{2}-33= 156 \div 2 - 33=78-33=45$ edges.
+    Since $\overline{G}$ must have at least 45 edges, which is greater than 33, 
+    $\overline{G}$ must be non-planar. 
+    \\ \\
+    \part
+
+    Consider a graph with K5 and all other vertices unconnected. The complement must then also be non planar.
 \end{homeworkProblem}
