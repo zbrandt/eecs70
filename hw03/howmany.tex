@@ -1,18 +1,94 @@
 \begin{homeworkProblem}{How Many Solutions?}
-    Consider the equation $ax \equiv b \pmod p$ for prime $p$. In the below three parts, when we discuss solutions, we mean a solution $x$ in the range $\{0, 1, \dots p-1\}$. In addition, include justification for your answers to all the subparts of this problem.
+    Consider the equation $ax \equiv b \pmod p$ for prime $p$. In the below three
+    parts, when we discuss solutions, we mean a solution $x$ in the range $\{0, 
+    1, \dots p-1\}$. In addition, include justification for your answers to all
+    the subparts of this problem.
 
     \begin{itemize}
         \item[A)] For how many pairs $(a,b)$ does the equation have a unique solution?
+        
+        When $a \equiv 0 \pmod{p}$, for any $x$, the equation will have the same
+        solution where $ax \equiv 0 \equiv b \pmod{p}$. Therefore, for the equation
+        to produce a unique solution for $x$, $a \not\equiv 0 \pmod{p}$. There are 
+        then $p-1$ options for $a$ and $p$ options for $b$ to form pairs, i.e.,
+        there are $p(p-1)$ pairs $(a,b)$ for which the equation has unique solutions.
+        
         \item[B)] For how many pairs $(a,b)$ does the equation have no solution?
+        
+        The equation has no solutions when $a \equiv 0 \pmod{p}$ but $b \not\equiv
+        0 \pmod{p}$. Therefore, there is one option for $a$, 0, and $p-1$ not zero
+        options for $b$, i.e., there are $p-1$ pairs $(a, b)$ for which the equation
+        has no solutions. 
+
         \item[C)] For how many pairs $(a,b)$ does the equation have $p$ solutions?
+        
+        When both $a$ and $b$ are equivalent to 0 modulos $p$, there aren't any 
+        unique solutions but there are $p$ solutions, since all elements in the 
+        set $\{0, 1, \dots p-1\}$ times 0 will be equivalent to 0 modulos $p$.
+        There is one pair, $(0, 0)$, for which the equation has $p$ solutions. 
+
     \end{itemize}
 
-    Now, consider the equation $ax \equiv b \pmod{pq}$ for distinct primes $p,q$. In the below three parts, when we discuss solutions, we mean a solution $x$ in the range $\{0, 1, \dots pq-1\}$.
+    Now, consider the equation $ax \equiv b \pmod{pq}$ for distinct primes $p,q$.
+    In the below three parts, when we discuss solutions, we mean a solution $x$ 
+    in the range $\{0, 1, \dots pq-1\}$.
 
     \begin{itemize}
-        \item[D)] If $\gcd(a, pq) = p$, show that there exists a solution if and only if $b = 0 \pmod p$. 
-        \item[E)] If $\gcd(a, pq) = p$ and there is a solution $x$, show that there are exactly $p$ solutions. (Hint: consider how you can generate another solution $x + \_\_\_$)
+        \item[D)] If $\gcd(a, pq) = p$, show that there exists a solution if and 
+        only if $b = 0 \pmod p$. 
+
+        If $b \equiv 0 \pmod{p}$, then $b \equiv 0 \pmod{pq}$ as well. In which 
+        case $ax \equiv b \equiv 0 \pmod{pq}$ has a solution when $x = 0$. 
+
+        If we only know that there exists a solution, we need to show that $b
+        \equiv 0 \pmod{p}$. Since $a$ and $pq$ share $p$ as a greatest common 
+        divisor, $b$ must also be a multiple of $p$ for $ax \equiv b \pmod{pq}$ 
+        to hold. Therefore, $b \equiv 0 \pmod{p}$.
+
+
+        \item[E)] If $\gcd(a, pq) = p$ and there is a solution $x$, show that there
+        are exactly $p$ solutions. (Hint: consider how you can generate another solution
+        $x + \_\_\_$)
+
+        % From part D), it must then be the case, as per the biconditional, that $b$
+        % is equivalent to 0 modulos $p$. Therefore, the equation $ax \equiv b \pmod{pq}$
+        % becomes
+        % \[
+        %     \begin{split}
+        %         ax \equiv b & \pmod{pq} \\
+        %         k \cdot px \equiv l \cdot p & \pmod{pq} \\
+        %         kx \equiv l & \pmod{pq}
+        %     \end{split}
+        % \]
+        % Since both left- and right-hand sides of the equivalency became multiples 
+        % of $p$, dividing by $p$ considers the equivalencies modulos $q$. 
+        We can express $a$ as a multiple $k$ of $p$ in our equation to answer
+        the question
+        \[
+            \begin{split}
+                ax \equiv b & \pmod{pq} \\
+                kp \cdot x \equiv b & \pmod{pq} \\
+            \end{split} 
+        \]
+
+        To generate $x + \_\_\_$ solutions, we can add multiples $l$ of $q$ to 
+        $x$, e.g. $kp(x + 2q)$, as each $klpq$ is equivalent to 0 modulos $q$. 
+        We can only add up to the $p$ multiple of $q$ however, at which point 
+        the solutions cycle and are identical to earlier ones.  
+
         \item[F)] For how many pairs $(a,b)$ are there exactly $p$ solutions? 
+        
+        The requirements from the last part are that $a$ and $pq$ share a greatest 
+        common divisor of $p$, and form part D) that $b \equiv 0 \pmod{p}$. $b$
+        can be expressed as a multiple of $p$, e.g. $kp$. $k$ must be less than
+        $q$, otherwise $b$ becomes equivalent to $pq$ or out of range. Therefore,
+        there are $q$ values $b$ can take on where $k \in \{ 0, 1, \dots, q-1 \}$.
+        Similarly for $a$, it can be expressed as a multiple of $p$, e.g. $mp$.
+        For $a$ to be divisible by $p$, but also not have $pq$ as a greatest
+        common divisor and stay in the range, $m$ must be in the set $\{ 1, 2, \dots, q-1 \}$.
+        Therefore, there are $q \cdot (q-1)$ pairs with exactly $p$ solutions.
+
+
     \end{itemize}
     
 \end{homeworkProblem}
