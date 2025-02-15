@@ -1,16 +1,68 @@
 \begin{homeworkProblem}{Touring Hypercube}
 
-    An the lecture, you have seen that if $G$ is a hypercube of dimension $n$, then
+    An the lecture, you have seen that if $G$ is a hypercube of dimension $n$, 
+    then
     \begin{itemize}
         \item The vertices of $G$ are the binary strings of length $n$.
-        \item $u$ and $v$ are connected by an edge if they differ in exactly one bit location.
+        \item $u$ and $v$ are connected by an edge if they differ in exactly 
+        one bit location.
     \end{itemize}
     
-    A \emph{Hamiltonian tour} of a graph (with $n \geq 2$ vertices) is a tour that visits every vertex exactly once.
+    A \emph{Hamiltonian tour} of a graph (with $n \geq 2$ vertices) is a tour that
+    visits every vertex exactly once.
 
     \begin{itemize}
-        \item[A)] Prove that a hypercube has an Eulerian tour if and only if $n$ is even.
+        \item[A)] Prove that a hypercube has an Eulerian tour if and only if $n$ 
+        is even.
         \item[B)] Prove that every hypercube has a Hamiltonian tour. 
     \end{itemize}
     
+    \part 
+
+    An Eulerian tour is a sequence of edges, that starts and ends on the same vertex,
+    in a graph that uses each edge exactly once. To prove that a hypercube has an 
+    Eulerian tour if and only if $n$ is even, I will prove both directions of the
+    biconditional. 
+    \\ \\
+    \textit{A hypercube has an Eulerian tour if $n$ is even.} To prove this, I 
+    will show that a hypercube of even dimension only has vertices of even degree,
+    which would imply that the hypercube has an Eulerian tour, since it is also
+    connected. If $n$ is even, then $G$ is a hypercube of an even dimension, meaning
+    the binary strings that are the vertices of $G$ are also of even length. Since
+    each vertex is incident as many edges as their are one-bit-location differences
+    in its binary string, if $n$ is even then there are also an even number of differences.
+    This is because there are $n$ one-bit-location differences for a binary string,
+    as each digit can either be zero or one. Therefore, since each vertex is incident
+    to an even number of edges when $n$ is even, $G$ has an Eulerian tour.
+    \\ \\
+    \textit{$n$ is even if the hypercube has an Eulerian tour.} If a graph $G$ has
+    an Eulerian tour, all its vertices must be of even degree. For a hypercube
+    to have all its vertices of even degree, the binary strings must be of even
+    length, i.e., $n$ must be even. If the binary strings were of odd length, that
+    would mean vertices would be incident to an odd number of edges, and therefore 
+    not have an Eulerian tour, leading to a contradiction.
+    \\ \\
+    \part 
+
+    To prove that every hypercube has a Hamiltonian tour, I will use the principle
+    of induction on $n$, the dimension of the hypercube.
+
+    \begin{itemize}
+        \item \textit{Base case}: For a hypercube $G$ to have at least two vertices,
+        it must be of dimension $n=1$, as a binary string of length one has 1
+        one-bit-location difference. $G$ then has a Hamiltonian tour, as traversing
+        the one edge visits both vertices.
+        \item \textit{Inductive hypothesis}: Assume that any hypercube of dimension
+        $1 \leq n \leq k$ has a Hamiltonian tour where $k \in \mathbb{N}$. 
+        \item \textit{Inductive step}: For $n=k+1$, we can show that the hypercube
+        has a Hamiltonian tour. The $k+1$ dimensional hypercube is composed of two 
+        $k$ dimensional hypercubes that, under the inductive hypothesis, each have
+        a Hamiltonian tour. It is then possible to construct a consolidated Hamiltonian
+        tour for the $k+1$ hypercube by removing the closing step of one of the
+        tours and replacing it with one of the edges that crosses to the other $k$
+        dimensional hypercube. Therefore, there exists a Hamiltonian tour for every
+        hypercube.
+    \end{itemize}
+
+
 \end{homeworkProblem}
