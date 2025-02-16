@@ -37,8 +37,12 @@
         \item[D)] If $\gcd(a, pq) = p$, show that there exists a solution if and 
         only if $b = 0 \pmod p$. 
 
-        If $b \equiv 0 \pmod{p}$, then $b \equiv 0 \pmod{pq}$ as well. In which 
-        case $ax \equiv b \equiv 0 \pmod{pq}$ has a solution when $x = 0$. 
+        If $b \equiv 0 \pmod{p}$, then the equation $ax \equiv b \pmod{pq}$ has a solution. 
+        Since $\gcd(a, pq) = p$, we can write $a = kp$ for $k \in \mathbb{Z}$. Then the equation becomes 
+        $kp \cdot x \equiv b \pmod{pq}$. Since $b \equiv 0 \pmod{p}$, we can write $b = mp$ for some integer $m$. 
+        Thus, the equation simplifies to $kp \cdot x \equiv mp \pmod{pq}$, which reduces to $kx \equiv m \pmod{q}$. 
+        Since $k$ and $q$ do not share a greatest common divisor that is not 1, there 
+        exists a solution considering $k \equiv k^{-1}m \pmod{q}$.
 
         If we only know that there exists a solution, we need to show that $b
         \equiv 0 \pmod{p}$. Since $a$ and $pq$ share $p$ as a greatest common 

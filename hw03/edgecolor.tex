@@ -62,7 +62,7 @@
     % to $d$ when $d \geq 1$, and it is always possible to 
 
     To prove that any graph with maximum degree $d \geq 1$ can be edge colored with
-    $2d -1$ colors I will use the principle of induction. 
+    $2d -1$ colors I will use the principle of induction on $d$. 
 
     \begin{itemize}
         \item \textit{Base case}: When the maximum degree of a graph is $d=1$ 
@@ -86,10 +86,25 @@
 
     \part 
 
-    The maximum degree of any vertex in a tree must be two, otherwise there would
-    be a cycle. Therefore, $d$ is equal to 2. To be edge colored, any two edges 
-    incident to the same vertex must have different colors. Since there are two
-    colors available, it is possible to edge color the tree. 
+    I prove that a tree can be edge colored with $d$ colors where $d$ is the
+    maximum degree of any vertex using the principle of induction on the number
+    of vertices in the tree, $n$. 
+
+    \begin{itemize}
+        \item \textit{Base case}: When there are two vertices, there is only one
+        edge to color, and so can be colored in $d$ colors, since the maximum 
+        degree of either vertex is 1.
+        \item \textit{Inductive hypothesis}: Assume that the claim holds for any
+        tree with vertices $2 \leq n \leq k$.
+        \item \textit{Inductive step}: Remove any one of the leaves of the tree, 
+        i.e. a vertex of degree 1 alongisde its edge. By the inductive hypothesis, 
+        this tree can be colored with $d$ colors. For the parent of this leaf vertex,
+        its maximum degree is $d-1$ after removing the edge, and there is at least one
+        color for all the edges such that it can be edge colored, with one extra one 
+        as $d - (d-1) = 1$. Therefore, there is a color remaining for the leaf and edge
+        that was removed to be colored. Therefore the claim has been proven true for all 
+        trees with $n$ vertices. 
+    \end{itemize}
 
     
 \end{homeworkProblem}
