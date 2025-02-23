@@ -1,0 +1,69 @@
+\begin{homeworkProblem}{Tweaking RSA}
+
+    You are trying to send a message to your friend, and as usual, Eve is trying
+    to decipher what the message is. However, you get lazy, so you use $N = p$, 
+    and $p$ is prime. Similar to the original method, for any message $x \in 
+    \{0,1, \ldots, N-1\}$, $E(x) \equiv x^e$ (mod $N$), and $D(y) \equiv y^d$ 
+    (mod $N$).
+
+    \begin{itemize}
+        \item[A)] Show how you choose $e,d > 1$ in the encryption and decryption
+        function, respectively. Prove the correctness property: the message $x$ 
+        is recovered after it goes through your new encryption and decryption 
+        functions, $E(x)$ and $D(y)$.
+        \item[B)] Can Eve now compute $d$ in the decryption function? If so, by
+        what algorithm?
+        \item[C)] Now you wonder if you can modify the RSA encryption method to 
+        work with three primes ($N = pqr$ where $p, q, r$ are all prime). Explain 
+        the modifications made to encryption and decryption and include a proof of 
+        correctness showing that $D(E(x)) = x$.
+    \end{itemize}
+    
+    \part 
+
+    For correctness, $D(E(x)) \equiv (x^e)^d \pmod{N}$. But in our case, where 
+    $N = p$, and not $N=pq$ as usual, $x \equiv x^{ed} \pmod{p}$. $d$ must be 
+    such that $ed \equiv 1 \pmod{p-1}$, and can be expressed as $ed = k(p-1) + 1$.
+    Fermat's Little Theorem then shows how $x \equiv x^{ed} \pmod{p}$
+    \[
+        \begin{split}
+            x^{ed} &\equiv x^{k(p-1)+1} \pmod{p} \\
+            &\equiv x^{k(p-1)}x \pmod{p} \\
+            &\equiv 1 \cdot x \pmod{p} \\
+            &\equiv x \pmod{p}
+        \end{split}
+    \] 
+
+    \part 
+
+    Since $p$ is now known (since $N=p$ and no prime factoring is required) and 
+    $e$ is public, Eve can compute $d$ as a multiplicative inverse using Euclid's 
+    for
+    \[
+        ed \equiv 1 \pmod{p-1}
+    \]
+
+    \part 
+
+    With three primes, $e$ and $d$ become $ed \equiv 1 \pmod{(p-1)(q-1)(r-1)}$, and
+    $x^{ed} \equiv x \pmod{N}$ still needs to hold where $N=pqr$. $ed$ can then be 
+    expressed as $ed=k(p-1)(q-1)(r-1)+1$, which then can be used to show the equivalency
+    of $x^ed$ and $x$
+    \[
+        \begin{split}
+            x^{ed} &\equiv x^{k(p-1)(q-1)(r-1)+1} \pmod{N} \\
+            &\equiv x^{k(p-1)(q-1)(r-1)}x \pmod{N} \\
+        \end{split}
+    \]
+    If a number is divisible by $pqr$, it is also divisible by any of $p$, $q$, 
+    and $r$, then if a number is computed modulo $N$, it is equivalent modulo of 
+    each of $N$'s prime factors. Then for any of the $(p-1), (q-1),$ and $(r-1)$, 
+    we can use Fermat's Little Theorem, for example:
+    \[
+        \begin{split}
+            (x^{p-1})^{k(q-1)(r-1)}-1 \equiv 0 \pmod{p}
+        \end{split}
+    \] 
+    Therefore, $x^{ed} \equiv x \pmod{N}$ for $N=pqr$.
+
+\end{homeworkProblem}

@@ -1,0 +1,57 @@
+\begin{homeworkProblem}{RSA Practice}
+
+    Consider the following RSA scheme and answer the specified questions.
+    \begin{itemize}
+        \item[A)] Assume for an RSA scheme we pick $2$ primes $p = 5$ and $q = 11$
+        with encryption key $e = 9$, what is the decryption key $d$? Calculate the 
+        exact value.
+        \item[B)] If the receiver gets 4, what was the original message?
+        \item[C)] Encrypt your answer from B) to check its correctness.        
+    \end{itemize}
+
+    \part 
+
+    The number $d$ is the multiplicative inverse of $e$ modulos $(p-1)(q-1)$,
+    that is, $d \equiv e^{-1} \pmod{(p-1)(q-1)}$. In our case, $d$ becomes
+    \[
+        \begin{split}
+            d &\equiv e^{-1} \pmod{(p-1)(q-1)} \\
+            &\equiv 9^{-1} \pmod{(5-1)(11-1)} \\
+            &\equiv 9 \pmod{40}
+        \end{split}
+    \]
+    
+    \part 
+
+    To decrypt the message $y=E(x)$, we must compute $D(y) \equiv y^d \pmod{N}$
+    \[
+        \begin{split}
+            x &\equiv D(y) \pmod{N} \\
+            &\equiv y^d \pmod{N} \\
+            &\equiv 4^9 \pmod{55} \\
+            &\equiv 4^3 \cdot 4^3 \cdot 4^3 \pmod{55} \\
+            &\equiv 9 \cdot 9 \cdot 9 \pmod{55} \\
+            &\equiv 26 \cdot 9 \pmod{55} \\
+            &\equiv 14 \pmod{55} 
+        \end{split}
+    \]
+
+    \part 
+
+    From the last part, $x=14$, to encrypt we need to compute $y=E(x) \equiv x^e \pmod{N}$\
+    \[
+        \begin{split}
+            y & \equiv E(x) \pmod{N} \\
+            &\equiv x^e \pmod{N} \\
+            &\equiv 14^9 \pmod{55} \\
+            &\equiv (14^2)^4 \cdot 14 \pmod{55} \\
+            &\equiv (31^2)^2 \cdot 14 \pmod{55} \\
+            &\equiv (26)^2 \cdot 14 \pmod{55} \\
+            &\equiv 16 \cdot 14 \pmod{55} \\
+            &\equiv 4 \pmod{55}
+        \end{split}
+    \]
+    
+    The encrypted message from part B) decrypted resulted again in 4.
+
+\end{homeworkProblem}

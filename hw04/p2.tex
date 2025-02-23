@@ -1,0 +1,67 @@
+\begin{homeworkProblem}{Euler's Totient Function}
+
+    Euler's totient function is defined as follows:
+    \[ \phi(n) = |\{i: 1 \leq i \leq n, \gcd(n,i) = 1\}|\]
+    In other words, $\phi(n)$ is the total number of positive integers less than or equal to $n$ which are relatively prime to it. We develop a general formula to compute $\phi(n)$.
+
+    \begin{itemize}
+        \item[A)] Let $p$ be a prime number. What is $\phi(p)$?
+        \item[B)] Let $p$ be a prime number and $k$ be some positive integer. What is $\phi(p^k)$?] 
+        \item[C)] We want to show that if $\gcd(a, b) = 1$, then $\phi(ab) = \phi(a)\phi(b)$.
+        \begin{itemize}
+            \item[i)] Show that for $z \equiv x \pmod a$, if $\gcd(x, a) = 1$, then $\gcd(z, a) = 1$.
+            \item[ii)] Let $X$ be the set of positive integers $1 \leq i \leq a$ such that $\gcd(i, a) = 1$ (i.e. all numbers in mod $a$ that are coprime to $a$), and let $Y,Z$ be defined analogously for mod $b, ab$ respectively.
+            Use the Chinese Remainder Theorem to show that there is a bijection between $X \times Y$ and $Z$. 
+            \item[iii)] Use the above parts to show that $\phi(ab) = \phi(a)\phi(b)$.
+        \end{itemize}
+        \item[D)] Show that if the prime factorization of $n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$, then
+        \[ \phi(n) = n \prod_{i = 1}^k \frac{p_i - 1}{p_i}. \]
+    \end{itemize}
+    
+    \part 
+
+    If $p$ is a prime number, $\phi(p)$ will then be $p-2$ since by definition
+    $p$ will only be divisible by itself and 1, so every other number less than or 
+    equal to it will be $\gcd(n, i)$. 
+
+    \part 
+
+    For any $p^k$, the numbers less than or equal to it that have a greatest common
+    divisor greater than one will be all $p^{k-1}, p^{k-2}, \dots p$ and their multiples. For example, 
+    for 81 (or $3^4$), the divisors are 27, 9, 3, and 1, i.e., $3^3, 3^2, 3^1$, and $3^0$.
+    So, $\phi(p^k) = p^{k-1}$.
+
+    \part 
+
+    For part i), assume the contrary. If $z$ is equivalent to $x$ modulos $a$, and 
+    if $\gcd(x,a) = 1$, then $z$ can be expressed as $z = ka + x$. Then, $\gcd(z, a) =
+    \gcd(ka + x, a) = \gcd(a, x) = 1$, using Euclid's algorithm. 
+
+    For part ii), with the Chinese Remainder Theorem, we can show that there is an $x$
+    \[
+        \begin{split}
+            x &\equiv i \pmod{a} \\
+            x &\equiv j \pmod{b} \\
+        \end{split}
+    \]
+    for every $(i, j)$ defined by $X \times Y$, and such there exists a bijection
+    between $X \times Y$ and $Z$. 
+    
+    For part iii), we know the above and everything from i). $\phi(a)$ is the size of the set of all $1 \leq i \leq a$ where $\gcd(a, i) = 1$. So what is the size of $X \times Y$, well from before we know it's all the possible combos so $|X \times Y| = |X| |Y|$.
+    So, since $|X| = \phi(a)$ and $|Y| = \phi(b)$, $|X||Y| = \phi(a) \phi(b) = |X\times Y| = \phi(ab)$.
+    
+    \part 
+
+    The numbers that have a greatest common divisor greater than 1 
+    with $p$
+    \[
+        p^k - p^{k-1} = p^k(1-p^{-1}) = p^k(1-\frac{1}{p^k})
+    \]
+    and then,
+    \[
+        \phi(n) = \phi(p_1^{e_1}p_2^{e_2} \dots p_k^{e_k}) = \phi(p_1^{e_1})\phi(p_1^{e_1}) \dots \phi(p_k^{e_k}) =
+        n \prod_i^k (1-\frac{1}{p^i}) = n \prod_i^k (\frac{p_i-1}{p_i})
+    \]
+
+
+\end{homeworkProblem}

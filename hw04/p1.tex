@@ -1,0 +1,52 @@
+\begin{homeworkProblem}{Celebrate and Remember Textiles}
+
+    You've decided to knit a 70-themed baby blanket as a gift for your cousin and
+    want to incorporate rows from three different stitch patterns with the
+    following requirements on the row lengths of each of the stitch patterns:
+    \begin{itemize}
+    \item Alternating Link: Multiple of 7, plus 4
+    \item Double Broken Rib: Multiple of 4, plus 2
+    \item Swag: Multiple of 5, plus 2
+    \end{itemize}
+    
+    You want to be able to switch between knitting these different
+    patterns without changing the number of stitches on the needle, so you
+    must use a number of stitches that simultaneously meets the requirements of all three
+    patterns.
+
+    Find the \emph{smallest number of stitches} you need to cast on in
+    order to incorporate all three patterns in your baby blanket.    
+    \\ \\
+    \solution \\ 
+    Since the numbers 7, 4, and 5 are coprime, we can apply Chinese Remainder 
+    Theorem to determine the smallest number of stitches needed. The product 
+    of all these multiples is $N = 7 \cdot 4 \cdot 5 = 140$.  
+    \[
+        \begin{split}
+            a_0 b_0 &= \frac{N}{n_0} \left( \frac{N}{n_0} \right)^{-1}_{n_0} =
+            \frac{140}{7} \left( \frac{140}{7} \right)^{-1}_{7} = 
+            20 \left( 20 \right)^{-1}_{7} =
+            20 \cdot (6) = 
+            120 \\
+            a_1 b_1 &= \frac{N}{n_1} \left( \frac{N}{n_1} \right)^{-1}_{n_1} =
+            \frac{140}{4} \left( \frac{140}{4} \right)^{-1}_{4} = 
+            35 \left( 35 \right)^{-1}_{4} = 
+            % 35 \left( 3 \right)^{-1}_{4} = 
+            35 \cdot (3) = 
+            70 \\
+            a_2 b_2 &= \frac{N}{n_2} \left( \frac{N}{n_2} \right)^{-1}_{n_2} =
+            \frac{140}{5} \left( \frac{140}{5} \right)^{-1}_{5} =
+            28 \left( 28 \right)^{-1}_{5} =
+            28 \cdot (2) =
+            56
+        \end{split}
+    \]
+
+    Then, our $x$, or the smallest number of stitches needed, is 
+    \[
+        x = \left( \sum_{i=0}^{k} a_i b_i \right) =
+        \left( 4 \cdot 120 + 2 \cdot 70 + 2 \cdot 56 \right) \equiv
+        102 \pmod{140}
+    \]
+
+\end{homeworkProblem}

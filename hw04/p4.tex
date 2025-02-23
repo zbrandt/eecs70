@@ -1,0 +1,33 @@
+\begin{homeworkProblem}{Sparsity of Primes}
+
+    A prime power is a number that can be written as $p^i$ for some prime $p$ and some
+    positive integer $i$. So, $9 = 3^2$ is a prime power, and so is $8 = 2^3$. $42 = 2 \cdot 3 \cdot 7$ is not
+    a prime power.
+
+    Prove that for any positive integer $k$, there exists $k$ consecutive positive integers
+    such that none of them are prime powers.
+
+    \emph{Hint: This is a Chinese Remainder Theorem problem. We want to find $n$ such that $(n + 1)$, $(n + 2)$, \ldots, and $(n + k)$ are all not powers of primes. We can enforce this by saying that $n + 1$ through $n + k$ each must have two distinct prime divisors. In your proof, you can choose these prime divisors arbitrarily.}
+
+    \solution
+
+    To find an $n$ such that the consecutive sequence of $(n+1), (n+2), \cdots, (n+k)$ of
+    $k$ integers is composed of no prime powers, we need to find a sequence where 
+    all the numbers have two distinct prime factors (a prime power, by definition,
+    only has one). 
+
+    With two times the numbers of consecutive integers for prime number factors
+    we can construct the sequence of equivalencies for Chinese Remainder Theorem
+    \[
+        \begin{split}
+            n + 1 &\equiv 0 \pmod{p_1 p_2} \\
+            n + 2 &\equiv 0 \pmod{p_3 p_4} \\
+            &\vdots \\
+            n + k &\equiv 0 \pmod{p_{2k-1} p_{2k}}
+        \end{split}   
+    \]
+
+    The Chinese Remainder Thereom states that there is such an $n$ for this setup,
+    and we can therefore find a consecutive sequence of non-prime powers.
+
+\end{homeworkProblem}

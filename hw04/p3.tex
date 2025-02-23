@@ -1,0 +1,53 @@
+\begin{homeworkProblem}{Euler's Totient Theorem}
+    Euler's Totient Theorem states that, if $n$ and $a$ are coprime,
+    \[
+    a^{\phi(n)} \equiv 1 \pmod{n}
+    \]
+    where $\phi(n)$ (known as Euler's Totient Function) is the number of positive
+    integers less than or equal to $n$ which are coprime to $n$ (including 1). Note that this theorem generalizes Fermat's Little Theorem, since if $n$ is prime, then $\phi(n) = n - 1$. 
+
+    \begin{itemize}
+    \item[A)] Let the numbers less than $n$ which are coprime to $n$ be $S = \{ m_1, m_2, \ldots, m_{\phi(n)} \}$. 
+    Show that the set
+    \[S' = \{am_1 \pmod n, am_2 \pmod n, \ldots, am_{\phi(n)} \pmod n \}\]
+    is a permutation of $S$. (Hint: Recall the FLT proof.)
+
+    \item[B)] Prove Euler's Totient Theorem. (Hint: Continue to recall the FLT proof.)
+    \item[C)] Note 7 gave two proofs for Theorem 7.1: $$ x^{ed} \equiv x \pmod{N}$$ 
+    Use Euler's Totient Theorem to give a third proof of this theorem, for the case that $\gcd(x, N)=1$.
+    \end{itemize}
+
+    \part 
+
+    Since $n$ and $a$ are coprime, i.e., $\gcd(n, a) = 1$, the numbers in the set $S'$
+    are all distinct. Since none of the elements in the set $S$, and the number of 
+    elements in the set is $\phi(n) = n-1$. Therefore, $S'$ is a permutation of $S$, i.e.,
+    it includes all the same elements just in a different order. 
+
+    \part 
+
+    Continuing from the proof of Fermat's Last Theorem, if we take the product 
+    of all the numbers in $S$
+    \[
+        1 \cdotp 2 \cdotp \dots \cdotp (n-1) \equiv (n-1)! \pmod{n}
+    \]
+    But, taking the product of all the numbers in $S'$, the equivalency is
+    \[
+        a \cdotp 2a \cdotp \dots \cdotp (n-1)a \equiv a^{n-1}(n-1)! \pmod{n}
+    \]
+    However, since we know that the numbers in $S$ and $S'$ are the same, the
+    products of both sets' elements must be the same
+    \[
+        (n-1)! \equiv a^{n-1}(n-1)! \pmod{n}
+    \]
+    Multiplying both sides of the equivalency by the multiplicative inverse 
+    of $(n-1)!$, the equivalency becomes 
+    \[
+        a^{n-1} \equiv a^{\phi(n)} \equiv 1 \pmod{n}
+    \]
+
+    \part 
+
+    
+
+\end{homeworkProblem}
