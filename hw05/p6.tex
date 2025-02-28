@@ -1,0 +1,47 @@
+\begin{homeworkProblem}{Alice and Bob}
+
+    \begin{itemize}
+        \item[A)] Alice decides that instead of encoding her message as the 
+        values of a polynomial, she will encode her message as the coefficients 
+        of a degree $2$ polynomial $P(x)$. For her message [$m_1, m_2, m_3$], 
+        she creates the polynomial $P(x) = m_1x^2 + m_2x + m_3$ and sends the 
+        five packets $(0, P(0))$, $(1, P(1))$, $(2, P(2))$, $(3, P(3))$, and 
+        $(4, P(4))$ to Bob. However, one of the packet $y$-values (one of the 
+        $P(i)$ terms; the second attribute in the pair) is changed by Eve before 
+        it reaches Bob. If Bob receives
+        \begin{align*}
+            (0, 1), (1, 3), (2, 0), (3, 1), (4, 0)
+        \end{align*}
+        and knows Alice's encoding scheme and that Eve changed one of the 
+        packets, can he recover the original message? If so, find it as well as 
+        the $x$-value of the packet that Eve changed. If he can't, explain why. 
+        Work in mod 7. Also, feel free to use a calculator or online systems of 
+        equations solver, but make sure it can work under mod 7.
+   
+        \item[B)] Bob gets tired of decoding degree 2 polynomials. He convinces 
+        Alice to encode her messages on a degree 1 polynomial. Alice, just to be 
+        safe, continues to send 5 points on her polynomial even though it is 
+        only degree 1. She makes sure to choose her message so that it can be 
+        encoded on a degree 1 polynomial. However, Eve changes two of the 
+        packets. Bob receives $(0, 5)$, $(1, 7)$, $(2, x)$, $(3, 5)$, $(4, 0)$. 
+        If Alice sent $(0, 5)$, $(1, 7)$, $(2, 9)$, $(3, -2)$, $(4, 0)$, for 
+        what values of $x$ will Bob not uniquely be able to determine Alice's 
+        message? Assume that Bob knows Eve changed two packets. Work in mod 13. 
+        Again, feel free to use a calculator or graphing calculator software.
+
+        \textit{Hint:} Observe that since Bob knows that Eve changed two 
+        packets, he's looking for a polynomial that passes through at least 3 of 
+        the given points. Think about what must happen in order for Bob to be 
+        unable to uniquely identify the original polynomial.
+
+        \item[C)] Alice wants to send a length $n$ message to Bob. There are two 
+        communication channels available to her: Channel X and Channel Y. Only 6 
+        packets can be sent through channel X. Similarly, Channel Y will only 
+        deliver 6 packets, but it will also corrupt (change the value) of one of 
+        the delivered packets. Using each of the two channels once, what is the 
+        largest message length $n$ such that Bob so that he can always 
+        reconstruct the message? 
+
+    \end{itemize}
+
+\end{homeworkProblem}
