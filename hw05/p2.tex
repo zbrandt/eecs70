@@ -13,4 +13,15 @@
 
     Design a Secret Sharing scheme to make this work.
 
+    \solution
+
+    Create a polynomial of degree 6, give each TA four points and give each Reader
+    three points. If both TAs collaborate they can reconstruct the polynomial to
+    find the secret since they have at least 7 points. If all Readers collaborate 
+    they can also reconstruct the polynomial to find the secret with 2 points to
+    spare. If one TA and one Reader collaborate they can reconstruct the polynomial
+    with no points to spare. Since one TA only has four points and two Readers only
+    have 6 points (1 point away from being able to reconstruct the polynomial), this
+    Secret Sharing scheme satisfies the condition. 
+
 \end{homeworkProblem}
