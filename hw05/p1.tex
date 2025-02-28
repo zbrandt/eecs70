@@ -15,4 +15,34 @@
         p$, it is equivalent to some polynomial $\tilde f(x)$ with degree $< p$.
     \end{itemize}
 
+    \part 
+
+    To show $f(x) \not \equiv g(x) \pmod{p}$, consider every $x \in \text{GF}(p)$.
+    When $x=0$, $f(0) = 0^{p-1} = 0$ and $g(0) = 1$, which are not equivalent 
+    under modulo $p$. Since $f(x)$ and $g(x)$ are not equivalent for all
+    $x \in \text{GF}(p)$, they are not equivalent polynomials under $\text{GF}(p)$.
+    
+    \part 
+
+    Using exponent rules in modular arithmetic in conjuction with Fermat's Little
+    Theorem, $f(x) \equiv x^5 \equiv x^4 \cdot x \equiv x \pmod{5}$, and $x$ is a 
+    polynomial with degree strictly less than 5. For the second part, $g(x) \equiv 
+    4x^{70} + 9x^{11} + 3 \equiv 4(x^{10})^{7} + 9x^{10}x + 3 \equiv 9x + 7 \pmod{11}$,
+    and $9x+7$ is a polynomial with degree strictly less than 11.
+    
+    \part 
+
+    If $f(x)$ is a polynomial under $\text{GF}(p)$ with degree $\geq p$, then by
+    recursively applying Fermat's Little Thereom to every term $x^k$, where $k \geq 
+    p$, can be reduced to $x^k \equiv 1 \cdot x^r \pmod{p}$, since $x^k = x^{l(p-1) 
+    + r}$ where $l, r \in \mathbb{Z}$. This results in a polynomial $\tilde{f}$ with
+    degree $< p$ under in $\text{GF}(p)$ and is true for any $f(x)$ with degree $\geq 
+    p$ over $\text{GF}(p)$.
+
+    % If $f(x)$ has degree $\geq p$, it is possible, under $\text{GF}(p)$, to find
+    % an equivalent polynomial since each exponent greater than $p$ can be expressed
+    % in terms of $p-1$ and, using Fermat's Last Theorem, these terms are equivalent
+    % to 1, only leaving the remaining terms with exponents less than $p$, resulting
+    % in some polynomial with degree $< p$.
+
 \end{homeworkProblem}
