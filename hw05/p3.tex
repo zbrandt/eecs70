@@ -13,4 +13,26 @@
     problem, such as $s', s$ or $p(1)$) in order to make the others believe 
     that the secret is $s'$?
 
+    \solution
+    He should report some value for $p(1)$ such that the reconstructed polynomial
+    from $(1, p(1)), (2, p(2)), \dots, (n+1, p(n+1))$, evaluated at 0, returns a
+    fixed $s'$ that is not the true secret. Reconstructing the polynomial with \
+    Lagrange Interpolation, absent the fixed $s'$, the polynomial is
+    \[
+        p(x) = \sum_{i=1}^{n+1} p(i) \Delta_i(x)
+    \]
+    But if $\text{Bob}_1$ wants the \$GME holders to reconstruct a polynomial
+    where $p(0) = s'$ instead of $s$, the first term of the summation must be
+    modified to use $p(1)'$ instead of the true $p(1)$ value
+    \[
+        p(x)' = p(1)'\Delta_1(x) + \sum_{i=2}^{n+1} p(i) \Delta_i(x)
+    \]
+    To solve for $p(1)'$ given a fixed $s' \not = s$, a new basis polynomial 
+    $\Delta_1(x)'$ is required
+    \[
+        p(1)' = \frac{s' - \sum_{i=2}^{n+1} p(i)\Delta_i(0)}{\Delta_1(0)'}
+    \]
+    
+
+
 \end{homeworkProblem}

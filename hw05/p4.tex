@@ -25,4 +25,47 @@
 
     \end{itemize}
 
+    \part 
+
+    If we interpolate a polynomial through a single point $(x_0, y_0)$, we get
+    a 0 degree polynomial, i.e., the point itself for all $x$: $f_0(x) = y_0$.
+
+    \part 
+
+    When $x=x_0$, $f_1(x)$ is equal to $f_1(x_0)= f_0(x_0) + a_1 (x_0 - x_0)
+    = y_0$. Then for $x=x_1$, $f_1(x_1) = f_0(x_1) + a_1 (x_1 - x_0) = y_0 +
+    a_1 (x_1 - x_0)$. $f_1(x_1)$ should equal $y_1$, so 
+    \[
+        \begin{split}
+            y_1 &= y_0 + a_1 (x_1 - x_0) \\
+            a_1 &= \frac{y_1 - y_0}{x_1 - x_0} = \frac{y_1 - f_0(x_1)}{x_1 - x_0}
+        \end{split}
+    \]
+
+    \part 
+
+    For $f_2(x)$ evaluated at $x=x_0$ and $x=x_1$, we know that $f_1(x)$ will
+    output our desired values of $y_0$ and $y_1$, and since the rest of the 
+    terms in $f_2(x)$ evaluate to zero, we know $f_2(x)$ passes through the 
+    first two of our points. For $x=x_2$, $f_2(x)$ is $f_2(x_2) = f_1(x_2)
+    + a_2 (x_2 -x_0)(x_2-x_1)$. Therefore, $a_2$ must be
+    \[
+        a_2 = \frac{y_2-f_1(x_2)}{(x_2 - x_0)(x_2-x_1)}
+    \]
+
+    \part 
+
+    Like in the previous parts, for values $x_0, x_1, \dots, x_i$, $f_{i+1}(x)$
+    will output $y_0, y_1, \dots, y_i$ since the product $\prod_{j=0}^{i}(x-x_j)$
+    will end up being zero and $f_{i+1}(x)$ collapses to $f_i(x)$. Like before, 
+    consider $f_{i+1}(x_{i+1}) = f_i(x_{i+1}) + a_{i+1} \prod_{j=0}^{i}(x_{i+1}
+    - x_j)$ and that it should equal $y_{i+1}$. Therefore, $a_{i+1}$ is
+    \[
+        \begin{split}
+            y_{i+1} &= f_i(x_{i+1}) + a_{i+1} \prod_{j=0}^{i} (x_{i+1} - x_j) \\
+            a_{i+1} &= \frac{y_{i+1} - f_{i}(x_{i+1})}{\prod_{j=0}^{i}(x_{i+1}-x_j)}
+        \end{split}
+    \]
+
+
 \end{homeworkProblem}
