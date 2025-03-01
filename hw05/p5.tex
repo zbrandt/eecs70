@@ -15,4 +15,21 @@
 
     \end{itemize}
 
+    \part 
+
+    For a total amount of packets sent $l$, if $\alpha$ are lost, the amount
+    recieved is $(1-\alpha) \cdot l$ packets. To reconstruct the polynomial
+    to find the missing $m$'s, the reciever needs to get at the very least 
+    $n$ packets. So $n \geq (1-\alpha) \cdot l$ packets and $l$, the number
+    of packets we need to send as a function of $n$ and $\alpha$, is 
+    $\frac{n}{1-\alpha}$, at least this amount.
+    
+    \part
+
+    For the case of gneeral errors, when we know that $k$ amount of packages
+    are corrupted, we must send $n+2k$ to recover the message. If $l$ is again
+    the total amount of packages sent, then we need to protect against $\alpha 
+    \cdot l$ errors. So, $l \geq n + 2l\cdot \alpha$ from $n+2k$ or $l \geq 
+    \frac{n}{1-2\alpha}$.
+
 \end{homeworkProblem}
