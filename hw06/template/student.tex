@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 06}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Wednesday, 3/5, 11:59 PM \\
+    Grace period until Wednesday, 3/5, 11:59 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
+
+\vspace{15pt}
+
+\Question{Counting, Counting, and More Counting}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+The only way to learn counting is to practice, practice, practice, so
+here is your chance to do so. Although there are many subparts, each subpart is fairly short, so this problem should not take any longer than a normal CS70 homework problem. You do not need to show work, and
+\textbf{Leave your answers as an expression} (rather than
+trying to evaluate it to get a specific number).
+\begin{Parts}
+
+\Part How many ways are there to arrange $n$ 1s and $k$ 0s into a sequence?
+
+\Part How many 19-digit ternary (0,1,2) bitstrings are there such that no two adjacent digits are equal?
+
+\Part A bridge hand is obtained by selecting 13 cards from a standard
+  52-card deck. The order of the cards in a bridge hand is
+  irrelevant.
+  \begin{Parts}
+    \item How many different 13-card bridge hands are there? 
+    \item How many different 13-card bridge hands are there that contain no aces? 
+    \item How many different 13-card bridge hands are there that contain all four aces? 
+    \item How many different 13-card bridge hands are there that contain exactly 4 spades?
+  \end{Parts}
+
+\Part Two identical decks of 52 cards are mixed together, yielding a
+  stack of 104 cards.
+  How many different ways are there to order this stack of 104 cards?
+  
+\Part How many 99-bit strings are there that contain more ones than
+  zeros?
+  
+\Part An anagram of ALABAMA is any re-ordering of the letters of ALABAMA, i.e., any
+  string made up of the letters A, L, A, B, A, M, and A, in any order.
+  The anagram does not have to be an English word.
+  \begin{Parts}
+    \item How many different anagrams of ALABAMA are there? 
+    \item How many different anagrams of MONTANA are there?
+  \end{Parts}
+ 
+\Part How many different anagrams of ABCDEF are there if:
+\begin{Parts}
+  \item C is the left neighbor of E
+  \item C is on the left of E (and not necessarily E's neighbor)
+\end{Parts}
+
+\Part We have 8 balls, numbered 1 through 8, and 25 bins.
+  How many different ways are there to distribute these 8 balls among
+  the 25 bins? Assume the bins are distinguishable (e.g., numbered 1
+  through 25).
+  
+\Part How many different ways are there to throw 8 identical balls
+  into 25 bins? Assume the bins are distinguishable (e.g., numbered 1
+  through 25).
+ 
+\Part We throw 8 identical balls into 6 bins.
+  How many different ways are there to distribute these 8 balls among
+  the 6 bins such that no bin is empty? Assume the bins are
+  distinguishable (e.g., numbered 1 through 6). 
+
+\Part There are exactly 20 students currently enrolled in a class.
+  How many different ways are there to pair up the 20 students, so
+  that each student is paired with one other student? Solve this in at least 2 different ways. \textbf{Your final answer must consist of two different expressions. }
+
+  
+\Part How many solutions does $x_0 + x_1 + \cdots + x_k = n$ have, if each $x$ must be a non-negative integer?
+
+\Part How many solutions does $x_0 + x_1 = n$ have, if each $x$ must be a \emph{strictly positive} integer?
+
+\Part How many solutions does $x_0 + x_1 + \cdots + x_k = n$ have, if each $x$ must be a \emph{strictly positive} integer?
+
+\end{Parts}
+
+\Question{Fermat's Wristband}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n7.pdf}{Note 7},\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+Let $p$ be a prime number and let $n$ be a positive integer.
+We have beads of
+$n$ different colors, where any two beads of the same color are indistinguishable.
+
+\begin{Parts}
+    \Part
+    We place $p$ beads onto a string.
+    How many different ways are there to construct such a sequence of $p$ beads with up to $n$ different colors?
+
+    \Part 
+    How many sequences of $p$ beads on the string are there that use at least two colors?
+
+    \Part
+    Now we tie the two ends of the string together, forming a
+    wristband.
+    Two wristbands are equivalent if the sequence of colors on one
+    can be obtained by rotating the beads on the other.
+    (For instance, if we have $n=3$ colors, red (R), green (G), and
+    blue (B), then the length $p = 5$ necklaces RGGBG, GGBGR, GBGRG, BGRGG, and GRGGB are all
+    equivalent, because these are all rotated versions of each other.)
+
+    How many non-equivalent wristbands are there now?
+    Again, the $p$
+    beads must not all have the same color.
+    (Your answer should be a simple function of $n$ and $p$.)
+
+    [\textit{Hint}: Think about the fact that rotating all the beads on the wristband to another
+        position produces an identical wristband.]
+
+    \Part Use your answer to part (c) to prove Fermat's little theorem.
+\end{Parts}
+
+\end{document}
