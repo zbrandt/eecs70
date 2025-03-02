@@ -14,24 +14,77 @@
     that the secret is $s'$?
 
     \solution
-    He should report some value for $p(1)$ such that the reconstructed polynomial
-    from $(1, p(1)), (2, p(2)), \dots, (n+1, p(n+1))$, evaluated at 0, returns a
-    fixed $s'$ that is not the true secret. Reconstructing the polynomial with \
-    Lagrange Interpolation, absent the fixed $s'$, the polynomial is
+    For a polynomial $p'(x)$ constructed by the holders using $\text{Bob}_1$'s
+    $p'(1)$ (instead of his true $p(1)$), $p(x)$ and $p'(x)$ can be expressed as 
+    follows from Lagrange Interpolation. Both have their first terms of the sum 
+    seperated to highlight where $\text{Bob}_1$ fixes the result. 
     \[
-        p(x) = \sum_{i=1}^{n+1} p(i) \Delta_i(x)
+        \begin{split}
+            p(x) = p(1)\Delta_1(x)+ \sum_{i=2}^{n+1} p(i)\Delta_i(x) \\
+            p'(x) = p'(1)\Delta_1(x)+ \sum_{i=2}^{n+1} p(i)\Delta_i(x)
+        \end{split}
     \]
-    But if $\text{Bob}_1$ wants the \$GME holders to reconstruct a polynomial
-    where $p(0) = s'$ instead of $s$, the first term of the summation must be
-    modified to use $p(1)'$ instead of the true $p(1)$ value
+    For obtaining the secret, $p(x)$ is evaluated at $x=0$ to obtain $s$.
+    Similarly, $p'(x)$ evaluated at $x=0$ should then equal $p'(0) = s'$. Although we 
+    know that, for a basis polynomial $\Delta_i(x_j)$, when $i \not = j$, $\Delta_i(x_j)
+    = 0$ and 1 otherwise for $i, j \in \{1, 2, \dots, n+1\}$, we are not sure what 
+    $\Delta_i(x)$ evaluated at $x=0$ is out of the gate. 
     \[
-        p(x)' = p(1)'\Delta_1(x) + \sum_{i=2}^{n+1} p(i) \Delta_i(x)
+        \begin{split}
+            s = p(0) = p(1)\Delta_1(0)+ \sum_{i=2}^{n+1} p(i)\Delta_i(0) \\
+            s' = p'(0) = p'(1)\Delta_1(0)+ \sum_{i=2}^{n+1} p(i)\Delta_i(0)    
+        \end{split}    
     \]
-    To solve for $p(1)'$ given a fixed $s' \not = s$, a new basis polynomial 
-    $\Delta_1(x)'$ is required
+    
+    Solving for $p'(1)$ using the above equations for both the true and fixed secret
+    results in a solution for $p'(1)$
     \[
-        p(1)' = \frac{s' - \sum_{i=2}^{n+1} p(i)\Delta_i(0)}{\Delta_1(0)'}
+        \begin{split}
+            p'(1) = \frac{s' - \sum_{i=2}^{n+1} p(i)\Delta_i(0)}{\Delta_1(0)} \\
+            p'(1) = \frac{s' - (s - p(1)\Delta_1(0))}{\Delta_1(0)} \\
+            p'(1) = \frac{s' - s}{\Delta_1(0)} + p(1) \\
+        \end{split}    
     \]
+    From the defintion of the basis polynomials in Lagrange Interpolation,
+    $\Delta_1(x) = \frac{\prod_{j=2}^{n+1} (x-x_j)}{\prod_{j=2}^{n+1} (1- x_j)}$,
+    which for $x=0$ equals
+    \[
+        \Delta_1(0) = \frac{\prod_{j=2}^{n+1} (0-j)}{\prod_{j=2}^{n+1} (1 - j)} =
+        \frac{\cancel{2} \cdot \cancel{3} \cdot \dots \cdot \cancel{n} \cdot (n+1)}
+        {1 \cdot \cancel{2} \cdot \dots \cdot \cancel{n}} = 
+        \frac{n+1}{1}
+    \]
+    Therefore, $p'(1) = \frac{s'-s}{n+1} + p(1)$.
+    
+
+
+    
+    % He should report some value for $p(1)$ such that the reconstructed polynomial
+    % from $(1, p(1)), (2, p(2)), \dots, (n+1, p(n+1))$, evaluated at 0, returns a
+    % fixed $s'$ that is not the true secret. Reconstructing the polynomial with
+    % Lagrange Interpolation, absent the fixing, the polynomial is of the form
+    % \[
+    %     p(x) = a_{n+1}x^{n+1} + a_{n}x^n + \dots + a_1 x_1 + a_0
+    % \]
+    % Therefore, $a_0$ must equal $s$, because $p(0) = a_{n+1} \cdot 0^{n+1} + \dots + 
+    % a_1 \cdot 0 + a_0 = a_0$. $p(x)$ can be rewritten as
+    % \[
+    %     p(x) = \sum_{i=0}^{n+1} a_i x^i = \sum_{i=1}^{n+1} a_i x^i + s
+    % \]
+    % Without any fixing, $p(1) = \sum_{i=0}^{n+1} a_i \cdot 1^i = \sum_{i=1}^{n+1}
+    % a_i + s$. In order for $\text{Bob}_1$ to make the others believe that the secret 
+    % is $s'$, he must return a $p'(1)$ such that $p'(x)$ evaluated at $x=0$ returns 
+    % $s'$. So, $p'(x)$ must be of a similar form to $p(x)$ but with a slight change
+    % \[
+    %     p'(x) = \sum_{i=0}^{n+1} a_i x^i = \sum_{i=1}^{n+1} a_i x^i + s'
+    % \]
+    % Evaluating $p'(x)$ at $x=1$ yields a similar form to $p(1)$, $p'(1) = \sum_{i=0}^{n+1} 
+    % a_i \cdot 1^i = \sum_{i=1}^{n+1} a_i + s'$, which can be expressed as
+    % \[
+    %     p'(1) = \sum_{i=1}^{n+1} a_i \cdot 1^i + s' = \left( p(1) - s \right) + s'
+    % \]
+    % after substituting in $\sum_{i=1}^{n+1} a_i \cdot 1^i = p(1) - s$. 
+    
     
 
 

@@ -62,22 +62,22 @@
             &(i=4) & a_3 + 2a_2 + 4a_1 + a_0 \equiv 0 \pmod{7}
         \end{align*}
 
-        % To solve this, we can row reduce a corresponding matrix for the system of
-        % equations. 
-        % \[
-        % \left[
-        %     \begin{array}{ccccc|c}
-        %         0 & 0 & 0 & 1 & 6 & 0 \\
-        %         1 & 1 & 1 & 1 & 4 & 3 \\
-        %         1 & 4 & 2 & 1 & 0 & 0 \\
-        %         6 & 2 & 3 & 1 & 6 & 3 \\
-        %         1 & 2 & 4 & 1 & 0 & 0
-        %     \end{array}
-        % \right]
-        % \]
+        To solve this, we can row reduce a corresponding matrix for the system of
+        equations under modulos 7. 
+        \[
+        \left[
+            \begin{array}{ccccc|c}
+                0 & 0 & 0 & 1 & 6 & 0 \\
+                1 & 1 & 1 & 1 & 4 & 3 \\
+                1 & 4 & 2 & 1 & 0 & 0 \\
+                6 & 2 & 3 & 1 & 6 & 3 \\
+                1 & 2 & 4 & 1 & 0 & 0
+            \end{array}
+        \right]
+        \]
 
-        Solving this, the coefficients are $a_3=1, a_2=5, a_1=5, a_0=4,$ and 
-        $b_0=3$. Therefore, the polynomial $Q(x)$ is $Q(x) = x^3 + 5x^2 + 5x
+        Solving this (on paper), the coefficients are $a_3=1, a_2=5, a_1=5, a_0=4,$ 
+        and $b_0=-3$. Therefore, the polynomial $Q(x)$ is $Q(x) = x^3 + 5x^2 + 5x
         + 4$ and the error location is $e_1 = -b_0 = 3$. The secret message
         is the coefficients of $P(x)$ which is 
         \[
