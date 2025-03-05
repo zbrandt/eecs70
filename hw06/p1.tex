@@ -11,55 +11,96 @@ evaluate it to get a specific number).
 \item[A)] How many ways are there to arrange $n$ 1s and $k$ 0s into a 
 sequence?
 
+\textcolor{blue}{\[ \binom{n+k}{n} \]}
+
 \item[B)] How many 19-digit ternary (0,1,2) bitstrings are there such 
 that no two adjacent digits are equal?
+
+\textcolor{blue}{\[ 3 \times 2^{18} \]}
 
 \item[C)] A bridge hand is obtained by selecting 13 cards from a 
 standard 52-card deck. The order of the cards in a bridge hand is 
 irrelevant.
   \begin{itemize}
     \item[1)] How many different 13-card bridge hands are there? 
+    
+    \textcolor{blue}{\[ \binom{52}{13} \]}
+
     \item[2)] How many different 13-card bridge hands are there that 
     contain no aces? 
+
+    \textcolor{blue}{\[ \binom{48}{13} \]}
+
     \item[3)] How many different 13-card bridge hands are there that 
     contain all four aces? 
+
+    \textcolor{blue}{\[ \binom{4}{4} \times \binom{48}{9} \]}
+
     \item[4)] How many different 13-card bridge hands are there that 
     contain exactly 4 spades?
+
+    \textcolor{blue}{\[ \binom{13}{4} \times \binom{39}{9} \]}
+
   \end{itemize}
 
 \item[D)] Two identical decks of 52 cards are mixed together, yielding 
 a stack of 104 cards. How many different ways are there to order this 
 stack of 104 cards?
+
+\textcolor{blue}{\[ \frac{104!}{2!^{52}} \]}
   
 \item[E)] How many 99-bit strings are there that contain more ones than 
 zeros?
+
+\textcolor{blue}{\[ \sum_{i=50}^{99} \binom{99}{i} \]}
   
 \item[F)] An anagram of ALABAMA is any re-ordering of the letters of 
 ALABAMA, i.e., any string made up of the letters A, L, A, B, A, M, and 
 A, in any order. The anagram does not have to be an English word.
   \begin{itemize}
     \item[1)] How many different anagrams of ALABAMA are there? 
+    
+    \textcolor{blue}{\[ \frac{7!}{4!} \]}
+
     \item[2)] How many different anagrams of MONTANA are there?
+    
+    \textcolor{blue}{\[ \frac{7!}{2! \times 2!} \]}
+
   \end{itemize}
  
 \item[G)] How many different anagrams of ABCDEF are there if:
 \begin{itemize}
-  \item[1)] C is the left neighbor of E
-  \item[2)] C is on the left of E (and not necessarily E's neighbor)
+    \item[1)] C is the left neighbor of E
+  
+    \textcolor{blue}{\[ 5! \]}
+
+    \item[2)] C is on the left of E (and not necessarily E's neighbor)
+    
+    \textcolor{blue}{\[ 4! + 2 \times 4! + 3 \times 4! + 4 \times 4! + 
+    5 \times 4! \]}
+
 \end{itemize}
 
 \item[H)] We have 8 balls, numbered 1 through 8, and 25 bins. How many 
 different ways are there to distribute these 8 balls among the 25 bins? 
 Assume the bins are distinguishable (e.g., numbered 1 through 25).
+
+\textcolor{blue}{\[ 25^8 \text{why?} \]}
   
 \item[I)] How many different ways are there to throw 8 identical balls 
 into 25 bins? Assume the bins are distinguishable (e.g., numbered 1 
 through 25).
- 
+
+\textcolor{blue}{\[ \binom{32}{8} \]}
+
+\pagebreak
+
 \item[J)] We throw 8 identical balls into 6 bins. How many different 
 ways are there to distribute these 8 balls among the 6 bins such that 
 no bin is empty? Assume the bins are distinguishable (e.g., numbered 1 
 through 6). 
+
+\textcolor{blue}{\[ \binom{6}{2} \]}
 
 \item[K)] There are exactly 20 students currently enrolled in a class. 
 How many different ways are there to pair up the 20 students, so that 
@@ -67,14 +108,29 @@ each student is paired with one other student? Solve this in at least 2
 different ways. \textbf{Your final answer must consist of two different 
 expressions. }
 
+\textcolor{blue}{
+    \[
+        \begin{split}
+            &\prod_{i=0}^{9} (20-(2i+1)) \\
+            &\frac{1}{10!} \prod_{i=0}^{9} \binom{20-2i}{2}
+        \end{split}    
+    \]
+}
+
 \item[L)] How many solutions does $x_0 + x_1 + \cdots + x_k = n$ have, 
 if each $x$ must be a non-negative integer?
+
+\textcolor{blue}{\[ \binom{n+k}{k} \]}
 
 \item[M)] How many solutions does $x_0 + x_1 = n$ have, if each $x$ must 
 be a \emph{strictly positive} integer?
 
+\textcolor{blue}{\[ n-1 \]}
+
 \item[N)] How many solutions does $x_0 + x_1 + \cdots + x_k = n$ have, 
 if each $x$ must be a \emph{strictly positive} integer?
+
+\textcolor{blue}{\[ \binom{n-1}{k} \]}
 
 \end{itemize}
 
