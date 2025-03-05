@@ -10,9 +10,13 @@ are indistinguishable.
     to construct such a sequence of $p$ beads with up to $n$ different 
     colors?
 
+    \textcolor{blue}{\[ n^p \]}
+
     \item[B)] 
     How many sequences of $p$ beads on the string are there that use at 
     least two colors?
+
+    \textcolor{blue}{\[ n^p-n \]}
 
     \item[C)]
     Now we tie the two ends of the string together, forming a wristband. 
@@ -29,8 +33,20 @@ are indistinguishable.
     [\textit{Hint}: Think about the fact that rotating all the beads on 
     the wristband to another position produces an identical wristband.]
 
+    \textcolor{blue}{\[ \frac{n^{p} - n}{p} \]}
+
     \item[D)] Use your answer to part (c) to prove Fermat's little 
     theorem.
+
+    \textcolor{blue}{
+        If $p \mid (n^p - n)$, then $p \mid n^p$ and $p \mid n$. Therefore
+        both $n^p$ and $n$ can be expressed as some multiple of $p$, e.g.,
+        $n^p = kp$ and $n = lp$, which means they are equivalent under modulos
+        $p$.
+        \[
+            n^p \equiv n \pmod{p}
+        \]    
+    }
 \end{itemize}
 
 \end{homeworkProblem}
