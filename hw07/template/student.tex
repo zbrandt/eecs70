@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 07}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 3/15, 4:00 PM \\
+    Grace period until Saturday, 3/15, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
+
+\vspace{15pt}
+
+\Question{Counting on Graphs + Symmetry}
+\notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+\begin{Parts}
+
+    \Part How many ways are there to color the faces of a cube using exactly $6$ colors, such that each face has a different color? Note: two colorings are considered the same if one can be obtained from the other by rotating the cube in any way.
+    
+
+    \Part How many ways are there to color a bracelet with $n$ beads using $n$ colors, such that each bead has a different color? Note: two colorings are considered the same if one of them can be obtained by rotating the other.
+    
+
+    \Part How many distinct undirected graphs are there with $n$ labeled vertices? Assume that there can be at most one edge between any two vertices, and there are no edges from a vertex to itself. The graphs do not have to be connected.
+    
+
+    \Part How many distinct cycles are there in a complete graph $K_n$ with $n$
+     vertices? Assume that cycles cannot have duplicated edges. Two cycles are
+     considered the same if they are rotations or inversions of each other (e.g.
+     $(v_1,v_2,v_3,v_1)$, $(v_2,v_3,v_1,v_2)$ and $(v_1,v_3,v_2,v_1)$ all count as
+     the same cycle).
+     
+
+
+\end{Parts}
+
+\Question{Proofs of the Combinatorial Variety}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+Prove each of the following identities using a combinatorial proof.
+
+\begin{Parts}
+
+\Part For every positive integer $n>1,$ 
+\[\sum_{k=0}^n k \cdot \binom{n}{k} = n\cdot \sum_{k=0}^{n - 1}\binom{n - 1}{k}.\]
+
+\Part For each positive integer $m$ and each positive integer $n > m,$
+\[\sum_{a + b + c = m} \binom{n}{a}\cdot\binom{n}{b}\cdot\binom{n}{c} = \binom{3n}{m}.\]
+(Notation: the sum on the left is taken over all triples of nonnegative integers $(a,b,c)$ such that $a + b + c = m.$)
+
+\end{Parts}
+
+\Question{Strings}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+Show your work/justification for all parts of this problem.
+\begin{Parts}
+    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$?
+    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$ that contain at least one of each character?
+\end{Parts}
+
+\Question{Unions and Intersections}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n11.pdf}{Note 11}}
+Given:
+\begin{itemize}
+\item $X$ is a countable, non-empty set. For all $i \in X$, $A_i$ is an uncountable set.
+\item $Y$ is an uncountable set. For all $i \in Y$, $B_i$ is a countable set.
+\end{itemize}
+
+For each of the following, decide if the expression is
+"Always countable", "Always uncountable", "Sometimes countable,
+Sometimes uncountable".
+
+For the "Always" cases, prove your claim. For the "Sometimes" case, provide
+two examples -- one where the expression is countable, and one where
+the expression is uncountable.
+
+\begin{Parts}
+
+\Part $X \cap Y$
+
+
+\Part $X \cup Y$
+
+	
+\Part $\bigcup_{i \in X} A_i$
+
+
+\Part $\bigcap_{i \in X} A_i$
+
+
+\Part $\bigcup_{i \in Y} B_i$
+
+
+\Part $\bigcap_{i \in Y} B_i$
+
+
+
+
+\end{Parts}
+
+\Question{Count It!}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n11.pdf}{Note 11}}
+For each of the following collections, determine and briefly explain whether it is finite, countably infinite (like the natural numbers), or uncountably infinite (like the reals):
+
+\begin{Parts}
+
+
+
+
+
+\Part The integers which divide $8$.
+
+
+\Part The integers which $8$ divides.
+
+
+\Part The functions from $\mathbb{N}$ to $\mathbb{N}$.
+
+
+\Part The set of strings over the English alphabet. (Note that the strings may be arbitrarily long, but each string has finite length. Also the strings need not be real English words.)
+
+
+
+
+
+\Part The set of finite-length strings drawn from a countably infinite alphabet, $\mathcal{C}$.
+
+\Part The set of infinite-length strings over the English alphabet.
+
+\end{Parts}
+
+
+\end{document}
