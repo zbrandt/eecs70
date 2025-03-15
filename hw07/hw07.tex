@@ -91,7 +91,18 @@ Prove each of the following identities using a combinatorial proof.
 
 \Part For each positive integer $m$ and each positive integer $n > m,$
 \[\sum_{a + b + c = m} \binom{n}{a}\cdot\binom{n}{b}\cdot\binom{n}{c} = \binom{3n}{m}.\]
-(Notation: the sum on the left is taken over all triples of nonnegative integers $(a,b,c)$ such that $a + b + c = m.$)
+(Notation: the sum on the left is taken over all triples of nonnegative integers 
+$(a,b,c)$ such that $a + b + c = m.$)
+
+\begin{solution}
+    If there are three sets, $A$, $B$, and $C$, each with $n$ elements, to
+    choose $m$ elements from all three of these sets, i.e., choose $m$ elements
+    from $3n$, it's the same as if you choose $a$ elements from set $A$, $b$ 
+    elements from set $B$, and $c$ elements from set $C$, where $a + b + c = m$.
+    The sum on the left hand side represents taking into consideration all the 
+    different possible ways one can choose $a$, $b$, and $c$ such that their
+    sum is $m$.
+\end{solution}
 
 \end{Parts}
 
@@ -100,21 +111,23 @@ Prove each of the following identities using a combinatorial proof.
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
 Show your work/justification for all parts of this problem.
 \begin{Parts}
-    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$?
+    \Part How many different strings of length 5 can be constructed using the 
+    characters $A, B, C$?
 
     \begin{solution}
-        I found that $3 \times \sum_{k=3}^{5} \binom{5}{k} \cdot 2^{5-k}$ represents
-        the number of different strings of length 5 there are that can be constructed
-        with $A, B, C$. 
+        I found that $3 \times \sum_{k=3}^{5} \binom{5}{k} \cdot 2^{5-k}$ 
+        represents the number of different strings of length 5 there are that 
+        can be constructed with $A, B, C$. 
     \end{solution}
 
-    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$ that contain at least one of each character?
+    \Part How many different strings of length 5 can be constructed using the 
+    characters $A, B, C$ that contain at least one of each character?
 
     \begin{solution}
-        For using at least one character, the number of strings is $\binom{5}{3} \times 3^2$.
-        This is because there must at least be an $A$, a $B$, and a $C$ in any of the five 
-        possible positions, and then for the remaining two possible positions there are each
-        3 possible letters to choose from. 
+        For using at least one character, the number of strings is $\binom{5}{3}
+        \times 3^2$. This is because there must at least be an $A$, a $B$, and 
+        a $C$ in any of the five possible positions, and then for the remaining 
+        two possible positions there are each 3 possible letters to choose from. 
     \end{solution}
 \end{Parts}
 
@@ -131,7 +144,7 @@ For each of the following, decide if the expression is
 "Always countable", "Always uncountable", "Sometimes countable,
 Sometimes uncountable".
 
-For the "Always" cases, prove your claim. For the "Sometimes" case, provide
+For the "Always" cases, prove your claim. For the "Sometimes" cases, provide
 two examples -- one where the expression is countable, and one where
 the expression is uncountable.
 
@@ -139,22 +152,61 @@ the expression is uncountable.
 
 \Part $X \cap Y$
 
+\begin{solution}
+    This expression is always countable. There are no elements shared between 
+    sets $X$ and $Y$, and the intersection will be the empty set $\emptyset$,
+    which is countable. 
+\end{solution}
 
 \Part $X \cup Y$
 
+\begin{solution}
+    This expression is always uncountable. The union between these two sets will
+    contain an uncountable number of sets from $Y$.
+\end{solution}
 	
 \Part $\bigcup_{i \in X} A_i$
 
+\begin{solution}
+    The union of a countable number of uncountable sets is always uncountable
+    since the expression will necessarily either be the same as any one element
+    in $X$, i.e, all $A_i$ represent the same uncountable set, or a `larger' 
+    uncountable set.
+\end{solution}
 
 \Part $\bigcap_{i \in X} A_i$
 
+\begin{solution}
+    The intersection of a countable number of uncountable sets is sometimes
+    countable. Consider the case where each $A_i$ represents a different 
+    subset of the real numbers, e.g., $A_1$ numbers between 0 and 1, $A_2$
+    numbers between 1 and 2, etc. The intersection between all these sets 
+    will be the empty set $\emptyset$ which is countable. It could then also
+    be the case that the intersection is uncountable, if all the countable
+    number of sets $A_i$ were the same uncountable set. 
+\end{solution}
 
 \Part $\bigcup_{i \in Y} B_i$
 
+\begin{solution}
+    The union of an uncountable number of countable sets is sometimes countable.
+    For example, if each set $A_i$ is the same countable set, e.g., the natural
+    numbers, then the union will be this same countable set. However, it's
+    possible for the union to produce an uncountable set as well. For example, 
+    if there are an uncountable number of sets, each set $A_i$ could just contain
+    one real number from the subset of the reals between 0 and 1. The union would
+    then be the numbers in that range.
+\end{solution}
 
 \Part $\bigcap_{i \in Y} B_i$
 
-
+\begin{solution}
+    Using the last example from above, it is possible to construct a countable 
+    empty set via the intersection of an uncountable number of $A_i$, where 
+    each $A_i$ simply contains a different number from the subset of the real 
+    numbers between 0 and 1. This is always countable, however, since any 
+    intersection of countable sets will yield another countable set.
+\end{solution}
 
 
 \end{Parts}
@@ -171,33 +223,27 @@ is finite, countably infinite (like the natural numbers), or uncountably infinit
 \Part The integers which divide $8$.
 
 \begin{solution}
-    
     This collection is finite since all numbers that divide 8 must be less than 
     or equal to 8 and greater than or equal to 1. 
-
 \end{solution}
 
 \Part The integers which $8$ divides.
 
 \begin{solution}
-    
     This collection is countably infinite as it is possible to enumerate the 
     integers which 8 divides, i.e., there is a bijection between this set and
     the natural numbers. The mapping from the natural numbers to this set is 
     defined by $f(x) = 8x$, where $x \in \mathbb{N}$.
-
 \end{solution}
 
 \Part The functions from $\mathbb{N}$ to $\mathbb{N}$.
 
 \begin{solution}
-    
     This collection is uncountably infinite, like the reals. Assuming that 
     it is possible to enumerate all functions $f: \mathbb{N} \to \mathbb{N}$,
     it is then possible to construct a new function not on this list by adding 
     $+1$ to each function. Therefore, it is not possible to enumerate, and is 
     uncountably infinite. 
-
 \end{solution}
 
 \Part The set of strings over the English alphabet. (Note that the strings may 
@@ -205,30 +251,25 @@ be arbitrarily long, but each string has finite length. Also the strings need
 not be real English words.)
 
 \begin{solution}
-    
     Since each string is of finite length, like a natural number, and since it 
     is possible to express each string as a natural number ($A$ as 1, $B$ as 2, 
     etc.), the set of strings over the English alphabet is countably infinite. 
-
 \end{solution}
 
 \Part The set of finite-length strings drawn from a countably infinite alphabet, 
 $\mathcal{C}$.
 
 \begin{solution}
-    
     With a countably infinite alphabet, it is possible to enumerate each letter 
     in the alphabet, i.e., pair it with a corresponding integer in the natural 
     numbers. Each string in the set of finite-length strings over this alphabet
     can then be expressed as a finite natural number and the collection is therefore
     countably infinite. 
-
 \end{solution}
 
 \Part The set of infinite-length strings over the English alphabet.
 
 \begin{solution}
-    
     This set is uncountably infinite, like the reals, because it can be expressed
     as a subset of the real numbers between 0 and 1. Again, every letter in each
     string can be mapped to an integer in the natural numbers. Each of these
@@ -236,7 +277,6 @@ $\mathcal{C}$.
     crucial difference with this question is that each string is now of infinite 
     length, making it uncountably infinite, through its parralel with the real 
     numbers. 
-
 \end{solution}
 
 \end{Parts}
