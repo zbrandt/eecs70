@@ -33,55 +33,51 @@ worked on it.  Who else did you work with?  List names and email addresses.
      colors, such that each face has a different color? Note: two colorings are 
      considered the same if one can be obtained from the other by rotating the 
      cube in any way.
-    
-    \begin{solution}
-        The number of colorings, without considering rotations, is $6!$. For a
-        particular coloring, there are 16 other colorings that can be created,
-        just by rotating the cube. 16 because you can rotate the cube 4 ways
-        on the horizontal axis, and then another 4 ways on the vertical axis.
-        So, the total number of colorings is $\frac{6!}{16}$.
-    \end{solution}
 
     \Part How many ways are there to color a bracelet with $n$ beads using $n$ 
     colors, such that each bead has a different color? Note: two colorings are 
     considered the same if one of them can be obtained by rotating the other.
-    
-    \begin{solution}
-        Again, without considering rotation, the number of colorings is $n!$.
-        However, since it possible to rotate the entire string over by one bead
-        at a time to generate an equivalent but different coloring, there are $n!
-        \div n = (n-1)!$ colorings.
-    \end{solution}
 
     \Part How many distinct undirected graphs are there with $n$ labeled vertices? 
     Assume that there can be at most one edge between any two vertices, and there 
     are no edges from a vertex to itself. The graphs do not have to be connected.
-    
-    \begin{solution}
-        For each vertex, there are $n$ possible `connections' to be made with two
-        possibilities: either there is an edge, or there isn't an edge. For the 
-        first vertex, there are $2^n$ permutations, then for the next edge, there
-        are $2^{n-1}$ as the previous edge already determined what connection it has 
-        with it, and $2^{n-2}$ and so on. Therefore, there are $2^{n!}$ graphs.
-    \end{solution}
 
     \Part How many distinct cycles are there in a complete graph $K_n$ with $n$
-     vertices? Assume that cycles cannot have duplicated edges. Two cycles are
-     considered the same if they are rotations or inversions of each other (e.g.
-     $(v_1,v_2,v_3,v_1)$, $(v_2,v_3,v_1,v_2)$ and $(v_1,v_3,v_2,v_1)$ all count as
-     the same cycle).
+    vertices? Assume that cycles cannot have duplicated edges. Two cycles are
+    considered the same if they are rotations or inversions of each other (e.g.
+    $(v_1,v_2,v_3,v_1)$, $(v_2,v_3,v_1,v_2)$ and $(v_1,v_3,v_2,v_1)$ all count as
+    the same cycle).
 
-    \begin{solution}
-        $\sum_{k=3}^{n} \binom{n}{k}$ finds the number of distinct cycles there 
+\end{Parts}
+
+\begin{solution}
+    \begin{Parts}
+
+        \Part The number of colorings, without considering rotations, is $6!$. 
+        For a particular coloring, there are 24 other colorings that can be 
+        created, just by rotating the cube. 24 because you can choose any of the 
+        6 sides to start rotating the cube around 4 times, i.e., $6 \times 4$. So,
+        the total number of colorings is $\frac{6!}{24} = 30$.
+
+        \Part The number of colorings is $n!$ without considering rotations of the
+        string. However, since it possible to rotate the entire string over by one 
+        bead at a time to generate an equivalent but different coloring, there are $n!
+        \div n = (n-1)!$ different colorings.
+
+        \Part Each edge is determined by a pair of vertices. There are 
+        $\binom{n}{2}$ distinct vertex pairs that can then determine an edge. For 
+        each pair, there is either an edge, or there isn't an edge. Therefore,
+        there are $2^{\binom{n}{2}}$ distinct undirected graphs with $n$ labeled
+        vertices. 
+
+        \Part $\sum_{k=3}^{n} \binom{n}{k}$ finds the number of distinct cycles there 
         are in a complete graph. The sum counts the number of length $k$ cycles, 
         up to $n$, e.g., if this was a graph with 5 vertices, it would count the 10
         distinct 3 length cycles, the 5 distinct 4 length cycles, and the one 5 length
         cycle. 
-    \end{solution}
-     
 
-
-\end{Parts}
+    \end{Parts}
+\end{solution}
 
 \Question{Proofs of the Combinatorial Variety}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
