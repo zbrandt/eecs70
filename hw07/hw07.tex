@@ -1,210 +1,244 @@
-\documentclass{article}
-
-\usepackage{fancyhdr}
-\usepackage{extramarks}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-
-% TikZ/Graphics
-\usepackage{tikz}
-\usetikzlibrary{
-    automata,  % for markov chains
-    arrows.meta,  % arrow tips (technically deprecated)
-    backgrounds,  % background layers
-    decorations,  % decorations applied to paths
-    decorations.markings,  % additional markings on paths
-    decorations.pathmorphing,  % deforming decorations
-    decorations.pathreplacing,  % replacing paths
-    calligraphy,  % for calligraphic brace (must be loaded after decorations)
-    patterns,  % patterns for filling areas
-    positioning,  % better custom positioning
-    shapes,  % various shapes
-    intersections,
-}
-
-\usepackage{forest}
-\usepackage{circuitikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepgfplotslibrary{
-    groupplots,  % grouping pgf plots
-}
-
-\usepackage[plain]{algorithm}
-\usepackage{algpseudocode}
-\usepackage{hyperref}
-\usepackage{multicol}
-\usepackage{mathrsfs}
-\usepackage{pifont}
-\usepackage{circledsteps}
-\usepackage{xcolor}
-\usepackage{parskip}
-\usepackage{cancel}
-\usepackage{xcolor,framed}
-
-\definecolor{shadecolor}{gray}{0.95}
-
-\usetikzlibrary{automata,positioning}
-
-%
-% Basic Document Settings
-%
-
-\topmargin=-0.45in
-\evensidemargin=0in
-\oddsidemargin=0in
-\textwidth=6.5in
-\textheight=9.0in
-\headsep=0.25in
-
-\linespread{1.1}
-
-\pagestyle{fancy}
-\lhead{\hmwkAuthorName}
-\chead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle}
-\rhead{\firstxmark}
-\lfoot{\lastxmark}
-\cfoot{\thepage}
-
-\renewcommand\headrulewidth{0.4pt}
-\renewcommand\footrulewidth{0.4pt}
-
-\setlength\parindent{0pt}
-
-%
-% Create Problem Sections
-%
-
-\newcommand{\enterProblemHeader}[1]{
-    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-    \nobreak\extramarks{Problem \arabic{#1}}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-}
-
-\newcommand{\exitProblemHeader}[1]{
-    \nobreak\extramarks{Problem \arabic{#1}}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-    \stepcounter{#1}
-    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
-}
-
-\setcounter{secnumdepth}{0}
-\newcounter{partCounter}
-\newcounter{homeworkProblemCounter}
-\setcounter{homeworkProblemCounter}{1}
-\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
-
-%
-% Homework Problem Environment
-%
-% This environment takes an optional argument. When given, it will adjust the
-% problem counter. This is useful for when the problems given for your
-% assignment aren't sequential. See the last 3 problems of this template for an
-% example.
-%
-\newenvironment{homeworkProblem}[2][-1]{    
-    \ifnum#1>0
-        \setcounter{homeworkProblemCounter}{#1}
-    \fi
-    \section{Problem \arabic{homeworkProblemCounter}: #2}
-    \setcounter{partCounter}{1}
-    \enterProblemHeader{homeworkProblemCounter}
-}{
-    \exitProblemHeader{homeworkProblemCounter}
-}
-
-%
-% Homework Details
-%   - Title
-%   - Due date
-%   - Class
-%   - Section/Time
-%   - Instructor
-%   - Author
-%
-
-\newcommand{\hmwkTitle}{Homework\ \#7}
-\newcommand{\hmwkDueDate}{March 15, 2025}
-\newcommand{\hmwkClass}{Probability Theory}
-\newcommand{\hmwkClassTime}{Section A}
-\newcommand{\hmwkClassInstructor}{Professor Satish Rao}
-\newcommand{\hmwkAuthorName}{\textbf{Zachary Brandt}}
-\newcommand{\hmwkAuthorEmail}{\href{mailto:zbrandt@berkeley.edu}{zbrandt@berkeley.edu}}
-
-%
-% Title Page
-%
-
-\title{
-    \vspace{2in}
-    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
-    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 6:00pm}\\
-    \vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
-    \vspace{3in}
-}
-
-\author{\hmwkAuthorName \\ \hmwkAuthorEmail}
-\date{}
-
-\renewcommand{\part}[1]{\vspace{1em}\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
-
-%
-% Various Helper Commands
-%
-
-% Useful for algorithms
-\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
-
-% For derivatives
-\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
-
-% For partial derivatives
-\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
-
-% Integral dx
-\newcommand{\dx}{\mathrm{d}x}
-
-% Alias for the Solution section header
-\newcommand{\solution}{\textbf{\large Solution}\\}
-
-% Probability commands: Expectation, Variance, Covariance, Bias
-\newcommand{\E}{\mathrm{E}}
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Cov}{\mathrm{Cov}}
-\newcommand{\Bias}{\mathrm{Bias}}
-
-% Math set commands
-\def\C{\mathbb{C}}
-\def\N{\mathbb{N}}
-\def\R{\mathbb{R}}
-\def\Q{\mathbb{Q}}
-\def\Z{\mathbb{Z}}
-\def\F{\mathbb{F}}
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 07}
 
 \begin{document}
-
 \maketitle
+\fontsize{12}{15}\selectfont
 
-\pagebreak
+\begin{center}
+    Due: Saturday, 3/15, 4:00 PM \\
+    Grace period until Saturday, 3/15, 6:00 PM \\
+\end{center}
 
-\input{p1.tex}
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
 
-\pagebreak
+\begin{center}
+    Zachary Brandt (zbrandt@berkeley.edu)
+\end{center}
 
-\input{p2.tex}
+\vspace{15pt}
 
-\pagebreak
+\Question{Counting on Graphs + Symmetry}
+\notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+\begin{Parts}
 
-\input{p3.tex}
+    \Part How many ways are there to color the faces of a cube using exactly $6$ colors, such that each face has a different color? Note: two colorings are considered the same if one can be obtained from the other by rotating the cube in any way.
+    
+    \begin{solution}
+        The number of colorings, without considering rotations, is $6!$. For a
+        particular coloring, there are 16 other colorings that can be created,
+        just by rotating the cube. 16 because you can rotate the cube 4 ways
+        on the horizontal axis, and then another 4 ways on the vertical axis.
+        So, the total number of colorings is $\frac{6!}{16}$.
+    \end{solution}
 
-\pagebreak
+    \Part How many ways are there to color a bracelet with $n$ beads using $n$ colors, such that each bead has a different color? Note: two colorings are considered the same if one of them can be obtained by rotating the other.
+    
+    \begin{solution}
+        Again, without considering rotation, the number of colorings is $n!$.
+        However, since it possible to rotate the entire string over by one bead
+        at a time to generate an equivalent but different coloring, there are $n!
+        \div n = (n-1)!$ colorings.
+    \end{solution}
 
-\input{p4.tex}
+    \Part How many distinct undirected graphs are there with $n$ labeled vertices? Assume that there can be at most one edge between any two vertices, and there are no edges from a vertex to itself. The graphs do not have to be connected.
+    
+    \begin{solution}
+        For each vertex, there are $n$ possible `connections' to be made with two
+        possibilities: either there is an edge, or there isn't an edge. For the 
+        first vertex, there are $2^n$ permutations, then for the next edge, there
+        are $2^{n-1}$ as the previous edge already determined what connection it has 
+        with it, and $2^{n-2}$ and so on. Therefore, there are $2^{n!}$ graphs.
+    \end{solution}
 
-\pagebreak
+    \Part How many distinct cycles are there in a complete graph $K_n$ with $n$
+     vertices? Assume that cycles cannot have duplicated edges. Two cycles are
+     considered the same if they are rotations or inversions of each other (e.g.
+     $(v_1,v_2,v_3,v_1)$, $(v_2,v_3,v_1,v_2)$ and $(v_1,v_3,v_2,v_1)$ all count as
+     the same cycle).
 
-\input{p5.tex}
+    \begin{solution}
+        $\sum_{k=3}^{n} \binom{n}{k}$ finds the number of distinct cycles there 
+        are in a complete graph. The sum counts the number of length $k$ cycles, 
+        up to $n$, e.g., if this was a graph with 5 vertices, it would count the 10
+        distinct 3 length cycles, the 5 distinct 4 length cycles, and the one 5 length
+        cycle. 
+    \end{solution}
+     
 
-\pagebreak
 
+\end{Parts}
+
+\Question{Proofs of the Combinatorial Variety}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+Prove each of the following identities using a combinatorial proof.
+
+\begin{Parts}
+
+\Part For every positive integer $n>1,$ 
+\[\sum_{k=0}^n k \cdot \binom{n}{k} = n\cdot \sum_{k=0}^{n - 1}\binom{n - 1}{k}.\]
+
+\begin{solution}
+    Consider for each term in the summation on the left hand side that it is
+    possible to express the binomial $\binom{n}{k}$ equivalently as $n\times 
+    \binom{n-1}{k}$. Additionally, $k \times \binom{n-1}{k}$ can be expressed
+    as $\binom{n-1}{k-1}$. Reindexing the summation to end at $n-1$ allows for
+    expressing the binomial like the original with $k$ again, producing the 
+    right-hand-side expression. 
+\end{solution}
+
+\Part For each positive integer $m$ and each positive integer $n > m,$
+\[\sum_{a + b + c = m} \binom{n}{a}\cdot\binom{n}{b}\cdot\binom{n}{c} = \binom{3n}{m}.\]
+(Notation: the sum on the left is taken over all triples of nonnegative integers $(a,b,c)$ such that $a + b + c = m.$)
+
+\end{Parts}
+
+\Question{Strings}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n10.pdf}{Note 10}}
+Show your work/justification for all parts of this problem.
+\begin{Parts}
+    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$?
+
+    \begin{solution}
+        I found that $3 \times \sum_{k=3}^{5} \binom{5}{k} \cdot 2^{5-k}$ represents
+        the number of different strings of length 5 there are that can be constructed
+        with $A, B, C$. 
+    \end{solution}
+
+    \Part How many different strings of length 5 can be constructed using the characters $A, B, C$ that contain at least one of each character?
+
+    \begin{solution}
+        For using at least one character, the number of strings is $\binom{5}{3} \times 3^2$.
+        This is because there must at least be an $A$, a $B$, and a $C$ in any of the five 
+        possible positions, and then for the remaining two possible positions there are each
+        3 possible letters to choose from. 
+    \end{solution}
+\end{Parts}
+
+\Question{Unions and Intersections}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n11.pdf}{Note 11}}
+Given:
+\begin{itemize}
+\item $X$ is a countable, non-empty set. For all $i \in X$, $A_i$ is an uncountable set.
+\item $Y$ is an uncountable set. For all $i \in Y$, $B_i$ is a countable set.
+\end{itemize}
+
+For each of the following, decide if the expression is
+"Always countable", "Always uncountable", "Sometimes countable,
+Sometimes uncountable".
+
+For the "Always" cases, prove your claim. For the "Sometimes" case, provide
+two examples -- one where the expression is countable, and one where
+the expression is uncountable.
+
+\begin{Parts}
+
+\Part $X \cap Y$
+
+
+\Part $X \cup Y$
+
+	
+\Part $\bigcup_{i \in X} A_i$
+
+
+\Part $\bigcap_{i \in X} A_i$
+
+
+\Part $\bigcup_{i \in Y} B_i$
+
+
+\Part $\bigcap_{i \in Y} B_i$
+
+
+
+
+\end{Parts}
+
+\Question{Count It!}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n11.pdf}{Note 11}}
+For each of the following collections, determine and briefly explain whether it
+is finite, countably infinite (like the natural numbers), or uncountably infinite 
+(like the reals):
+
+\begin{Parts}
+
+\Part The integers which divide $8$.
+
+\begin{solution}
+    
+    This collection is finite since all numbers that divide 8 must be less than 
+    or equal to 8 and greater than or equal to 1. 
+
+\end{solution}
+
+\Part The integers which $8$ divides.
+
+\begin{solution}
+    
+    This collection is countably infinite as it is possible to enumerate the 
+    integers which 8 divides, i.e., there is a bijection between this set and
+    the natural numbers. The mapping from the natural numbers to this set is 
+    defined by $f(x) = 8x$, where $x \in \mathbb{N}$.
+
+\end{solution}
+
+\Part The functions from $\mathbb{N}$ to $\mathbb{N}$.
+
+\begin{solution}
+    
+    This collection is uncountably infinite, like the reals. Assuming that 
+    it is possible to enumerate all functions $f: \mathbb{N} \to \mathbb{N}$,
+    it is then possible to construct a new function not on this list by adding 
+    $+1$ to each function. Therefore, it is not possible to enumerate, and is 
+    uncountably infinite. 
+
+\end{solution}
+
+\Part The set of strings over the English alphabet. (Note that the strings may 
+be arbitrarily long, but each string has finite length. Also the strings need 
+not be real English words.)
+
+\begin{solution}
+    
+    Since each string is of finite length, like a natural number, and since it 
+    is possible to express each string as a natural number ($A$ as 1, $B$ as 2, 
+    etc.), the set of strings over the English alphabet is countably infinite. 
+
+\end{solution}
+
+\Part The set of finite-length strings drawn from a countably infinite alphabet, 
+$\mathcal{C}$.
+
+\begin{solution}
+    
+    With a countably infinite alphabet, it is possible to enumerate each letter 
+    in the alphabet, i.e., pair it with a corresponding integer in the natural 
+    numbers. Each string in the set of finite-length strings over this alphabet
+    can then be expressed as a finite natural number and the collection is therefore
+    countably infinite. 
+
+\end{solution}
+
+\Part The set of infinite-length strings over the English alphabet.
+
+\begin{solution}
+    
+    This set is uncountably infinite, like the reals, because it can be expressed
+    as a subset of the real numbers between 0 and 1. Again, every letter in each
+    string can be mapped to an integer in the natural numbers. Each of these
+    infinite-lengthed numbers can then be appended with a `0.' at the start. The
+    crucial difference with this question is that each string is now of infinite 
+    length, making it uncountably infinite, through its parralel with the real 
+    numbers. 
+
+\end{solution}
+
+\end{Parts}
 
 \end{document}
