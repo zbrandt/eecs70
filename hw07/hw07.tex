@@ -109,7 +109,6 @@ $(a,b,c)$ such that $a + b + c = m.$)
         be read then as, pick one element from $n$, then $\binom{n-1}{0}$ sets of
         size 0, OR $\binom{n-1}{1}$ sets of size 1, OR ... and so on until $k = n-1$.
 
-
         \Part If there are three sets, $A$, $B$, and $C$, each with $n$ elements, to
         choose $m$ elements from all three of these sets, i.e., choose $m$ elements
         from $3n$, it's the same as if you choose $a$ elements from set $A$, $b$ 
@@ -171,66 +170,59 @@ the expression is uncountable.
 
 \begin{Parts}
 
-\Part $X \cap Y$
+    \Part $X \cap Y$
+
+    \Part $X \cup Y$
+        
+    \Part $\bigcup_{i \in X} A_i$
+
+    \Part $\bigcap_{i \in X} A_i$
+
+    \Part $\bigcup_{i \in Y} B_i$
+
+\Part $\bigcap_{i \in Y} B_i$
+
+\end{Parts}
 
 \begin{solution}
-    This expression is always countable. There are no elements shared between 
-    sets $X$ and $Y$, and the intersection will be the empty set $\emptyset$,
-    which is countable. 
-\end{solution}
+    \begin{Parts}
+        
+    \Part This expression is always countable. Any elements shared between $X$ and 
+    $Y$ is be some subset of $X$ ($Y$ will be larger), which will then therefore
+    be countable as well, e.g. $\mathbb{N} \cap \mathbb{R} = \mathbb{N}$. 
 
-\Part $X \cup Y$
-
-\begin{solution}
-    This expression is always uncountable. The union between these two sets will
+    \Part This expression is always uncountable. The union between these two sets will
     contain an uncountable number of sets from $Y$.
-\end{solution}
-	
-\Part $\bigcup_{i \in X} A_i$
 
-\begin{solution}
-    The union of a countable number of uncountable sets is always uncountable
+    \Part The union of a countable number of uncountable sets is always uncountable
     since the expression will necessarily either be the same as any one element
     in $X$, i.e, all $A_i$ represent the same uncountable set, or a `larger' 
     uncountable set.
-\end{solution}
 
-\Part $\bigcap_{i \in X} A_i$
-
-\begin{solution}
-    The intersection of a countable number of uncountable sets is sometimes
+    \Part The intersection of a countable number of uncountable sets is sometimes
     countable. Consider the case where each $A_i$ represents a different 
     subset of the real numbers, e.g., $A_1$ numbers between 0 and 1, $A_2$
     numbers between 1 and 2, etc. The intersection between all these sets 
     will be the empty set $\emptyset$ which is countable. It could then also
     be the case that the intersection is uncountable, if all the countable
     number of sets $A_i$ were the same uncountable set. 
-\end{solution}
 
-\Part $\bigcup_{i \in Y} B_i$
-
-\begin{solution}
-    The union of an uncountable number of countable sets is sometimes countable.
+    \Part The union of an uncountable number of countable sets is sometimes countable.
     For example, if each set $A_i$ is the same countable set, e.g., the natural
     numbers, then the union will be this same countable set. However, it's
     possible for the union to produce an uncountable set as well. For example, 
     if there are an uncountable number of sets, each set $A_i$ could just contain
     one real number from the subset of the reals between 0 and 1. The union would
     then be the numbers in that range.
-\end{solution}
 
-\Part $\bigcap_{i \in Y} B_i$
-
-\begin{solution}
-    Using the last example from above, it is possible to construct a countable 
+    \Part Using the last example from above, it is possible to construct a countable 
     empty set via the intersection of an uncountable number of $A_i$, where 
     each $A_i$ simply contains a different number from the subset of the real 
     numbers between 0 and 1. This is always countable, however, since any 
     intersection of countable sets will yield another countable set.
+
+    \end{Parts}
 \end{solution}
-
-
-\end{Parts}
 
 \Question{Count It!}
 
@@ -243,63 +235,73 @@ is finite, countably infinite (like the natural numbers), or uncountably infinit
 
 \Part The integers which divide $8$.
 
-\begin{solution}
-    This collection is finite since all numbers that divide 8 must be less than 
-    or equal to 8 and greater than or equal to 1. 
-\end{solution}
-
 \Part The integers which $8$ divides.
 
-\begin{solution}
-    This collection is countably infinite as it is possible to enumerate the 
-    integers which 8 divides, i.e., there is a bijection between this set and
-    the natural numbers. The mapping from the natural numbers to this set is 
-    defined by $f(x) = 8x$, where $x \in \mathbb{N}$.
-\end{solution}
-
 \Part The functions from $\mathbb{N}$ to $\mathbb{N}$.
-
-\begin{solution}
-    This collection is uncountably infinite, like the reals. Assuming that 
-    it is possible to enumerate all functions $f: \mathbb{N} \to \mathbb{N}$,
-    it is then possible to construct a new function not on this list by adding 
-    $+1$ to each function. Therefore, it is not possible to enumerate, and is 
-    uncountably infinite. 
-\end{solution}
 
 \Part The set of strings over the English alphabet. (Note that the strings may 
 be arbitrarily long, but each string has finite length. Also the strings need 
 not be real English words.)
 
-\begin{solution}
-    Since each string is of finite length, like a natural number, and since it 
-    is possible to express each string as a natural number ($A$ as 1, $B$ as 2, 
-    etc.), the set of strings over the English alphabet is countably infinite. 
-\end{solution}
-
 \Part The set of finite-length strings drawn from a countably infinite alphabet, 
 $\mathcal{C}$.
 
-\begin{solution}
-    With a countably infinite alphabet, it is possible to enumerate each letter 
-    in the alphabet, i.e., pair it with a corresponding integer in the natural 
-    numbers. Each string in the set of finite-length strings over this alphabet
-    can then be expressed as a finite natural number and the collection is therefore
-    countably infinite. 
-\end{solution}
-
 \Part The set of infinite-length strings over the English alphabet.
 
+\end{Parts}
+
 \begin{solution}
-    This set is uncountably infinite, like the reals, because it can be expressed
+    \begin{Parts}
+        
+    \Part This collection is finite since all numbers that divide 8 must be less than 
+    or equal to 8 and greater than or equal to -8. 
+
+    \Part This collection is countably infinite as it is possible to enumerate the 
+    integers which 8 divides, i.e., there is a bijection between this set and
+    the natural numbers. The mapping from the natural numbers to this set is 
+    defined by $f(x) = 8x$, where $x \in \mathbb{N}$.
+
+    \Part This collection is uncountably infinite, like the reals. Assuming that 
+    it is possible to enumerate all functions $f: \mathbb{N} \to \mathbb{N}$ in
+    a list, it is then possible to construct a new function not on this list by 
+    changing the $i$th natural number output of the $i$th function by some 
+    constant, e.g., by adding or subtracting 1. There are many functions that exist 
+    that map natural numbers to other natural numbers, so one that only changes 
+    one output of another function while leaving all others the same will exist. 
+    The constructed function is not on the
+    list because it, by definition, differs from every function on the list. 
+    Therefore, it is not possible to enumerate this set, and is uncountably infinite. 
+
+    \Part The set of strings is countably infinite. It can be enumerated in steps
+    that sets up a bijection between the natural numbers and each string. By listing
+    the strings one step at a time (where each step contains a finite number of 
+    strings), it's like taking the union of a countably infinite amount of finite 
+    sets, which results in a set of countably infinite size. To do this, list strings
+    by their length, ordered alphabetically, i.e., list all strings of length one
+    in alphabetical order, then strings of length 2, and so on. Each step will have
+    $26^i$ elements, where $i$ is the length of the string. 
+
+    \Part This set of strings is countably infinite as well. It can be enumerated
+    by listing all possible strings alphabetically, one step at a time, like before.
+    This sets up a bijection between the natural numbers and the strings. Although, 
+    there is a problem with just listing one step at a time by length, because each
+    step has an infinite amount of items (since there are an infinite number of letters). 
+    To list in steps with finite numbers of 
+    elements (akin to taking a union of countable sets), first list only those 
+    strings using the first letter of the alphabet with length one. Then list only
+    those strings using the first two letters of the alphabet with length two, 
+    making sure not to repeat strings already mentioned. Then proceed with strings 
+    of length 3 that contain the first three letters, and so on.
+
+    \Part This set is uncountably infinite, like the reals, because it can be expressed
     as a subset of the real numbers between 0 and 1. Again, every letter in each
     string can be mapped to an integer in the natural numbers. Each of these
     infinite-lengthed numbers can then be appended with a `0.' at the start. The
     crucial difference with this question is that each string is now of infinite 
     length, making it uncountably infinite, through its parralel with the real 
-    numbers. 
-\end{solution}
+    numbers which falls under the diagonalization proof. 
 
-\end{Parts}
+    \end{Parts}
+\end{solution}
 
 \end{document}
