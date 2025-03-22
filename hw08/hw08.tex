@@ -117,7 +117,6 @@ in the sequence. The number of elements with this property is $\binom{5}{0}
 + \binom{5}{1} + \binom{5}{2} = 10 + 5 + 1 = 16$. The probability of 
 observing such a sequence is then $\frac{16}{32} = \frac{1}{2}$.
 
-
 \end{Parts}
 
 \end{solution}
@@ -146,6 +145,39 @@ Consider a standard 52-card deck of cards, which has 4 suits (hearts, diamonds, 
     drawing a 5 card hand.
     
 \end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+\Part There are four aces and 26 red cards in a 52-card deck, but two of the red
+cards is an ace, therefore $\frac{4 + 26 - 2}{52} = \frac{28}{52}$ is the 
+probability of drawing a single ace or red card. 
+
+\Part There are four aces and one of them is the ace of spades. There are 12 
+other cards that are spades. Therefore, $\frac{3 + 12}{52} = \frac{15}{52}$
+is the probability.
+
+\Part The complement of the subset of 5 card hands that contain the ace of 
+diamonds is the subset of 5 card hands not containing the ace of diamonds, 
+which is of size $\binom{51}{5}$. Therefore, the probability is $1 - 
+\binom{51}{5} \div \binom{52}{5}$. 
+
+\Part There are $\binom{4}{2} \times \binom{48}{3}$ 5-card hands with exactly 2 
+of the aces (first choose the two, then choose the remaining cards). Therefore,
+the probability of drawing such a hand is $\left( \binom{4}{2} \binom{48}{3}
+\right) \div \binom{52}{5}$. 
+
+\Part The complement of the subset of 5-card hands with at least one ace is the
+subset of hands containing no aces, which is of size $\binom{48}{5}$. Therefore,
+the probability is $1 - \binom{48}{5} \div \binom{52}{5}$.
+
+\Part The complement of this subset is subset of 5-card hands containing no aces
+and no hearts, which is of size $\binom{52 - 4 - 13 + 1}{5} = \binom{36}{5}$.
+Therefore, the probability is $1 - \binom{36}{5} \div \binom{52}{5}$.
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Past Probabilified}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13}}
