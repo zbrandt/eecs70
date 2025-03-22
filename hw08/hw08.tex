@@ -81,10 +81,12 @@ is fair ($p = 0.5$).
 \Part How many elements of $\Omega$ have three or more heads?
 \end{Parts}
 
-For the next three questions, you can assume that the coin is fair (i.e. heads comes up with $p=0.5$, and tails otherwise).
+For the next three questions, you can assume that the coin is fair (i.e. heads 
+comes up with $p=0.5$, and tails otherwise).
 
 \begin{Parts}[resume]
-\Part What is the probability that you will observe the sequence HHHTT? What about HHHHT?
+\Part What is the probability that you will observe the sequence HHHTT? What 
+about HHHHT?
 
 \Part What is the probability of observing at least one head?
 
@@ -124,7 +126,9 @@ observing such a sequence is then $\frac{16}{32} = \frac{1}{2}$.
 \Question{Aces}
 
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13}}
-Consider a standard 52-card deck of cards, which has 4 suits (hearts, diamonds, clubs, and spades) with 13 cards in each suit. Each suit has one ace. Hearts and diamonds are red, while clubs and spades are black. 
+Consider a standard 52-card deck of cards, which has 4 suits (hearts, diamonds,
+clubs, and spades) with 13 cards in each suit. Each suit has one ace. Hearts 
+and diamonds are red, while clubs and spades are black. 
 \begin{Parts}
     \Part Find the probability of getting an ace or a red card, when drawing a 
     single card.
@@ -181,31 +185,80 @@ Therefore, the probability is $1 - \binom{36}{5} \div \binom{52}{5}$.
 
 \Question{Past Probabilified}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13}}
-In this question we review some of the past CS70 topics, and look at them probabilistically.\\
-For the following experiments, define an appropriate sample space $\Omega$, and give the probability function $\mathbb P[\omega]$ for each $\omega \in \Omega$. Then compute the probabilities of the events $E_1$ and $E_2$.\\
+In this question we review some of the past CS70 topics, and look at them 
+probabilistically.
+\\ 
+For the following experiments, define an appropriate sample space $\Omega$, and
+give the probability function $\mathbb P[\omega]$ for each $\omega \in \Omega$. 
+Then compute the probabilities of the events $E_1$ and $E_2$. 
+\\
 
 \begin{Parts}
     \Part Fix a prime $p>2$, and uniformly sample twice with replacement from
-    $\{0, \dots, p-1\}$ (assume we have two $\{0, \dots, p-1\}$-sided fair dice and we roll them). Then multiply these two numbers with each other in
+    $\{0, \dots, p-1\}$ (assume we have two $\{0, \dots, p-1\}$-sided fair dice 
+    and we roll them). Then multiply these two numbers with each other in
     $(\bmod{p})$ space.\\
     \begin{center}
     $E_1 =$ The resulting product is $0$.\\
     $E_2 =$ The product is $(p-1)/2$.
     \end{center}
 
-    \Part Make a graph on $n$ vertices by sampling uniformly at random from all possible edges, (assume for each edge we flip a coin and if it is head we include the edge in the graph and otherwise we exclude that edge from the graph).\\
+    \Part Make a graph on $n$ vertices by sampling uniformly at random from all 
+    possible edges, (assume for each edge we flip a coin and if it is head we 
+    include the edge in the graph and otherwise we exclude that edge from the 
+    graph).
+    \\
     \begin{center}
     $E_1 =$ The graph is complete.\\
     $E_2 =$ vertex $v_1$ has degree $d$.
     \end{center}
 
     \Part Create a random stable matching instance by having each person's
-    preference list be a random permutation of the opposite entity's list (make the preference list for each individual job and each individual candidate a random permutation of the opposite entity's list). Finally, create a uniformly random pairing by matching jobs and candidates up uniformly at random (note that in this pairing, (1) a candidate cannot be matched with two different jobs, and a job cannot be matched with two different candidates (2) the pairing does not have to be stable).\\
+    preference list be a random permutation of the opposite entity's list (make 
+    the preference list for each individual job and each individual candidate a 
+    random permutation of the opposite entity's list). Finally, create a uniformly 
+    random pairing by matching jobs and candidates up uniformly at random (note 
+    that in this pairing, (1) a candidate cannot be matched with two different 
+    jobs, and a job cannot be matched with two different candidates (2) the 
+    pairing does not have to be stable).
+    \\
     \begin{center}
      $E_1 =$ All jobs have distinct favorite candidates.\\
      $E_2 =$ The resulting pairing is the candidate optimal stable pairing.
     \end{center}
 
 \end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+\Part The sample space for this question is $\Omega = \{ (0, 0), \dots, (p-1, p-1)
+\}$ with size $|\Omega| = p^2$ where the elements are $\omega \in \mathbb{R}^2$
+and represent all the possible pairs, e.g., of the dice rolls. The probability for
+any $\omega$ is $\mathbb{P}[\omega] = \frac{1}{p^2}$. For the product of the two
+numbers to be zero under modulos $p$, the product must be a multiple of $p$. 
+This only happens when at least one of the two numbers is zero, which is the case
+for $p + p - 1$ pairs ($p$ pairs where the first number is zero, $p$ pairs where
+the second number is zero, -1 for double counting the double-zero pair). Therefore,
+the probability of $E_1$ is $\mathbb{P}[E_1] = \frac{2p-1}{p^2}$. For the product
+of two numbers to equal $(p-1)/2$, neither the first or second dice rolls can be
+zero. 
+\[
+    \begin{split}
+        x_1 \times x_2 \equiv \frac{p-1}{2} &\pmod{p} \\
+        x_1 \equiv x_2^{-1} \times \frac{p-1}{2} &\pmod{p}
+    \end{split}
+\]
+Since for every value $x_2$ in $\{ 1, 2, \dots, p-1 \}$ the greatest common
+between with $p$ will be 1, since $p$ is prime, there will be an $x_1$ that
+satisfies the above equivalency. Therefore, there are $p-1$ such values (because
+0 is excluded), and the probability of $E_2$ is $\mathbb{P}[E_2] = \frac{p-1}{p^2}$.
+
+\Part 
+
+
+\end{Parts}
+
+\end{solution}
 
 \end{document}
