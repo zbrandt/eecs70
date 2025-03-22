@@ -250,11 +250,57 @@ zero.
     \end{split}
 \]
 Since for every value $x_2$ in $\{ 1, 2, \dots, p-1 \}$ the greatest common
-between with $p$ will be 1, since $p$ is prime, there will be an $x_1$ that
+with $p$ will be 1, since $p$ is prime, there will be an $x_1$ that
 satisfies the above equivalency. Therefore, there are $p-1$ such values (because
 0 is excluded), and the probability of $E_2$ is $\mathbb{P}[E_2] = \frac{p-1}{p^2}$.
 
-\Part 
+\Part The sample space for this question is all possible $\binom{n}{2}$-length 
+sequences of ones and zeros that define the edges of a graph (the first one
+could represent there being an edge between the first and second labeled vertices,
+for example). The size of this sample space is $|\Omega| = 2^{\binom{n}{2}}$, 
+since there are $n$ choose 2 possible edges and it can either exist or not. The
+probability of observing a given sequence $\omega \in \Omega$ is $\mathbb{P}[\omega]=
+\frac{1}{2^{\binom{n}{2}}}$. The probability of observing $E_1$ is also exactly
+this probability, because there is only one element in the sample space where
+all edges are connected, i.e., $\mathbb{P}[E_1] = 1 \div 2^{\binom{n}{2}}$. If
+vertex $v_1$ has some given degree $d$, we now only consider $n-1$ other vertices
+for this graph. So, there are $\binom{n-1}{d} \times 2^{\binom{n-1}{2}}$ graphs 
+with this configuration (first choose which edges make the $v_1$ degree $d$,
+then consider the rest of the graph's edges). Therefore, the probability of 
+observing $E_2$ is 
+\[
+    \mathbb{P}[E_2]=\frac{\binom{n-1}{d} \times 2^{\binom{n-1}{2}}}{2^{\binom{n}{2}}}.
+\]
+
+\Part If there are both $n$ jobs and $n$ candidates, there are $n!$ possible orderings
+of each person's preferences of candidates or jobs. Since there are $2n$ people in total,
+there are $(n!)^{2n}$ ways to construct all the preferences lists. For each one of these
+ways, there are $n!$ different pairings (not all necessarily stable), since for the first
+job there are $n$ candidates to pick from, for the second then $n-1$, and so on. The sample
+space $\Omega$ of all possible pairings is then of size $|\Omega|= (n!)^{2n}\times n! = 
+(n!)^{2n+1}$. The probability of observing any one $\omega$ of these pairings is then 
+$\mathbb{P}[\omega]=\frac{1}{(n!)^{2n+1}}$. $E_1$ concerns itself with the preferences of
+the jobs. The first job has $n!$ possible orderings. The second job has $n-1$ candidates
+to pick from for its favorite candidate now (since the first job already made its choice),
+and there are $(n-1)!$ orderings for the remaining jobs. The third job then has $n-2$ choices
+to make for its favorite and still $(n-1)!$ orderings for the remaining. Therefore, the total
+number of ways to construct all job preference lists is $n(n-1)! \times (n-1)(n-1)! \times 
+(n-2)(n-1)!\times \dots \times (1)(n-1)! = ((n-1)!)^n\times n!$. The size of the subset of 
+pairings with such job preference is then $n!\times((n-1)!)^n \times (n!)^n \times n!$, and the
+probability of $E_1$ is 
+\[
+    \begin{split}
+        \mathbb{P}[E_1] &= \frac{n!\times((n-1)!)^n \times (n!)^n \times n!}{(n!)^{2n+1}} \\
+        &= \frac{n!\times((n-1)!)^n}{(n!)^n} \\
+        &= \frac{n!\times((n-1)!)^n}{(n!)^n} \\
+        &= \frac{((n-1)!)^n}{(n!)^{n-1}} \\
+        &= \frac{(n-1)!}{(n)^{n-1}} \\
+        &= \frac{n!}{n^{n}}
+    \end{split}
+\]
+
+There is only one candidate-optimal pairing for any set of preference lists, therefore the
+probability of $E_2$ is $\mathbb{P}[E_2]=\frac{(n!)^{2n}}{(n!)^{2n+1}} = \frac{1}{n!}$.
 
 
 \end{Parts}
