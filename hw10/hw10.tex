@@ -317,23 +317,99 @@ is,
 \Question{Symmetric Marbles}
 
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
-A bag contains 4 red marbles and 4 blue marbles. Rachel and Brooke play a game where they draw four marbles in total, one by one, uniformly at random, without replacement. Rachel wins if there are more red than blue marbles, and Brooke wins if there are more blue than red marbles. If there are an equal number of marbles, the game is tied.
+A bag contains 4 red marbles and 4 blue marbles. Rachel and Brooke play a game 
+where they draw four marbles in total, one by one, uniformly at random, without 
+replacement. Rachel wins if there are more red than blue marbles, and Brooke 
+wins if there are more blue than red marbles. If there are an equal number of 
+marbles, the game is tied.
+
 \begin{Parts}
-    \Part Let $A_1$ be the event that the first marble is red and let $A_2$ be the event that the second marble is red. Are $A_1$ and $A_2$ independent?
+    \Part Let $A_1$ be the event that the first marble is red and let $A_2$ be 
+    the event that the second marble is red. Are $A_1$ and $A_2$ independent?
     
     \Part What is the probability that Rachel wins the game?
     
-    \Part Given that Rachel wins the game, what is the probability that all of the marbles were red?
+    \Part Given that Rachel wins the game, what is the probability that all of 
+    the marbles were red?
 \end{Parts}
-Now, suppose the bag contains 8 red marbles and 4 blue marbles and we add a tiebreaker to the game: if there are an equal number of red and blue marbles among the four drawn, Rachel wins if the third marble is red, and Brooke wins if the third marble is blue. 
+
+Now, suppose the bag contains 8 red marbles and 4 blue marbles and we add a 
+tiebreaker to the game: if there are an equal number of red and blue marbles 
+among the four drawn, Rachel wins if the third marble is red, and Brooke wins 
+if the third marble is blue.
+
 \begin{Parts}[resume]
     \Part What is the probability that the third marble is red?
     
-    \Part Given that there are $k$ red marbles among the four drawn, where $0 \leq k \leq 4$, what is the probability that the third marble is red? Answer in terms of $k$.
+    \Part Given that there are $k$ red marbles among the four drawn, where 
+    $0 \leq k \leq 4$, what is the probability that the third marble is red? 
+    Answer in terms of $k$.
     
-    \Part Given that the third marble is red, what is the probability that Rachel wins the game?
+    \Part Given that the third marble is red, what is the probability that 
+    Rachel wins the game?
     
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part Since we are drawing without replacement, the outcome of the first draw 
+should influence the outcome of the second. If the first draw is a red marble,
+the probability of $A_2$ should be lower compared to if we first drew a blue
+marble. 
+
+\Part Rachel wins the game when there are more red marbles than blue marbles,
+i.e., if all the marbles are red, or if all the marbles except one are red, 
+otherwise the game ends in a tie or in a loss for Rachel. There is only one 
+way for all marbles to be red, which happens with probability $1 \div \binom{8}{4}$.
+There are four ways for three of the marbles to be red and four different blue marbles
+to choose from, therefore, the total probability of Rachel winning is 
+$$\left( \binom{4}{3} \times \binom{4}{1} + 1 \right)  \div \binom{8}{4} = 
+\frac{4 \times 4 + 1}{70} = \frac{17}{70}$$.
+
+\Part The probability that all marbles were red, given that Rachel won is
+\[
+    \Pr[\text{all red} \mid \text{Rachel won}] = \frac{\Pr[\text{all red} \cap \text{Rachel won}]}
+    {\Pr[\text{Rachel won}]} = \frac{1 \div \binom{8}{4}}{17 \div \binom{8}{4}} = \frac{1}{17}
+\]
+
+\Part The probability that third marble is red can be split into three cases: 
+the first, where the first two marbles are red as well, the second where one 
+of the first two is red, and the other is blue, and the third, where both of 
+the first two marbles are blue. 
+\[
+    \begin{split}
+        &\text{RR}: \quad \frac{8}{12} \times \frac{7}{11} \times \frac{6}{10} = \frac{336}{1320} \\
+        &\text{RB}: \quad 2 \times \frac{8}{12} \times \frac{4}{11} \times \frac{7}{10} = \frac{448}{1320} \\
+        &\text{BB}: \quad \frac{4}{12} \times \frac{3}{11} \times \frac{8}{10} = \frac{96}{1320}
+    \end{split}
+\]
+The total probability is then $\frac{336+448+96}{1320} = \frac{880}{1320} = \frac{2}{3}$.
+
+\Part From the previous problem's answer we can see that there is some symmetry
+involved, in that, the probability that the third marble is red is the same as 
+the probability that the first marble is red ($8 \div 12$). Just consider the 
+first marble drawn as the third position. Since there are $k$ red marbles drawn,
+with each one having the same probability of being the third as the being the first
+the probability is then $\frac{k}{4}$. 
+
+\Part For Rachel to lose the game if the third marble is red is for all other
+marbles to be blue. Then the probability of her winning is one minus the probability
+of her losing (considering the tie breaker rule). The probability of this is $\frac{4}{12} 
+\times \frac{3}{11} \times \frac{8}{10} \times \frac{2}{9} = \frac{192}{11880}$. 
+The probability that the third marble is red is $\frac{2}{3}$ from before. 
+Therefore, the conditional probability is then
+\[
+    \Pr[\text{Rachel loses} \mid \text{Third marble is red}] = \frac{\frac{192}{11880}}
+    {\frac{2}{3}} = \frac{4}{165}
+\]
+Then, $\Pr[\text{Rachel wins} \mid \text{Third marble is red}] = 1 - \frac{4}{165} = 
+\frac{161}{165}$.
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Socks}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13},\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
