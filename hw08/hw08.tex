@@ -14,6 +14,13 @@
 \section*{Sundry}
 Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
 
+\begin{center}
+    \textcolor{blue}{
+        Zachary Brandt \\
+        \nolinkurl{zbrandt@berkeley.edu}
+    }
+\end{center}
+
 \vspace{15pt}
 
 \Question{Unprogrammable Programs}
@@ -30,6 +37,50 @@ Prove whether the programs described below can exist or not.
 \textit{Hint:} Use $P$ to solve the halting problem, and consider defining two subroutines to pass in to $P$, where one of the subroutines always loops.
 
 \end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+\Part To solve this problem, assume that the program $P(F,x,y)$ does exist, which allows
+for solving the Halting problem, which cannot be solved, i.e., there is a contradiction and
+therefore the assumption, that $P(F,x,y)$ exists, is false. With $P$ we can solve the Halting
+problem as follows:
+
+\begin{lstlisting}[language=Python]
+def TestHalt(H, x):
+    def Q(x):
+        run H(x)
+        return 1
+    return P(Q, x, 1)
+\end{lstlisting}
+
+If $P$ exists, it can determine if $Q$ halts, because if it does return 1, then it halts, and
+if it doesn't return $1$ then $Q$ must run forever. 
+
+\Part I will use the same approach as before to show that this $P$ does not exist. 
+
+\begin{lstlisting}[language=Python]
+def TestHalt(H, x):
+    def F(a):
+        if a == x:
+            while True:
+                print('Hello World')
+        else:
+            return H(a)
+    return not P(H, F)
+\end{lstlisting}
+
+In this program, if $H$ does not halt on an input $x$, then $P(H, F)$ will return true, solving
+the Halting problem. This is because $F$ checks for this input, and if it detects it, it will
+also loop, by printing ``Hello World'' until the end of time. If $H$ does halt on an input $x$,
+then $F$ and $H$ will not have the same behavior on all inputs, and $P$ will return false, which,
+with the `not', will tell TestHalt that $H$ does halt. Since this function $P$ solves the Halting
+problem, we have derived our contradiction, since the Halting problem cannot be solved, and the
+program $P$ cannot exist. 
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Kolmogorov Complexity}
 
@@ -61,9 +112,60 @@ cannot exist.
 
 (\textit{Hint}: Consider what happens when $P$ is given a very large input $n$ that is much greater than $m$.)
 
- 
+\end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+\Part The statement defines some integer $n$ that cannot be defined in under 280
+characters. However, this statement itself is under 280 characters. If some integer
+with this property existed, then it is possible to definite it in under 280 
+characters, as it is done here (in 72 characters). That is, it is self-contradicting
+and a paradox.
+
+\Part This can be proven with the Pidgeon Hole principle, because there are more
+$n$-length bit strings than there are less-than-$n$-length bit strings. There are
+$2^n$ $n$-length bit strings, but there are only 
+\[
+    2^{n-1} +2^{n-2} + \dots + 2^1 + 2^0 = 2^n-1
+\]
+bit strings of length less than $n$. Therefore, at least one bit string of length
+$n$ cannot be compressed to one of length less than $n$.
+
+\Part 
+
+\begin{lstlisting}[language=Python]
+def P(n):
+    big = -infinity
+    best = None
+    for i in range(0 to 2**n):
+        str = n_length_bit_string(i)
+        if K(x) >= big:
+            big = K(x)
+            best = x 
+    return best
+\end{lstlisting}
+
+This is supposed to be a Python pseudocode function, and the range function is exclusive for $2^n$.
+This program finds the highest Kolmogrov complexity string of length $n$ by checking
+over all possible length $n$ bit strings since there are only so many of them. 
+
+\Part When $P$ is given a large input $n$ much greater than $m$, $K(P(n)) > n > m$.
+This is because there must exist a binary string of length $n$ that cannot be compressed
+to a length less than $n$ (from before with the Pidgeon Hole principle). $P(n)$ will 
+find this incompressible string, because it checks all $n$ length strings and returns
+the one with the highest Komolgrov complexity. Then, $K(P(n))$ gets that Komolgrov
+complexity. 
+
+But since
+there exists an $m$ bit executable from the compilation of $P$ from the prompt, that means
+there is a length $m$ bit string that can produce $P(n)$, i.e. $K(P(n)) = m$. But since
+we just showed that $K(P(n)) > m$, this leads to a contradiction. Therefore, $P$ cannot
+exist and since it relies on $K$, $K$ also does not exist. 
 
 \end{Parts}
+
+\end{solution}
 
 \Question{Five Up}
 
@@ -250,11 +352,57 @@ zero.
     \end{split}
 \]
 Since for every value $x_2$ in $\{ 1, 2, \dots, p-1 \}$ the greatest common
-between with $p$ will be 1, since $p$ is prime, there will be an $x_1$ that
+with $p$ will be 1, since $p$ is prime, there will be an $x_1$ that
 satisfies the above equivalency. Therefore, there are $p-1$ such values (because
 0 is excluded), and the probability of $E_2$ is $\mathbb{P}[E_2] = \frac{p-1}{p^2}$.
 
-\Part 
+\Part The sample space for this question is all possible $\binom{n}{2}$-length 
+sequences of ones and zeros that define the edges of a graph (the first one
+could represent there being an edge between the first and second labeled vertices,
+for example). The size of this sample space is $|\Omega| = 2^{\binom{n}{2}}$, 
+since there are $n$ choose 2 possible edges and it can either exist or not. The
+probability of observing a given sequence $\omega \in \Omega$ is $\mathbb{P}[\omega]=
+\frac{1}{2^{\binom{n}{2}}}$. The probability of observing $E_1$ is also exactly
+this probability, because there is only one element in the sample space where
+all edges are connected, i.e., $\mathbb{P}[E_1] = 1 \div 2^{\binom{n}{2}}$. If
+vertex $v_1$ has some given degree $d$, we now only consider $n-1$ other vertices
+for this graph. So, there are $\binom{n-1}{d} \times 2^{\binom{n-1}{2}}$ graphs 
+with this configuration (first choose which edges make the $v_1$ degree $d$,
+then consider the rest of the graph's edges). Therefore, the probability of 
+observing $E_2$ is 
+\[
+    \mathbb{P}[E_2]=\frac{\binom{n-1}{d} \times 2^{\binom{n-1}{2}}}{2^{\binom{n}{2}}}.
+\]
+
+\Part If there are both $n$ jobs and $n$ candidates, there are $n!$ possible orderings
+of each person's preferences of candidates or jobs. Since there are $2n$ people in total,
+there are $(n!)^{2n}$ ways to construct all the preferences lists. For each one of these
+ways, there are $n!$ different pairings (not all necessarily stable), since for the first
+job there are $n$ candidates to pick from, for the second then $n-1$, and so on. The sample
+space $\Omega$ of all possible pairings is then of size $|\Omega|= (n!)^{2n}\times n! = 
+(n!)^{2n+1}$. The probability of observing any one $\omega$ of these pairings is then 
+$\mathbb{P}[\omega]=\frac{1}{(n!)^{2n+1}}$. $E_1$ concerns itself with the preferences of
+the jobs. The first job has $n!$ possible orderings. The second job has $n-1$ candidates
+to pick from for its favorite candidate now (since the first job already made its choice),
+and there are $(n-1)!$ orderings for the remaining jobs. The third job then has $n-2$ choices
+to make for its favorite and still $(n-1)!$ orderings for the remaining. Therefore, the total
+number of ways to construct all job preference lists is $n(n-1)! \times (n-1)(n-1)! \times 
+(n-2)(n-1)!\times \dots \times (1)(n-1)! = ((n-1)!)^n\times n!$. The size of the subset of 
+pairings with such job preference is then $n!\times((n-1)!)^n \times (n!)^n \times n!$, and the
+probability of $E_1$ is 
+\[
+    \begin{split}
+        \mathbb{P}[E_1] &= \frac{n!\times((n-1)!)^n \times (n!)^n \times n!}{(n!)^{2n+1}} \\
+        &= \frac{n!\times((n-1)!)^n}{(n!)^n} \\
+        &= \frac{n!\times((n-1)!)^n}{(n!)^n} \\
+        &= \frac{((n-1)!)^n}{(n!)^{n-1}} \\
+        &= \frac{(n-1)!}{(n)^{n-1}} \\
+        &= \frac{n!}{n^{n}}
+    \end{split}
+\]
+
+There is only one candidate-optimal pairing for any set of preference lists, therefore the
+probability of $E_2$ is $\mathbb{P}[E_2]=\frac{(n!)^{2n}}{(n!)^{2n+1}} = \frac{1}{n!}$.
 
 
 \end{Parts}
