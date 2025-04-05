@@ -93,7 +93,8 @@ other.
 \Question{Independent Complements}
 
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
-Let $\Omega$ be a sample space, and let $A,B \subseteq \Omega$ be two independent events.
+Let $\Omega$ be a sample space, and let $A,B \subseteq \Omega$ be two independent '
+events.
 
 \begin{Parts}
 
@@ -106,6 +107,54 @@ Let $\Omega$ be a sample space, and let $A,B \subseteq \Omega$ be two independen
 \Part Prove or disprove: It is possible that $A=B$.
 
 \end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+    
+\Part True: If $\overline{A}$ and $\overline{B}$ are independent, then 
+$\Pr[\overline{A} \cap \overline{B}] = \Pr[\overline{A}] \cdot \Pr[\overline{B}]$.
+Also, from observation of a Venn diagram, $\overline{A} \cap \overline{B} = 1 -
+A \cup B$. Then, 
+\[
+    \begin{split}
+        \Pr[\overline{A}] \cdot \Pr[\overline{B}] &= (1-\Pr[A]) \cdot (1-\Pr[B]) \\
+        &= (1-\Pr[A]) \cdot (1-\Pr[B]) \\
+        &= 1 - \Pr[B] - \Pr[A] + \Pr[A] \cdot \Pr[B] \\
+        \text{Since $A$ and $B$ are independent} \quad &= 
+        1 - \Pr[B] - \Pr[A] + \Pr[A \cap B] \\
+        &= 1 - (\Pr[B] + \Pr[A] - \Pr[A \cap B]) \\ 
+        &= 1 - \Pr[A \cup B] \\ 
+        &= \Pr[\overline{A} \cap \overline{B}]
+    \end{split}
+\]
+
+\Part True: If $A$ and $\overline{B}$ are independent, then 
+$\Pr[A \cap \overline{B}] = \Pr[A] \cdot \Pr[\overline{B}]$. Also, from
+observation, like of a Venn Diagram, $A - A \cap B = A \cap \overline{B}$. Then,
+\[
+    \begin{split}
+        \Pr[A] \cdot \Pr[\overline{B}] &= \Pr[A] \cdot (1 - \Pr[B]) \\
+        &= \Pr[A] - \Pr[A] \cdot \Pr[B] \\
+        \text{Since $A$ and $B$ are independent} \quad
+        &= \Pr[A] - \Pr[A \cap B] \\
+        &= \Pr[A \cup \overline{B}]
+    \end{split}
+\]
+
+\Part False: For $A$ and $\overline{A}$ to be independent, $\Pr[A \mid \overline{A}]
+= \Pr[A \cap \overline{A}] / \Pr[\overline{A}] = \Pr[A]$. But since $\Pr[A \cap 
+\overline{A}]$ is equal to zero, $\Pr[A \mid \overline{A}] \neq 0$, and the
+events are not independent. 
+
+\Part False: For $A$ and $B$ to be independent, then $\Pr[A \mid B] = 
+\Pr[A]$. But since $\Pr[A \cap B] = 1$, because $A = B$,
+then $\Pr[A \mid B] = \frac{\Pr[A \cap B]}{\Pr[B]} = \frac{\Pr[A]}{\Pr[B]} = 1
+\neq \Pr[A] \quad \text{(when $\Pr[A] \neq 1$})$.
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Cliques in Random Graphs}
 
