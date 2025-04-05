@@ -256,19 +256,63 @@ know from the previous problem that $\binom{n}{k} \leq n^k$, so
 \Question{Poisoned Smarties}
 
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
-Supposed there are 3 people who are all owners of their own Smarties factories. Burr Kelly, being the brightest and most innovative of the owners, produces considerably more Smarties than her competitors and has a commanding 50\% of the market share. Yousef See, who inherited her riches, lags behind Burr and produces 40\% of the world's Smarties. Finally Stan Furd, brings up the rear with a measly 10\%. However, a recent string of Smarties related food poisoning has forced the FDA investigate these factories to find the root of the problem. Through her investigations, the inspector found that 2 Smarties out of every 100 at Kelly's factory was poisonous. At See's factory, 5\% of Smarties produced were poisonous. And at Furd's factory, the probability a Smarty was poisonous was 0.1. 
+Supposed there are 3 people who are all owners of their own Smarties factories. 
+Burr Kelly, being the brightest and most innovative of the owners, produces 
+considerably more Smarties than her competitors and has a commanding 50\% of the 
+market share. Yousef See, who inherited her riches, lags behind Burr and produces 
+40\% of the world's Smarties. Finally Stan Furd, brings up the rear with a measly 
+10\%. However, a recent string of Smarties related food poisoning has forced the 
+FDA investigate these factories to find the root of the problem. Through her 
+investigations, the inspector found that 2 Smarties out of every 100 at Kelly's 
+factory was poisonous. At See's factory, 5\% of Smarties produced were poisonous. 
+And at Furd's factory, the probability a Smarty was poisonous was 0.1. 
 
 \begin{Parts}
 \Part
 What is the probability that a randomly selected Smarty will be safe to eat?
 
 \Part
-If we know that a certain Smarty didn't come from Burr Kelly's factory, what is the probability that this Smarty is poisonous?
+If we know that a certain Smarty didn't come from Burr Kelly's factory, what is 
+the probability that this Smarty is poisonous?
 
 \Part
-If a randomly selected Smarty is poisonous, what is the probability it came from Stan Furd's Smarties Factory?
+If a randomly selected Smarty is poisonous, what is the probability it came from 
+Stan Furd's Smarties Factory?
 
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part The probability that a randomly selected Smarty is safe to eat will be 
+$0.5 \times 0.98 + 0.4 \times 0.95 + 0.1 \times 0.90 =  0.96$. 
+
+\Part The probability that a certain Smarty is poisonous, given that it is not
+from Burr Kelly's factory, is
+\[
+    \begin{split}
+        \Pr[P \mid \overline{B}] &= \frac{\Pr[P \cap \overline{B}]}{\Pr[\overline{B}]} \\
+        &= \frac{\Pr[P \cap \overline{B}]}{1 - \Pr[Y] - \Pr[S]} \\
+        &= \frac{0.4 \times 0.05 + 0.1 \times 0.1}{0.5} \\
+        &= 0.06
+    \end{split}
+\]
+
+\Part The probability that a Smary came from Stan Furd, given that it is poisonous
+is, 
+\[
+    \begin{split}
+        \Pr[S \mid P] &= \frac{\Pr[S \cap P]}{\Pr[P]} \\
+        &= \frac{\Pr[P \mid S] \times \Pr[S]}{\Pr[P]} \\
+        &= \frac{0.1 \times 0.1}{1 - 0.96} \\
+        &= 0.25
+    \end{split}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Symmetric Marbles}
 
