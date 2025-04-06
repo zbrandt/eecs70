@@ -82,8 +82,8 @@ Therefore, $D$ is independent of $C$.
 
 \Part If $A$ and $B$ are disjoint, then knowing that one event happens provides
 information on the other. $\Pr[A \cap B] = 0$ if disjoint, and therefore, 
-$\Pr[A \mid B] = 0 \neq A$. This does not imply they are independent of each
-other. 
+$\Pr[A \mid B] = 0 \neq \Pr[A]$. This does not imply they are independent of 
+each other. 
 
 \end{Parts}
 
@@ -119,7 +119,6 @@ A \cup B$. Then,
 \[
     \begin{split}
         \Pr[\overline{A}] \cdot \Pr[\overline{B}] &= (1-\Pr[A]) \cdot (1-\Pr[B]) \\
-        &= (1-\Pr[A]) \cdot (1-\Pr[B]) \\
         &= 1 - \Pr[B] - \Pr[A] + \Pr[A] \cdot \Pr[B] \\
         \text{Since $A$ and $B$ are independent} \quad &= 
         1 - \Pr[B] - \Pr[A] + \Pr[A \cap B] \\
@@ -147,10 +146,9 @@ observation, like of a Venn Diagram, $A - A \cap B = A \cap \overline{B}$. Then,
 \overline{A}]$ is equal to zero, $\Pr[A \mid \overline{A}] \neq 0$, and the
 events are not independent. 
 
-\Part False: For $A$ and $B$ to be independent, then $\Pr[A \mid B] = 
-\Pr[A]$. But since $\Pr[A \cap B] = 1$, because $A = B$,
-then $\Pr[A \mid B] = \frac{\Pr[A \cap B]}{\Pr[B]} = \frac{\Pr[A]}{\Pr[B]} = 1
-\neq \Pr[A] \quad \text{(when $\Pr[A] \neq 1$})$.
+\Part True: it is possible for $A$ and $B$ to be independent when $A=B$. Consider
+the case where $\Pr[A] = 1$ (and $\Pr[B] = 1$ then too). Then $\Pr[A \mid B] = 
+\Pr[A \cap B] \div \Pr[B] = 1 \div 1 = 1 = \Pr[A]$. 
 
 \end{Parts}
 
@@ -193,7 +191,7 @@ edge connecting the two or not.
 
 \Part For a set $S$ with $k$ vertices, all vertices must be connected to each
 other for there to be a $k$-clique. This can only happen one way, and therefore,
-$\Pr[E_S] = 1 / 2^{\binom{k}{2}}$.
+$\Pr[E_S] = \frac{1}{2^{\binom{k}{2}}}$.
 
 \Part If there are no vertices of $G$ that are both in each of the subsets $V_1$
 and $V_2$, then $V_1 \cap V_2 = \emptyset$, and $\Pr[E_{V_1} \cap E_{V_2}] = 
@@ -350,6 +348,8 @@ if the third marble is blue.
     
 \end{Parts}
 
+\pagebreak
+
 \begin{solution}
     
 \begin{Parts}
@@ -467,7 +467,7 @@ probability is then
     \begin{split}
         \Pr[A_1 \cup A_2 \cup \dots \cup A_n] &= \sum_{k=1}^{n} (-1)^{k-1} 
         \sum_{S \subseteq \{ 1, \dots, n \}: |S| = k} \Pr[\cup_{i\in S} A_i] \\
-        &= \sum_{k=1}^{n} \Pr[A_k] - \sum_{i, j \in \{1, \dots, n\}: i < j} \Pr[A_i \cap A_j] +
+        \text{from the note} \quad &= \sum_{k=1}^{n} \Pr[A_k] - \sum_{i, j \in \{1, \dots, n\}: i < j} \Pr[A_i \cap A_j] +
         \sum_{i, j, k \in \{1, \dots, n\}: i < j < k} \Pr[A_i \cap A_j \cap A_k] - \dots \\
         &= \sum_{k=1}^{n} \frac{2 \times (2n-1)!}{(2n)!} - \sum_{i, j \in \{1, \dots, n\}: i < j} \frac{2^2 \times (2n-2)!}{(2n)!} + \dots \\
         \text{(highlight)}\quad &= \binom{n}{1} \frac{2 \times (2n-1)!}{(2n)!} - \binom{n}{2} \frac{2^2 \times (2n-2)!}{(2n)!} + \dots \\
@@ -476,12 +476,12 @@ probability is then
 \]
 Where on the highlighted line I make the observation that the sums are summing
 equal probabilities, each some binomial amount. The first summation, sums $n$ 
-or $\binom{n}{1}$ of the same probaility, while the second sum sums $\binom{n}{2}$,
+or $\binom{n}{1}$ of the same probability, while the second sum sums $\binom{n}{2}$,
 and so on. 
 
 \Part The last part answered the question as to what the probability that there
-is at least one matching pair. This question asks for the complement, that 
-there are no matching pairs. Therefore, the probaility is
+is at least one matching pair. This question asks for the complement, i.e., that 
+there are no matching pairs. The probability of this is
 \[
     1 - \sum_{k=1}^{n} (-1)^{k-1} \binom{n}{k} \frac{2^k \times (2n-k)!}{(2n)!}
 \]
