@@ -412,18 +412,82 @@ Then, $\Pr[\text{Rachel wins} \mid \text{Third marble is red}] = 1 - \frac{4}{16
 \end{solution}
 
 \Question{Socks}
-\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13},\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
-Suppose you have $n$ different pairs of socks ($n$ left socks and $n$ right socks, for $2n$ individual socks total) in your dresser. 
-You take the socks out of the dresser one by one without looking and lay them out in a row on the floor. 
-In this question, we'll go through the computation of the probability that no two matching socks are next to each other.
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n13.pdf}{Note 13},
+\href{https://www.eecs70.org/assets/pdf/notes/n14.pdf}{Note 14}}
+Suppose you have $n$ different pairs of socks ($n$ left socks and $n$ right 
+socks, for $2n$ individual socks total) in your dresser. You take the socks out 
+of the dresser one by one without looking and lay them out in a row on the floor. 
+In this question, we'll go through the computation of the probability that no 
+two matching socks are next to each other.
 
 \begin{Parts}
-    \Part We can consider the sample space as the set of length $2n$ permutations. What is the size of the sample space $\Omega$, and what is the probability of a particular permutation $\omega \in \Omega$?
-
-    \Part Let $A_i$ be the event that the $i$th pair of matching socks are next to each other. Calculate $\Pr[A_i]$.
-    \Part Calculate $\Pr[A_1 \cap  ... \cap A_k]$ for an arbitrary $k \geq 2$. (Hint: try using a counting based approach.)
-    \Part Putting these all together, calculate the probability that there is at least one pair of matching socks next to each other. Your answer can (and should) be expressed as a summation. (Hint: use Inclusion/Exclusion.)
-    \Part Using your answer from the previous part, what is the probability that no two matching socks are next to each other? (This should follow directly from your answer to the previous part, and also can be left as a summation.)
+    \Part We can consider the sample space as the set of length $2n$ permutations. 
+    What is the size of the sample space $\Omega$, and what is the probability 
+    of a particular permutation $\omega \in \Omega$?
+    \Part Let $A_i$ be the event that the $i$th pair of matching socks are next 
+    to each other. Calculate $\Pr[A_i]$.
+    \Part Calculate $\Pr[A_1 \cap  ... \cap A_k]$ for an arbitrary $k \geq 2$. 
+    (Hint: try using a counting based approach.)
+    \Part Putting these all together, calculate the probability that there is 
+    at least one pair of matching socks next to each other. Your answer can (and 
+    should) be expressed as a summation. (Hint: use Inclusion/Exclusion.)
+    \Part Using your answer from the previous part, what is the probability that 
+    no two matching socks are next to each other? (This should follow directly 
+    from your answer to the previous part, and also can be left as a summation.)
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part The size of the sample space is $|\Omega| = (2n)!$, and any particular 
+permutation has a probability of $\Pr[\omega] = \frac{1}{(2n)!}$.
+
+\Part If two of the $2n$ socks are next to each other as a matching pair, that 
+means there are only $(2n-1)!$ ways to rearrange the socks (because the pair has
+to stick together). Also, the problem doesn't specify that the left one has to 
+come first necessarily, so there are 2 different ways to have them stay together,
+i.e., there are $2 \times (2n-1)!$ ways to order the socks with a pair staying 
+together. Therefore, the $\Pr[A_i] = \frac{2 \times (2n-1)!}{(2n)!}$.
+
+\Part For an arbitrary $k$, the probability $\Pr[A_i \cap \dots \cap A_k]$ is
+\[
+    \frac{2^k \times (2n-k)!}{(2n)!}
+\]
+since the pairs of socks have to stick together, consolidating them as one item
+each to be ordered among the remaining socks. Additionally, the pairs can have 
+the left and right socks be in any order presumably, and so there are $2^k$ ways
+to order again. 
+
+\Part The probability that there is at least one pair of matching socks next to
+each other in the permuation is the probability that any of $A_1, A_2, \dots A_n$
+happen. As such, all the permutations in each of those sets is valid, so the 
+probability is then 
+\[
+    \begin{split}
+        \Pr[A_1 \cup A_2 \cup \dots \cup A_n] &= \sum_{k=1}^{n} (-1)^{k-1} 
+        \sum_{S \subseteq \{ 1, \dots, n \}: |S| = k} \Pr[\cup_{i\in S} A_i] \\
+        &= \sum_{k=1}^{n} \Pr[A_k] - \sum_{i, j \in \{1, \dots, n\}: i < j} \Pr[A_i \cap A_j] +
+        \sum_{i, j, k \in \{1, \dots, n\}: i < j < k} \Pr[A_i \cap A_j \cap A_k] - \dots \\
+        &= \sum_{k=1}^{n} \frac{2 \times (2n-1)!}{(2n)!} - \sum_{i, j \in \{1, \dots, n\}: i < j} \frac{2^2 \times (2n-2)!}{(2n)!} + \dots \\
+        \text{(highlight)}\quad &= \binom{n}{1} \frac{2 \times (2n-1)!}{(2n)!} - \binom{n}{2} \frac{2^2 \times (2n-2)!}{(2n)!} + \dots \\
+        &= \sum_{k=1}^{n} (-1)^{k-1} \binom{n}{k} \frac{2^k \times (2n-k)!}{(2n)!}
+    \end{split}
+\]
+Where on the highlighted line I make the observation that the sums are summing
+equal probabilities, each some binomial amount. The first summation, sums $n$ 
+or $\binom{n}{1}$ of the same probaility, while the second sum sums $\binom{n}{2}$,
+and so on. 
+
+\Part The last part answered the question as to what the probability that there
+is at least one matching pair. This question asks for the complement, that 
+there are no matching pairs. Therefore, the probaility is
+\[
+    1 - \sum_{k=1}^{n} (-1)^{k-1} \binom{n}{k} \frac{2^k \times (2n-k)!}{(2n)!}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \end{document}
