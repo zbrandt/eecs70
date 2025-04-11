@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 11}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 4/12, 4:00 PM \\
+    Grace period until Saturday, 4/12, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you 
+worked on it.  Who else did you work with?  List names and email addresses. 
+(In case of homework party, you can just describe the group.)
+
+\begin{center}
+    \textcolor{blue}{
+        Zachary Brandt \\
+        \nolinkurl{zbrandt@berkeley.edu}
+    }
+\end{center}
+
+\vspace{15pt}
+
+\Question{Combined Head Count}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15}}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
+Suppose you flip a fair coin twice.
+\begin{Parts}
+
+\Part What is the sample space $\Omega$ generated from these flips?
+
+\Part Define a random variable $X$ to be the number of heads. What is the 
+distribution of $X$?
+
+\Part Define a random variable $Y$ to be $1$ if you get a heads followed by a 
+tails and $0$ otherwise. What is the distribution of $Y$?
+
+\Part Compute the conditional probabilities $\Pr[Y = i \mid X = j]$ for all $i$, 
+$j$.
+
+\Part Define a third random variable $Z = X + Y$. Use the conditional 
+probabilities you computed in part (d) to find the distribution of $Z$.
+
+\end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+    
+\Part The sample space $\Omega$ generated from two flips is $\{HH, HT, TH, TT \}$.
+
+\Part The distribution of the random variable $X$ is the collection of values
+$\{(a, \Pr[X=a]):a \in \mathcal{A} \}$, which is displayed below:
+\begin{center}
+    \begin{tabular}{|>{\centering\arraybackslash}m{6cm}|c|c|}
+    \hline
+    \textbf{outcomes $\omega$} & \textbf{value of X (\# heads)} & 
+    \textbf{probability of occurring} \\
+    \hline
+    \textit{TT} & 0 & $\frac{1}{4}$ \\
+    \hline
+    \textit{HT, TH} & 1 & $\frac{2}{4}$ \\
+    \hline
+    \textit{HH} & 2 & $\frac{1}{4}$ \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\Part The distribution of the random variable $Y$ is displayed below:
+\begin{center}
+    \begin{tabular}{|>{\centering\arraybackslash}m{6cm}|c|c|}
+    \hline
+    \textbf{outcomes $\omega$} & \textbf{value of Y (heads, tails)} & 
+    \textbf{probability of occurring} \\
+    \hline
+    \textit{TT, TH, HH} & 0 & $\frac{3}{4}$ \\
+    \hline
+    \textit{HT} & 1 & $\frac{1}{4}$ \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\Part The conditional probabilities are displayed below:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{12pt}
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{X/Y} & 0 & 1 & 2 & \textbf{X} \\
+    \hline
+    0 & 0.25 & 0.25 & 0.25 & \textcolor{red}{0.75} \\
+    \hline
+    1 & 0 & 0.25 & 0 & \textcolor{red}{0.25} \\
+    \hline
+    \textbf{Y} & \textcolor{red}{0.25} & \textcolor{red}{0.5} & \textcolor{red}{0.25} & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\Part The distribution of the random variable $Z$ is displayed below:
+
+\begin{center}
+    \begin{tabular}{|>{\centering\arraybackslash}m{6cm}|c|c|}
+    \hline
+    \textbf{outcomes $\omega$} & \textbf{value of Z (X+Y)} & 
+    \textbf{probability of occurring} \\
+    \hline
+    \textit{TT} & 0 & $\frac{1}{4}$ \\
+    \hline
+    \textit{TH} & 1 & $\frac{1}{4}$ \\
+    \hline
+    \textit{HH, HT} & 2 & $\frac{2}{4}$ \\
+    \hline
+    \end{tabular}
+\end{center}
+
+
+
+\end{Parts}
+
+\end{solution}
+
+\Question{Testing Model Planes}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15}}
+Amin is testing model airplanes. He starts with $n$ model planes which each independently have probability $p$ of flying successfully each time they are flown, where $0<p<1$. Each day, he flies every single plane and keeps the ones that fly successfully (i.e. don't crash), throwing away all other models. He repeats this process for many days, where each "day" consists of Amin flying all remaining model planes and throwing away any that crash. Let $X_i$ be the random variable representing how many model planes remain after $i$ days. Note that $X_0 = n$. Justify your answers for each part.
+\begin{Parts}
+    \Part What is the distribution of $X_1$? That is, what is $\Pr[X_1=k]$? 
+    \Part What is the distribution of $X_2$? That is, what is $\Pr[X_2=k]$? Recognize the distribution of $X_2$ as one of the famous ones and provide its name and parameters.
+    \Part Repeat the previous part for $X_t$ for arbitrary $t \geq 1$.
+    \Part What is the probability that at least one model plane still remains (has not crashed yet) after $t$ days? Do not have any summations in your answer.
+    \Part Considering only the first day of flights, is the event $A_1$ that the first and second model planes crash independent from the event $B_1$ that the second and third model planes crash? Recall that two events $A$ and $B$ are independent if $\Pr[A\cap B] = \Pr[A]\Pr[B]$. Prove your answer using this definition.
+    \Part Considering only the first day of flights, let $A_2$ be the event that the first model plane crashes 
+    \emph{and} exactly two model planes crash in total. Let $B_2$ be the event that 
+    the second plane crashes on the first day. What must $n$ be equal to 
+    in terms of $p$ such that $A_2$ is independent from $B_2$? Prove your answer using the definition 
+    of independence stated in the previous part.
+    \Part Are the random variables $X_i$ and $X_j$, where $i<j$, independent? Recall that two random variables $X$ and $Y$ are independent if $\Pr[X=k_1 \cap Y=k_2] = \Pr[X=k_1]\Pr[Y=k_2]$ for all $k_1$ and $k_2$. Prove your answer using this definition.
+\end{Parts}
+
+\Question{Fishy Computations}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
+Assume for each part that the random variable can be modelled by a Poisson distribution.
+
+\begin{Parts}
+	\Part Suppose that on average, a fisherman catches $20$ salmon per week. What is the probability that he will catch exactly $7$ salmon this week?
+    
+	
+	\Part Suppose that on average, you go to Fisherman's Wharf twice a year. What is the probability that you will go at most once in 2024?
+    
+
+	\Part Suppose that in March, on average, there are $5.7$ boats that sail in Laguna Beach per day. What is the probability there will be \textit{at least} $3$ boats sailing throughout the \textit{next two days} in Laguna?
+    
+
+    \Part Denote $X \sim \text{Pois}(\lambda)$. Prove that \[ \E[Xf(X)] = \lambda \E[f(X+1)] \] for any function $f$. 
+    
+
+	
+\end{Parts}
+
+\Question{Such High Expectations}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
+Suppose $X$ and $Y$ are independently drawn from a Geometric distribution with parameter $p$. For each of the below subparts, your answer must be simplified (i.e. NOT left in terms of a summation).
+
+\begin{Parts}
+    \Part Compute $\Ex{\min\left(X,Y\right)}$.
+
+    
+
+    \Part Compute $\Ex{\max\left(X,Y\right)}$.
+
+    
+
+    \Part Compute $\Pr[X + Y \ge t]$
+
+    
+
+\end{Parts}
+
+\Question{Swaps and Cycles}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15}}
+A permutation of $n$ objects is a bijection from $(1,\ldots,n)$ to itself.  For example, the permutation $\pi=(2,1,4,3)$ of $4$ objects is the mapping $\pi(1) = 2$, $\pi(2) = 1$, $\pi(3) = 4$, and $\pi(4) = 3$.
+We'll say that a permutation $\pi = (\pi(1),\ldots,\pi(n))$ contains a \emph{swap} if there exist $i,j\in\{1,\ldots,n\}$ so that $\pi(i) = j$ and $\pi(j) = i$, where $i \neq j$. The example above contains two swaps: $(1,2)$ and $(3,4)$.
+\begin{Parts}
+	\Part In terms of $n$, what is the expected number of swaps in a random permutation?
+	
+	\Part In the same spirit as above, we'll say that $\pi$ contains a \emph{$k$-cycle} if there exist $i_1,\ldots,i_k \in \{1,\ldots,n\}$ with $\pi(i_1) = i_2,\pi(i_2) = i_3,\ldots,\pi(i_k) = i_1$. Compute the expectation of the number of $k$-cycles. 
+	
+\end{Parts}
+
+\end{document}
