@@ -237,23 +237,67 @@ are both not equal to zero. Therefore, $\Pr[X_1 = 1 \mid X_2 = 2] \neq \Pr[X_1 =
 
 \Question{Fishy Computations}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
-Assume for each part that the random variable can be modelled by a Poisson distribution.
+Assume for each part that the random variable can be modelled by a Poisson 
+distribution.
 
 \begin{Parts}
-	\Part Suppose that on average, a fisherman catches $20$ salmon per week. What is the probability that he will catch exactly $7$ salmon this week?
-    
-	
-	\Part Suppose that on average, you go to Fisherman's Wharf twice a year. What is the probability that you will go at most once in 2024?
-    
 
-	\Part Suppose that in March, on average, there are $5.7$ boats that sail in Laguna Beach per day. What is the probability there will be \textit{at least} $3$ boats sailing throughout the \textit{next two days} in Laguna?
-    
+\Part Suppose that on average, a fisherman catches $20$ salmon per week. What 
+is the probability that he will catch exactly $7$ salmon this week?
 
-    \Part Denote $X \sim \text{Pois}(\lambda)$. Prove that \[ \E[Xf(X)] = \lambda \E[f(X+1)] \] for any function $f$. 
-    
+\Part Suppose that on average, you go to Fisherman's Wharf twice a year. What 
+is the probability that you will go at most once in 2024?
 
-	
+\Part Suppose that in March, on average, there are $5.7$ boats that sail in 
+Laguna Beach per day. What is the probability there will be \textit{at least} 
+$3$ boats sailing throughout the \textit{next two days} in Laguna?
+
+\Part Denote $X \sim \text{Pois}(\lambda)$. Prove that \[ \E[Xf(X)] = \lambda 
+\E[f(X+1)] \] for any function $f$. 
+
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part The probability that a fisher catches exactly 7 salmon this week is $\Pr[X=7]
+= \frac{20^7 \cdot e^{-20}}{7!}$.
+
+\Part The probability that you will go to the Fisherman's Whart at most once in
+2024 is $\Pr[X \leq 1] = \Pr[X=0] + \Pr[X=1] = \frac{2^0 \cdot e^{-2}}{0!} + 
+\frac{2^1 \cdot e^{-2}}{1!} = \frac{3}{e^2}$.
+
+\Part The combined random variable for the number of boats sailing throughout 
+the next two days is $X_1 + X_2 \sim \text{Pois}(\lambda + \lambda)$. Then, the
+probability that there are at least 3 boats observed is the complement of the 
+probability that there are less than 3 boats observed, i.e., 
+\[
+    \begin{split}
+        \Pr[X_1 + X_2 \geq 3] &= 1 - \Pr[X_1 + X_2 < 3] \\
+        &= 1 - \Pr[X_1 + X_2 = 0] - \Pr[X_1 + X_2 = 1] - \Pr[X_1 + X_2 = 2] \\
+        &= 1 - \frac{(11.4)^0}{0!}e^{11.4} - \frac{(11.4)^1}{1!}e^{11.4} - \frac{(11.4)^2}{2!}e^{11.4} \\
+    \end{split}
+\]
+
+\Part The proof is as follows:
+\[
+    \begin{split}
+        E[Xf(X)] &= \sum_x x f(x) \Pr[X=x] \\
+        &= \sum_x x f(x) \Pr[X=x] \\
+        &= \sum_x x f(x) \frac{\lambda^x}{x!} e^{-\lambda} \\
+        &= \sum_x f(x) \frac{\lambda^x}{(x-1)!} e^{-\lambda} \\
+        &= \sum_{i=0}^{\infty} f(i+1) \frac{\lambda^{i+1}}{i!} e^{-\lambda} \\
+        &= \lambda \sum_{i=0}^{\infty} f(i+1) \frac{\lambda^{i}}{i!} e^{-\lambda} \\
+        &= \lambda \sum_x f(x+1) \frac{\lambda^{x}}{x!} e^{-\lambda} \\
+        &= \lambda \sum_x f(x+1) \Pr[X=x] \\
+        &= \lambda E[f(X+1)] \\
+    \end{split}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Such High Expectations}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
