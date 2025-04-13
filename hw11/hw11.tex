@@ -301,22 +301,72 @@ probability that there are less than 3 boats observed, i.e.,
 
 \Question{Such High Expectations}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
-Suppose $X$ and $Y$ are independently drawn from a Geometric distribution with parameter $p$. For each of the below subparts, your answer must be simplified (i.e. NOT left in terms of a summation).
+Suppose $X$ and $Y$ are independently drawn from a Geometric distribution with 
+parameter $p$. For each of the below subparts, your answer must be simplified 
+(i.e. NOT left in terms of a summation).
 
 \begin{Parts}
-    \Part Compute $\Ex{\min\left(X,Y\right)}$.
 
-    
+\Part Compute $\Ex{\min\left(X,Y\right)}$.
 
-    \Part Compute $\Ex{\max\left(X,Y\right)}$.
+\Part Compute $\Ex{\max\left(X,Y\right)}$.
 
-    
-
-    \Part Compute $\Pr[X + Y \ge t]$
-
-    
+\Part Compute $\Pr[X + Y \ge t]$    
 
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part I will define a new random variable $Z$ as $Z = \min(X,Y)$. Then, the 
+computation is as follows:
+\[
+    \begin{split}
+        \Ex{Z} &= (0 \times \Pr[Z=0]) + (1 \times \Pr[Z=1]) + (2 \times \Pr[Z=2]) + \dots \\
+        &= \Pr[Z=1] + (\Pr[Z=2] + \Pr[Z=2]) + (\Pr[Z=3] +  \Pr[Z=3] + \Pr[Z=3]) \dots \\
+        &= (\Pr[Z=1] + \Pr[Z=2] + \Pr[Z=3] + \dots) + (\Pr[Z=2] + \Pr[Z=3] + \dots) + \dots \\
+        &= \Pr[Z \geq 1] + \Pr[Z \geq 2] + \Pr[Z \geq 3] + \dots \\
+        &= \sum_{i=1}^{\infty} \Pr[Z \geq i] \\
+        \text{$X$ \& $Y$ need to be >} \quad &= \sum_{i=1}^{\infty} \Pr[X \geq i] \Pr[Y \geq i] \\
+        &= \sum_{i=1}^{\infty} (1-p)^{i-1} \cdot (1-p)^{i-1} \\
+        &= \sum_{i=1}^{\infty} (1-p)^{2i-2} \\
+        &= (1-p)^{-2} \sum_{i=1}^{\infty} (1-p)^{2i} \\
+        &= \frac{1}{1-(1-p)^2}
+    \end{split}
+\]
+
+\Part From before we can use the fact that $\Ex{Z} = \sum_{i=1}^{\infty} 
+\Pr[Z \geq i]$ to see that 
+\[
+    \begin{split}
+        \Ex{\max(X, Y)} &= \sum_{i=1}^{\infty} \Pr[\max(X, Y) \geq i] \\
+        &= \sum_{i=1}^{\infty} 1 - \Pr[\max(X, Y) < i] \\
+        &= \sum_{i=1}^{\infty} 1 - \Pr[X < i] \cdot \Pr[Y < i] \\
+        &= \sum_{i=1}^{\infty} 1 - (1 - \Pr[X \geq i]) \cdot (1 - \Pr[Y \geq i]) \\
+        &= \sum_{i=1}^{\infty} 1 - (1 - (1-p)^{i-1}) \cdot (1 - (1-p)^{i-1}) \\
+        &= \sum_{i=1}^{\infty} 2(1-p)^{i-1} - (1-p)^{2i - 2}
+    \end{split}
+\]
+
+\Part For any value $x$ of $X$, the value of $y$ of $Y$ must then satisfy the
+inequality $y \geq t - x$. Therefore, the computation is
+\[
+    \begin{split}
+        \Ex{X + Y \geq t} &= \sum_t \Pr[X + Y \geq t] \\
+        &= \sum_{i=1}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
+        &= \sum_{i=1}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
+        &= \sum_{i=1}^{t-1} \Pr[X =i] \Pr[Y \geq t - i] + \sum_{i=t}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
+        \text{$Y$ has no bearing once $X\geq t$} \quad &= \sum_{i=1}^{t-1} \Pr[X =i] \Pr[Y \geq t - i] + \sum_{i=t}^{\infty} \Pr[X =x] \\
+        &= \sum_{i=1}^{t-1} (1-p)^{i-1}p \cdot (1-p)^{t-i-1} + \Pr[X \geq t] \\\
+        &= (1-p)^{t-2}p \sum_{i=1}^{t-1} 1 + \Pr[X \geq t] \\\
+        &= (1-p)^{t-2}p (t-1)+ (1-p)^{t-1} \\\
+    \end{split}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Swaps and Cycles}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15}}
