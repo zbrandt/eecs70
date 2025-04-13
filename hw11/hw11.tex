@@ -357,7 +357,7 @@ inequality $y \geq t - x$. Therefore, the computation is
         &= \sum_{i=1}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
         &= \sum_{i=1}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
         &= \sum_{i=1}^{t-1} \Pr[X =i] \Pr[Y \geq t - i] + \sum_{i=t}^{\infty} \Pr[X =i] \Pr[Y \geq t - i] \\
-        \text{$Y$ has no bearing once $X\geq t$} \quad &= \sum_{i=1}^{t-1} \Pr[X =i] \Pr[Y \geq t - i] + \sum_{i=t}^{\infty} \Pr[X =x] \\
+        \text{$Y$ has no bearing once $X\geq t$} \quad &= \sum_{i=1}^{t-1} \Pr[X =i] \Pr[Y \geq t - i] + \sum_{i=t}^{\infty} \Pr[X =i] \\
         &= \sum_{i=1}^{t-1} (1-p)^{i-1}p \cdot (1-p)^{t-i-1} + \Pr[X \geq t] \\\
         &= (1-p)^{t-2}p \sum_{i=1}^{t-1} 1 + \Pr[X \geq t] \\\
         &= (1-p)^{t-2}p (t-1)+ (1-p)^{t-1} \\\
@@ -370,13 +370,51 @@ inequality $y \geq t - x$. Therefore, the computation is
 
 \Question{Swaps and Cycles}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15}}
-A permutation of $n$ objects is a bijection from $(1,\ldots,n)$ to itself.  For example, the permutation $\pi=(2,1,4,3)$ of $4$ objects is the mapping $\pi(1) = 2$, $\pi(2) = 1$, $\pi(3) = 4$, and $\pi(4) = 3$.
-We'll say that a permutation $\pi = (\pi(1),\ldots,\pi(n))$ contains a \emph{swap} if there exist $i,j\in\{1,\ldots,n\}$ so that $\pi(i) = j$ and $\pi(j) = i$, where $i \neq j$. The example above contains two swaps: $(1,2)$ and $(3,4)$.
+A permutation of $n$ objects is a bijection from $(1,\ldots,n)$ to itself. For 
+example, the permutation $\pi=(2,1,4,3)$ of $4$ objects is the mapping $\pi(1) 
+= 2$, $\pi(2) = 1$, $\pi(3) = 4$, and $\pi(4) = 3$. We'll say that a permutation 
+$\pi = (\pi(1),\ldots,\pi(n))$ contains a \emph{swap} if there exist 
+$i,j\in\{1,\ldots,n\}$ so that $\pi(i) = j$ and $\pi(j) = i$, where $i \neq j$. 
+The example above contains two swaps: $(1,2)$ and $(3,4)$.
+
 \begin{Parts}
-	\Part In terms of $n$, what is the expected number of swaps in a random permutation?
+	\Part In terms of $n$, what is the expected number of swaps in a random 
+    permutation?
 	
-	\Part In the same spirit as above, we'll say that $\pi$ contains a \emph{$k$-cycle} if there exist $i_1,\ldots,i_k \in \{1,\ldots,n\}$ with $\pi(i_1) = i_2,\pi(i_2) = i_3,\ldots,\pi(i_k) = i_1$. Compute the expectation of the number of $k$-cycles. 
-	
+	\Part In the same spirit as above, we'll say that $\pi$ contains a 
+    \emph{$k$-cycle} if there exist $i_1,\ldots,i_k \in \{1,\ldots,n\}$ with 
+    $\pi(i_1) = i_2,\pi(i_2) = i_3,\ldots,\pi(i_k) = i_1$. Compute the 
+    expectation of the number of $k$-cycles. 	
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part For a set of $n$ objects, there are $n!$ permutations, which make sup the
+sample space. When two elements are swapped, there are $n-2$ remaining elements
+which can be in any order, i.e., $(n-2)!$ permutations with any two elements
+swapped. There are $n$ choose 2 potential pairs out of the $n$ objects. Since
+each pair has the same probability of being swapped, $\frac{(n-2)!}{n!}$, the
+expected value is $\binom{n}{2} \times \frac{(n-2)!}{n!} = \frac{n!}{(n-2)! \cdot 2!}
+\times \frac{(n-2)!}{n!} = \frac{1}{2!} = \frac{1}{2}$. 
+
+\Part For any subset of $k$ elements, there are $k!$ possible permutations, but
+each permutation has $k$ equivalents, i.e. (1, 2, 3) is equivalent to (2, 3, 1),
+so there are $k! \div k$ cycles for a $k$, and there are $n$ choose $k$ different
+$k$-lenght subsets for a total of $\binom{n}{k} \times \frac{k!}{k}$ cycles. Then, 
+for any permutation of $n$ objects, if there is a permutation with $k$ elements, 
+the remaining $n-k$ elements can be ordered however, so the probability of getting
+a cycle is $(n-k)! \div n!$. The expected value is then the number of such cycles
+times the probability, i.e., 
+\[
+    \binom{n}{k} \times \frac{k!}{k} \times \frac{(n-k)!}{n!} = \frac{n!}{(n-k)!k!}
+    \times \frac{k!}{k} \times \frac{(n-k)!}{n!} = \frac{1}{k}. 
+\]  
+
+
+\end{Parts}
+
+\end{solution}
 
 \end{document}
