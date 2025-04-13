@@ -86,22 +86,14 @@ $\{(a, \Pr[X=a]):a \in \mathcal{A} \}$, which is displayed below:
 \end{center}
 
 \Part The conditional probabilities are displayed below:
-
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\setlength{\tabcolsep}{12pt}
-\begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \textbf{X/Y} & 0 & 1 & 2 & \textbf{X} \\
-    \hline
-    0 & 0.25 & 0.25 & 0.25 & \textcolor{red}{0.75} \\
-    \hline
-    1 & 0 & 0.25 & 0 & \textcolor{red}{0.25} \\
-    \hline
-    \textbf{Y} & \textcolor{red}{0.25} & \textcolor{red}{0.5} & \textcolor{red}{0.25} & \\
-    \hline
-\end{tabular}
-\end{center}
+\begin{align*}
+    \text{$Y$ can only be 1 when HT present} \quad \Pr[Y = 0 \mid X = 0] &= 1, \\
+    \text{TH also present} \quad \Pr[Y = 0 \mid X = 1] &= 0.5, \\
+    \text{$Y$ can only be 1 when HT present} \quad \Pr[Y = 0 \mid X = 2] &= 1, \\
+    \text{$Y$ can only be 1 when HT present} \quad \Pr[Y = 1 \mid X = 0] &= 0, \\
+    \text{TH also present} \quad \Pr[Y = 1 \mid X = 1] &= 0.5, \\
+    \text{$Y$ can only be 1 when HT present} \quad \Pr[Y = 1 \mid X = 2] &= 0
+\end{align*}
 
 \Part The distribution of the random variable $Z$ is displayed below:
 
