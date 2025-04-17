@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 11}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 4/19, 4:00 PM \\
+    Grace period until Saturday, 4/19, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you 
+worked on it. Who else did you work with?  List names and email addresses. (In 
+case of homework party, you can just describe the group.)
+
+\begin{center}
+    \textcolor{blue}{
+        Zachary Brandt \\
+        \nolinkurl{zbrandt@berkeley.edu}
+    }
+\end{center}
+
+\vspace{15pt}
+
+\Question{Coupon Collector Variance}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n19.pdf}{Note 19}}
+It's that time of the year again---Safeway is offering its Monopoly Card 
+promotion. Each time you visit Safeway, you are given one of $n$ different 
+Monopoly Cards with equal probability. You need to collect them all to redeem 
+the grand prize.
+
+Let $X$ be the number of visits you have to make before you can redeem the grand 
+prize. Show that $\var(X) = n^2\left(\sum_{i=1}^n i^{-2}\right) - \E[X]$.
+
+\begin{solution}
+
+We know from the notes that the expected value of $X$ is $\E[X] = n \cdot 
+\sum_{i=1}^{n} \frac{1}{n}$. The variance of $X$, where $X$ is equal to $X_1 + 
+X_2 + \cdot + X_n$, i.e., the sum of the number of boxes it takes to find the
+first to the $n$-th Monopoly Card, is then $Var(X) = Var(X_1) + Var(X_2) + \cdots 
++ Var(X_n)$ since the individual random variables are independent of one another.
+The number of boxes it takes to find the first coupon has no bearing on the 
+number of boxes it will take to find the next. Then, 
+\[
+	\begin{split}
+		Var(X) &= Var(X_1) + Var(X_2) + \dots + Var(X_n) \\
+		&= \left( \frac{1-p_1}{p_1^2} \right) + \left( \frac{1-p_2}{p_2^2} \right) + \ddots \\
+		&= \left( \frac{1-1}{1^2} \right) + \left( \frac{1-\frac{n-1}{n}}{\left( \frac{n-1}{n} \right)^2} \right) + \cdots \\
+		&= \left( \frac{1-1}{1^2} \right) + \left( \frac{n^2}{(n-1)^2} - \frac{n}{n-1} \right) + \left( \frac{n^2}{(n-2)^2} - \frac{n}{n-2} \right) + \cdot \\
+		&= \left( \frac{n^2}{n^2} + \frac{n^2}{(n-1)^2}  + \frac{n^2}{(n-2)^2} + \dots \right) 
+		- \left( \frac{n}{n} + \frac{n}{n-1} + \frac{n}{n-2} + \cdots \right) \\
+		&= n^2 \cdot \left( \frac{1}{1} + \frac{1}{(2)^2}  + \dots + \frac{1}{(n)^2} \right) 
+		- n \cdot \left( \frac{1}{1} + \frac{1}{2} + \dots + \frac{1}{n}  \right) \\
+		&= n^2 \sum_{i=1}^{n} \frac{1}{i^2} - n \sum_{i=1}^{n} \frac{1}{i} \\
+		&= n^2 \sum_{i=1}^{n} \frac{1}{i^2} - \E[X]
+	\end{split}
+\]
+
+\end{solution}
+
+\Question {Diversify Your Hand}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15},\href{https://www.eecs70.org/assets/pdf/notes/n16.pdf}{Note 16}}
+You are dealt 5 cards from a standard 52 card deck. Let $X$ be the number of distinct values in your hand. For instance, the hand (A, A, A, 2, 3) has 3 distinct values.
+
+\begin{Parts}
+
+\Part Calculate $\E[X]$. (Hint: Consider indicator variables $X_i$ representing whether $i$ appears in the hand.)
+
+\Part Calculate $\var(X)$. The answer expression will be quite involved; you do not need to simplify anything.
+
+\end{Parts}
+
+\Question{Double-Check Your Intuition Again}
+
+\notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n16.pdf}{Note 16}}
+\begin{Parts}
+	\Part You roll a fair six-sided die and record the result $X$. You roll the die again and record the result $Y$.  
+	\begin{Parts}
+		\item What is $\cov (X+Y, X-Y)$?
+		\item Prove that $X+Y$ and $X-Y$ are not independent.
+	\end{Parts}
+
+\end{Parts}
+
+For each of the problems below, if you think the answer is "yes" then provide a proof. If you think the answer is "no", then provide a counterexample.
+
+\begin{Parts}[resume]
+	
+	\Part If $X$ is a random variable and $\var (X) = 0$, then must $X$ be a constant?
+	
+
+	\Part If $X$ is a random variable and $c$ is a constant, then is $\var (cX) = c \var (X)$?
+	
+
+	\Part If $A$ and $B$ are random variables with nonzero standard deviations and $\text{Corr} (A, B) = 0$, then are $A$ and $B$ independent?
+	
+
+	\Part If $X$ and $Y$ are not necessarily independent random variables, but $\text{Corr} (X, Y) = 0$, and $X$ and $Y$ have nonzero standard deviations, then is $\var (X+Y) = \var(X) + \var(Y)$?
+	
+\end{Parts}
+	
+
+\begin{Parts}[resume]
+	\Part If $X$ and $Y$ are random variables then is $\E[\max (X, Y) \min (X, Y)] = \E[X Y]$?
+	
+
+	\Part If $X$ and $Y$ are independent random variables with nonzero standard deviations, then is $$\text{Corr} (\max (X, Y), \min (X, Y)) = \text{Corr} (X, Y) ?$$
+	
+\end{Parts}
+
+\Question{Dice Games}
+
+\notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
+\begin{Parts}
+
+\Part Alice rolls a die until she gets a 1. Let $X$ be the number of total rolls she makes (including the last one), and let $Y$ be the number of rolls on which she gets an even number. Compute $\E[Y \mid X = x]$, and use it to calculate $\E[Y]$. 
+
+\Part Bob plays a game in which he starts off with one die. At each time step, he rolls all the dice he has. Then, for each die, if it comes up as an odd number, he puts that die back, and adds a number of dice equal to the number displayed to his collection. (For example, if he rolls a one on the first time step, he puts that die back along with an extra die.) However, if it comes up as an even number, he removes that die from his collection.
+
+Compute the expected number of dice Bob will have after $n$ time steps. (Hint: compute the value of $\E[X_k \mid X_{k-1} = m]$ to derive a recursive expression for $X_k$, where $X_i$ is the random variable representing the number of dice after $i$ time steps. )
+\end{Parts}
+
+\Question{LLSE and Graphs}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
+Consider a graph with $n$ vertices numbered $1$ through $n$, where $n$ is a positive integer $\ge 2$. For each pair of distinct vertices, we add an undirected edge between them independently with probability $p$. Let $D_1$ be the random variable representing the degree of vertex 1, and let $D_2$ be the random variable representing the degree of vertex 2. 
+
+\begin{Parts}
+	\Part Compute $\E[D_1]$ and $\E[D_2]$.
+	\Part Compute $\var(D_1)$. 
+	\Part Compute $\cov(D_1, D_2)$.
+    \Part Using the information from the first three parts, what is $L(D_2 \mid D_1)$?
+\end{Parts}
+
+\Question{Balls in Bins Estimation}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
+We throw $n > 0$ balls into $m \geq 2$ bins. Let $X$ and $Y$ represent the number of balls that land in bin $1$ and $2$ respectively.
+
+\begin{Parts}
+
+    \Part Calculate $\E[Y \mid X]$. [\textit{Hint}: Your intuition may be more useful than formal calculations.]
+
+    \Part What is $L[Y \mid X]$ (where $L[Y \mid X]$ is the best linear estimator of $Y$ given $X$)? [\textit{Hint}: Your justification should be no more than two or three sentences, no calculations necessary! Think carefully about the meaning of the conditional expectation.]
+
+  \Part Unfortunately, your friend is not convinced by your answer to the previous part. Compute $\E[X]$ and $\E[Y]$.
+
+  \Part Compute $\var(X)$.
+
+  \Part Compute $\cov(X, Y)$.
+
+  \Part Compute $L[Y \mid X]$ using the formula. Ensure that your answer is the same as your answer to part (b).
+
+\end{Parts}
+
+\end{document}
