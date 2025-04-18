@@ -40,14 +40,14 @@ prize. Show that $\var(X) = n^2\left(\sum_{i=1}^n i^{-2}\right) - \E[X]$.
 
 We know from the notes that the expected value of $X$ is $\E[X] = n \cdot 
 \sum_{i=1}^{n} \frac{1}{n}$. The variance of $X$, where $X$ is equal to $X_1 + 
-X_2 + \cdot + X_n$, i.e., the sum of the number of boxes it takes to find the
+X_2 + \cdots + X_n$, i.e., the sum of the number of boxes it takes to find the
 first to the $n$-th Monopoly Card, is then $Var(X) = Var(X_1) + Var(X_2) + \cdots 
 + Var(X_n)$ since the individual random variables are independent of one another.
 The number of boxes it takes to find the first coupon has no bearing on the 
 number of boxes it will take to find the next. Then, 
 \[
 	\begin{split}
-		Var(X) &= Var(X_1) + Var(X_2) + \dots + Var(X_n) \\
+		\Var(X) &= \Var(X_1) + \Var(X_2) + \dots + \Var(X_n) \\
 		&= \left( \frac{1-p_1}{p_1^2} \right) + \left( \frac{1-p_2}{p_2^2} \right) + \ddots \\
 		&= \left( \frac{1-1}{1^2} \right) + \left( \frac{1-\frac{n-1}{n}}{\left( \frac{n-1}{n} \right)^2} \right) + \cdots \\
 		&= \left( \frac{1-1}{1^2} \right) + \left( \frac{n^2}{(n-1)^2} - \frac{n}{n-1} \right) + \left( \frac{n^2}{(n-2)^2} - \frac{n}{n-2} \right) + \cdot \\
@@ -64,16 +64,48 @@ number of boxes it will take to find the next. Then,
 
 \Question {Diversify Your Hand}
 
-\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15},\href{https://www.eecs70.org/assets/pdf/notes/n16.pdf}{Note 16}}
-You are dealt 5 cards from a standard 52 card deck. Let $X$ be the number of distinct values in your hand. For instance, the hand (A, A, A, 2, 3) has 3 distinct values.
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n15.pdf}{Note 15},
+\href{https://www.eecs70.org/assets/pdf/notes/n16.pdf}{Note 16}}
+You are dealt 5 cards from a standard 52 card deck. Let $X$ be the number of 
+distinct values in your hand. For instance, the hand (A, A, A, 2, 3) has 3 
+distinct values.
 
 \begin{Parts}
 
-\Part Calculate $\E[X]$. (Hint: Consider indicator variables $X_i$ representing whether $i$ appears in the hand.)
+\Part Calculate $\E[X]$. (Hint: Consider indicator variables $X_i$ representing 
+whether $i$ appears in the hand.)
 
-\Part Calculate $\var(X)$. The answer expression will be quite involved; you do not need to simplify anything.
+\Part Calculate $\var(X)$. The answer expression will be quite involved; you do 
+not need to simplify anything.
 
 \end{Parts}
+
+\begin{solution}
+	
+\begin{Parts}
+		
+\Part The expected value of $X$, where $X = X_1 + X_2 + \dots + X_13$, is 
+\[
+	\begin{split}
+		\E(X) &= \sum_{i=1}^{13} \E(X_i) \\
+		&= \sum_{i=1}^{13} \Pr[X_i = 1] \\
+		&= \sum_{i=1}^{13} (1 - \frac{\binom{48}{5}}{\binom{52}{5}}) \\
+		&= 13 (1 - \frac{\binom{48}{5}}{\binom{52}{5}})
+	\end{split}
+\]
+
+\Part The variance of $X$ is then 
+\[
+	\begin{split}
+		\var(X) &= \E[X^2] - (\E[X])^2 \\
+		&= \E[X] - (\E[X])^2 \\
+		&= 13 \left( 1 - \frac{\binom{48}{5}}{\binom{52}{5}} \right) - \left(13 \left(1 - \frac{\binom{48}{5}}{\binom{52}{5}}\right) \right)^2 
+	\end{split}
+\]
+	
+\end{Parts}
+	
+\end{solution}	
 
 \Question{Double-Check Your Intuition Again}
 
