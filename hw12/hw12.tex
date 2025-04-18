@@ -111,7 +111,8 @@ not need to simplify anything.
 
 \notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n16.pdf}{Note 16}}
 \begin{Parts}
-	\Part You roll a fair six-sided die and record the result $X$. You roll the die again and record the result $Y$.  
+	\Part You roll a fair six-sided die and record the result $X$. You roll the 
+	die again and record the result $Y$.  
 	\begin{Parts}
 		\item What is $\cov (X+Y, X-Y)$?
 		\item Prove that $X+Y$ and $X-Y$ are not independent.
@@ -119,31 +120,93 @@ not need to simplify anything.
 
 \end{Parts}
 
-For each of the problems below, if you think the answer is "yes" then provide a proof. If you think the answer is "no", then provide a counterexample.
+For each of the problems below, if you think the answer is "yes" then provide a 
+proof. If you think the answer is "no", then provide a counterexample.
 
 \begin{Parts}[resume]
 	
-	\Part If $X$ is a random variable and $\var (X) = 0$, then must $X$ be a constant?
-	
+	\Part If $X$ is a random variable and $\var (X) = 0$, then must $X$ be a 
+	constant?
 
-	\Part If $X$ is a random variable and $c$ is a constant, then is $\var (cX) = c \var (X)$?
+	\Part If $X$ is a random variable and $c$ is a constant, then is $\var(cX) 
+	= c \var(X)$?
 	
+	\Part If $A$ and $B$ are random variables with nonzero standard deviations 
+	and $\text{Corr} (A, B) = 0$, then are $A$ and $B$ independent?
 
-	\Part If $A$ and $B$ are random variables with nonzero standard deviations and $\text{Corr} (A, B) = 0$, then are $A$ and $B$ independent?
+	\Part If $X$ and $Y$ are not necessarily independent random variables, but 
+	$\text{Corr} (X, Y) = 0$, and $X$ and $Y$ have nonzero standard deviations,
+	then is $\var (X+Y) = \var(X) + \var(Y)$?
 	
-
-	\Part If $X$ and $Y$ are not necessarily independent random variables, but $\text{Corr} (X, Y) = 0$, and $X$ and $Y$ have nonzero standard deviations, then is $\var (X+Y) = \var(X) + \var(Y)$?
+	\Part If $X$ and $Y$ are random variables then is $\E[\max (X, Y) \min (X, 
+	Y)] = \E[X Y]$?
+	
+	\Part If $X$ and $Y$ are independent random variables with nonzero standard 
+	deviations, then is $$\text{Corr}(\max(X, Y), \min(X, Y)) = \text{Corr}(X, 
+	Y)?$$
 	
 \end{Parts}
-	
 
-\begin{Parts}[resume]
-	\Part If $X$ and $Y$ are random variables then is $\E[\max (X, Y) \min (X, Y)] = \E[X Y]$?
+\begin{solution}
 	
+\begin{Parts}
+	
+\Part For part (i), the covariance is equal to zero, as shown below:
+\[
+	\begin{split}
+		\cov(X+Y, X-Y) &= \cov(X, X) - \cov(X, Y) + \cov(Y, X) - \cov(Y, Y) \\
+		&= \cov(X, X) - \cov(Y, Y) \\
+		&= \var(X) - \var(Y) \\
+		&= 0
+	\end{split}
+\]
 
-	\Part If $X$ and $Y$ are independent random variables with nonzero standard deviations, then is $$\text{Corr} (\max (X, Y), \min (X, Y)) = \text{Corr} (X, Y) ?$$
-	
+For part (ii), if $X+Y$ and $X-Y$ were independent, $\var((X+Y)+(X-Y))$ would equal
+$\var(X+Y) + \var(X-Y) = \var(X) + \var(Y) + \var(X) - \var(Y) = 2\var(X)$, since
+the result of two separate dice rolls are independent from one another. However, 
+the variance actually equals $\Var((X+Y)+(X-Y)) = \var(2X) = 4\var(X) \neq 2\var(X)$,
+and therefore $X+Y$ and $X-Y$ are not independent.
+
+\Part Yes, if $X$ is a random variable and $\var(X) = 0$, then $X$ is constant. 
+If the variance is equal to zero, $\var(X) = \E[(X-\E(X))^2] = 0 \rightarrow 
+X - \E[X] = 0 \rightarrow X = \E[X]$, and since $\E[X]$ is constant, so must
+$X$. 
+
+\Part No, consider a random variable $X$ and $c=2$, then 
+\[
+	\var(2X) = \E[4X^2] - (\E[2X])^2 = 4 \E[X^2] - 4 (\E[X])^2 = 4\var(X) \neq 2\var(X)
+\]
+
+\Part No, not necessarily, if $\text{Corr}(X, Y) = 0$ and the variables have
+non-zero standard deviations, then $\cov(X,Y) = 0$, which does not necessarily
+imply that the variables are independent. For example, consider the variables
+$X+Y$ and $X-Y$ from part (a).
+
+\Part Yes, if $\text{Corr}(X, Y) = 0$ and the variables have non-zero standard 
+deviations, then $\cov(X,Y) = 0$. In the general case for calculating the 
+variance of two random variables $\var(X, Y) = \var(X) + \var(Y) - 2\cov(X, Y)$,
+but since $\cov(X, Y) = 0$, then it reduces to $\var(X, Y) = \var(X) + \var(Y)$.
+
+\Part Yes, because in all cases $X > Y$, $X < Y$, and $X = Y$, both sides of the
+equality are equal. If $X=Y$, then $\E[XY] = \E[XX]$ and similarly both the $\min$
+and $\max$ functions both return the same value which then also becomes $\E[XX]$. 
+If the two random variables are not equal, then necessarily the minimum and maximum
+functions either return $X, Y$ or $Y, X$, respectively to multiply $XY$ in the $\E$ 
+function. 
+
+\Part This question essentially asks if $\cov(\max(X, Y), \min(X, Y)) = \cov(X, Y)$,
+since the denominators on both sides of the equality from the correlation 
+formulas are the same and have non-zero standard deviations. The answer is yes, 
+since from the previous part we have shown that $\E[\max (X, Y) \min (X, Y)] = 
+\E[XY]$, and also $\E[\max(X,Y)]\E[\min(X,Y)] = \E[X]\E[Y]$, with the same logic
+as before. If the random variables are equal, then the equality will be true since
+the minimum and maximum functions output the same value. If they are not the same
+then the minimum function will return one value, and the maximum necessarily
+returns the other. 
+
 \end{Parts}
+	
+\end{solution}
 
 \Question{Dice Games}
 
