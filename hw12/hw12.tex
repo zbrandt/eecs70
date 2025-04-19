@@ -213,12 +213,67 @@ returns the other.
 \notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
 \begin{Parts}
 
-\Part Alice rolls a die until she gets a 1. Let $X$ be the number of total rolls she makes (including the last one), and let $Y$ be the number of rolls on which she gets an even number. Compute $\E[Y \mid X = x]$, and use it to calculate $\E[Y]$. 
+\Part Alice rolls a die until she gets a 1. Let $X$ be the number of total rolls 
+she makes (including the last one), and let $Y$ be the number of rolls on which 
+she gets an even number. Compute $\E[Y \mid X = x]$, and use it to calculate 
+$\E[Y]$. 
 
-\Part Bob plays a game in which he starts off with one die. At each time step, he rolls all the dice he has. Then, for each die, if it comes up as an odd number, he puts that die back, and adds a number of dice equal to the number displayed to his collection. (For example, if he rolls a one on the first time step, he puts that die back along with an extra die.) However, if it comes up as an even number, he removes that die from his collection.
+\Part Bob plays a game in which he starts off with one die. At each time step, 
+he rolls all the dice he has. Then, for each die, if it comes up as an odd 
+number, he puts that die back, and adds a number of dice equal to the number 
+displayed to his collection. (For example, if he rolls a one on the first time 
+step, he puts that die back along with an extra die.) However, if it comes up 
+as an even number, he removes that die from his collection.
 
-Compute the expected number of dice Bob will have after $n$ time steps. (Hint: compute the value of $\E[X_k \mid X_{k-1} = m]$ to derive a recursive expression for $X_k$, where $X_i$ is the random variable representing the number of dice after $i$ time steps. )
+Compute the expected number of dice Bob will have after $n$ time steps. (Hint: 
+compute the value of $\E[X_k \mid X_{k-1} = m]$ to derive a recursive expression 
+for $X_k$, where $X_i$ is the random variable representing the number of dice 
+after $i$ time steps. )
+
 \end{Parts}
+
+\begin{solution}
+	
+\begin{Parts}
+	
+\Part The expected value of the random variable $Y$ is 3. The first variable is
+a geometrically distributed random variable with a probability of success of 
+$\frac{1}{6}$. The second variable is a binomially distributed random variable
+where the number of trials is the value that $X$ takes on, minus the last one, 
+with a probability of success of $\frac{3}{5}$ (there are only 5 numbers to 
+consider since it can't be 1). The expected value of a binomially distributed
+variable like $Y$ is $n \times p$ (consider a series of indicator random 
+variables), therefore, $\E[Y \mid X = x] = (x-1) \times \frac{3}{5}$. To find
+the expected value of $Y$ in general, the expected value of $Y \mid X = x$ gives
+the answer: $$\E[Y] = \E[\E[Y \mid X =x ]] = \E[(X-1) \times \frac{3}{5}] = (\E[X]
+- 1) \times \frac{3}{5} = (6 -1 ) \times \frac{3}{5} = 3$$.
+
+\Part I instead consider a random variable ``$+X_i$'', which represents the 
+added number of dice from one particular die. $+X_i$, which I will now refer to
+as $X_i$, has the following distribution: 
+\[
+X_i =
+\begin{cases}
+  -1, & \text{w.p. } \frac{1}{2} \\
+  +1 & \text{w.p. } \frac{1}{6} \\
+  +3 & \text{w.p. } \frac{1}{6} \\
+  +5 & \text{w.p. } \frac{1}{6}.
+\end{cases}
+\]
+
+The expected value for any $X_i$ is then $$\E[X_i] = - \frac{1}{2}(1) + 
+\frac{1}{6}(1+3+5)= - \frac{1}{2} + \frac{3}{2} = 1.$$
+
+For a given $k$ then, $$\E[+X_k \mid X_{k-1} = m] = \E[X_1 + X_2 + \dots X_m] =
+\E[X_1] + \E[X_2] + \dots \E[X_m] =  1 + 1 + \dots + 1 = m.$$ Therefore, the
+expected value of $X_k$ (not $+X_k$) is the number of dice already in existence,
+$m$, plus the additional dice, $m$, so $\E[X_k \mid X_{k-1} = m] = m + m = 2m$. 
+The expected value of $X_n$ follows a recursive expansion, $\E[X_n] = 2 \E[X_{n-1}]
+=  2^2 \E[X_{n-2}] = \dots = 2^n \E[X_0] = 2^n \times 1 = 2^n$.
+
+\end{Parts}
+
+\end{solution}
 
 \Question{LLSE and Graphs}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
