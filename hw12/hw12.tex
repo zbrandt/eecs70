@@ -255,17 +255,17 @@ as $X_i$, has the following distribution:
 X_i =
 \begin{cases}
   -1, & \text{w.p. } \frac{1}{2} \\
-  +1 & \text{w.p. } \frac{1}{6} \\
-  +3 & \text{w.p. } \frac{1}{6} \\
-  +5 & \text{w.p. } \frac{1}{6}.
+  +1, & \text{w.p. } \frac{1}{6} \\
+  +3, & \text{w.p. } \frac{1}{6} \\
+  +5, & \text{w.p. } \frac{1}{6}.
 \end{cases}
 \]
 
-The expected value for any $X_i$ is then $$\E[X_i] = - \frac{1}{2}(1) + 
+The expected value for any $X_i$ is then $$\E[X_i] = \frac{1}{2}(- 1) + 
 \frac{1}{6}(1+3+5)= - \frac{1}{2} + \frac{3}{2} = 1.$$
 
-For a given $k$ then, $$\E[+X_k \mid X_{k-1} = m] = \E[X_1 + X_2 + \dots X_m] =
-\E[X_1] + \E[X_2] + \dots \E[X_m] =  1 + 1 + \dots + 1 = m.$$ Therefore, the
+For a given $k$ then, $$\E[+X_k \mid X_{k-1} = m] = \E[X_1 + X_2 + \dots + X_m] =
+\E[X_1] + \E[X_2] + \dots + \E[X_m] = m.$$ Therefore, the
 expected value of $X_k$ (not $+X_k$) is the number of dice already in existence,
 $m$, plus the additional dice, $m$, so $\E[X_k \mid X_{k-1} = m] = m + m = 2m$. 
 The expected value of $X_n$ follows a recursive expansion, $\E[X_n] = 2 \E[X_{n-1}]
@@ -277,7 +277,11 @@ The expected value of $X_n$ follows a recursive expansion, $\E[X_n] = 2 \E[X_{n-
 
 \Question{LLSE and Graphs}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
-Consider a graph with $n$ vertices numbered $1$ through $n$, where $n$ is a positive integer $\ge 2$. For each pair of distinct vertices, we add an undirected edge between them independently with probability $p$. Let $D_1$ be the random variable representing the degree of vertex 1, and let $D_2$ be the random variable representing the degree of vertex 2. 
+Consider a graph with $n$ vertices numbered $1$ through $n$, where $n$ is a 
+positive integer $\ge 2$. For each pair of distinct vertices, we add an 
+undirected edge between them independently with probability $p$. Let $D_1$ be 
+the random variable representing the degree of vertex 1, and let $D_2$ be the 
+random variable representing the degree of vertex 2. 
 
 \begin{Parts}
 	\Part Compute $\E[D_1]$ and $\E[D_2]$.
@@ -285,6 +289,46 @@ Consider a graph with $n$ vertices numbered $1$ through $n$, where $n$ is a posi
 	\Part Compute $\cov(D_1, D_2)$.
     \Part Using the information from the first three parts, what is $L(D_2 \mid D_1)$?
 \end{Parts}
+
+\begin{solution}
+	
+\begin{Parts}
+	
+\Part $D_1$ can be represented as a series of $n-1$ indicator random variables, 
+each representing the existence of an edge between the vertex and the other 
+vertices. So, $D_1 = X_2 + X_3 + \dots + X_n$. Then, the expected value is 
+$\E[D_1] = \E[X_2 + X_3 + \dots + X_n] = \E[X_2] + \E[X_3] + \dots + \E[X_n] = 
+(n-1)p$. $\E[D_2]$ takes on the same value. 
+
+\Part The variance of $D_1$ is $\var(X_2 + X_3 + \dots + X_n) = 
+\var(X_2) + \var(X_3) + \dots + \var(X_n) = (n-1)(p-p^2)$.
+
+\Part The covariance of $D_1$ and $D_2$ boils down to the variance of $X_2$, as
+seen below:
+\[
+	\begin{split}
+		\cov(D_1, D_2) &= \cov(X_2 + X_3 + \dots + X_n, Y_1 + Y_3 + \dots + Y_n) \\
+		&= \cov(X_2 + X_3 + \dots + X_n, Y_1 + Y_3 + \dots + Y_n) \\
+		&= \sum_{i \neq 1}^{n} \sum_{j \neq 2}^{n} \cov(X_i, Y_i) \\
+		&= \cov(X_2, Y_1) \quad \text{Variables otherwise independent} \\
+		&= \cov(X_2, X_2) \quad \text{$X_2$ and $Y_1$ represent same state} \\ 
+		&= \var(X_2) \\
+		&= p - p^2 
+	\end{split}
+\]
+
+\Part The linear least squares estimate of $D_2$ given $D_1$ is 
+\[
+	\begin{split}
+		\hat{D}_2 &= \E[D_2] + \frac{\cov(D_1, D_2)}{\var(D_1)}(D_1 - \E[D_1]) \\
+		&= (n-1)p + \frac{p-p^2}{(n-1)(p-p^2)}(D_1 - (n-1)p) \\
+		&= (n-1)p + \frac{D_1}{n-1} - p \\
+	\end{split}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Balls in Bins Estimation}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
