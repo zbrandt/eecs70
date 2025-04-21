@@ -98,8 +98,15 @@ not need to simplify anything.
 \[
 	\begin{split}
 		\var(X) &= \E[X^2] - (\E[X])^2 \\
-		&= \E[X] - (\E[X])^2 \\
-		&= 13 \left( 1 - \frac{\binom{48}{5}}{\binom{52}{5}} \right) - \left(13 \left(1 - \frac{\binom{48}{5}}{\binom{52}{5}}\right) \right)^2 
+		\text{Not independent} \quad &= \sum_{i=1}^{13} \E[X_i^2] + 
+		\sum_{i \neq j}^{13} \E[X_i X_j ]  - (\E[X])^2 \\
+		\text{12 ways per card} \quad &= \sum_{i=1}^{13} \E[X_i^2]
+		+ 13 \times 12 \times \Pr[X_i X_j = 1] - (\E[X])^2 \\
+		&= \sum_{i=1}^{13} \E[X_i^2] + 
+		13 \cdot 12 (1- \Pr[X_i = 0] - \Pr[X_j = 0] + \Pr[X_i = 0, X_j = 0]) - (\E[X])^2 \\
+		&= 13 \left( 1 - \frac{\binom{48}{5}}{\binom{52}{5}} \right)
+		+ 156 \left( 1 - 2 \frac{\binom{48}{5}}{\binom{52}{5}} + \frac{\binom{44}{5}}{\binom{52}{5}} \right)
+		- \left(13 \left(1 - \frac{\binom{48}{5}}{\binom{52}{5}}\right) \right)^2 
 	\end{split}
 \]
 	
@@ -161,11 +168,11 @@ proof. If you think the answer is "no", then provide a counterexample.
 	\end{split}
 \]
 
-For part (ii), if $X+Y$ and $X-Y$ were independent, $\var((X+Y)+(X-Y))$ would equal
-$\var(X+Y) + \var(X-Y) = \var(X) + \var(Y) + \var(X) - \var(Y) = 2\var(X)$, since
-the result of two separate dice rolls are independent from one another. However, 
-the variance actually equals $\Var((X+Y)+(X-Y)) = \var(2X) = 4\var(X) \neq 2\var(X)$,
-and therefore $X+Y$ and $X-Y$ are not independent.
+For part (ii), consider $X+Y=1$ but $X-Y=0$, which cannot be the case since if
+the two random variables take on an equal number they cannot sum to 1. So, the
+probability of this event is 0. However, the probabilities of the individual 
+events are both non-zero, so $\Pr[X+Y=1] \times \Pr[X-Y=0] \neq \Pr[X+Y=1, X-Y=0]$,
+and the events are not independent. 
 
 \Part Yes, if $X$ is a random variable and $\var(X) = 0$, then $X$ is constant. 
 If the variance is equal to zero, $\var(X) = \E[(X-\E(X))^2] = 0 \rightarrow 
@@ -332,22 +339,76 @@ seen below:
 
 \Question{Balls in Bins Estimation}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n20.pdf}{Note 20}}
-We throw $n > 0$ balls into $m \geq 2$ bins. Let $X$ and $Y$ represent the number of balls that land in bin $1$ and $2$ respectively.
+We throw $n > 0$ balls into $m \geq 2$ bins. Let $X$ and $Y$ represent the number 
+of balls that land in bin $1$ and $2$ respectively.
 
 \begin{Parts}
 
-    \Part Calculate $\E[Y \mid X]$. [\textit{Hint}: Your intuition may be more useful than formal calculations.]
+    \Part Calculate $\E[Y \mid X]$. [\textit{Hint}: Your intuition may be more 
+	useful than formal calculations.]
 
-    \Part What is $L[Y \mid X]$ (where $L[Y \mid X]$ is the best linear estimator of $Y$ given $X$)? [\textit{Hint}: Your justification should be no more than two or three sentences, no calculations necessary! Think carefully about the meaning of the conditional expectation.]
+    \Part What is $L[Y \mid X]$ (where $L[Y \mid X]$ is the best linear estimator 
+	of $Y$ given $X$)? [\textit{Hint}: Your justification should be no more than 
+	two or three sentences, no calculations necessary! Think carefully about the 
+	meaning of the conditional expectation.]
 
-  \Part Unfortunately, your friend is not convinced by your answer to the previous part. Compute $\E[X]$ and $\E[Y]$.
+  \Part Unfortunately, your friend is not convinced by your answer to the 
+  previous part. Compute $\E[X]$ and $\E[Y]$.
 
   \Part Compute $\var(X)$.
 
   \Part Compute $\cov(X, Y)$.
 
-  \Part Compute $L[Y \mid X]$ using the formula. Ensure that your answer is the same as your answer to part (b).
+  \Part Compute $L[Y \mid X]$ using the formula. Ensure that your answer is the 
+  same as your answer to part (b).
 
 \end{Parts}
+
+\begin{solution}
+	
+\begin{Parts}
+	
+\Part The expected value of $Y$, the number of balls in bin 2, given some amount 
+of balls in bin 1, is $\E[Y \mid X] = \frac{n-X}{m-1}$, since there are $n-X$ 
+balls remaining, and each have a $\frac{1}{m-1}$ probability of going in bin 2.
+
+\Part $L[Y \mid X]$ is just $\E[Y \mid X]$ or $\frac{n-X}{m-1}$ since this 
+previous answer is already linear in $X$. Additionally, no other function can
+do a better job at predicting given some value of $X$ than $\E[Y \mid X]$. 
+
+\Part The expected value of both $X$ and $Y$ is $\frac{n}{m}$ since there are $n$
+balls and each has a $\frac{1}{m}$ probability of going into any of the bins. 
+
+\Part The variance of $X$ is $\var(X) = n \cdot \frac{1}{m} - n \cdot \frac{1}{m^2}
+= n (m^{-1} - m^{-2})$.
+
+\Part The covariance of $X$ and $Y$ is
+\[
+	\begin{split}
+		\cov(X, Y) &= \E[XY] - \E[X]\E[Y] \\
+		&= \binom{n}{2} \frac{1}{m^2} - \frac{n^2}{m^2} \\
+		&= \frac{n(n-1)}{m^2} - \frac{n^2}{m^2} \\
+		&= \frac{(-n)}{m^2}
+	\end{split}
+\]
+
+The second step is so because for $\E[XY]$ there are $\binom{n}{2}$ distinct pairs
+of balls and each bin placement has a $\frac{1}{m}$ and then $\frac{1}{m}$ 
+probability of happening (as indicator random variables). 
+
+\Part The linear least squares estimator of $Y$ given $X$ is then
+\[
+	\begin{split}
+		\hat{Y} &= \E[Y] + \frac{\cov(X, Y)}{\var(X)}(X - \E[X]) \\
+		&= \frac{n}{m} + \frac{\frac{(-n)}{m^2}}{n (m^{-1} - m^{-2})}(X - \frac{n}{m}) \\
+		&= \frac{n}{m} + \frac{-1}{m-1}(X - \frac{n}{m}) \\
+		&= \frac{n}{m} + \frac{-X}{m-1}+ \frac{n}{m^2-m} \\
+	\end{split}
+\]
+
+
+\end{Parts}
+
+\end{solution}
 
 \end{document}
