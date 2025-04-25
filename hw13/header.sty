@@ -1,0 +1,344 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  _______  _______  _______   ______
+% |       ||       ||       | |      |
+% |       ||  _____||____   | |   |  |
+% |       || |_____     |   | |   |  |
+% |      _||_____  |    |   | |   |  |
+% |     |_  _____| |    |   | |      |
+% |_______||_______|    |___| |______|
+%
+% Header and Style File for CS70 TeX Files
+%
+% This package contains references to other packages, new commands, and values
+% for different parameters, common to all documents.
+% This file should be placed one level above the TeX files in the directory
+% tree.
+%
+% Please modify the appropriate section below with information about
+% the class: this information needs to be updated only once per semester.
+%
+% Compiled, cleaned by Alvin Wan (http://alvinwan.com)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{header}
+
+%%% MODIFY THIS INFORMATION AS NECESSARY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\coursenumber{CS 70}
+\def\class{Discrete Mathematics and Probability Theory}
+\def\semester{Spring 2025}
+\def\instructor{Rao}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Packages Needed %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Math base packages
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+
+% Fonts
+\RequirePackage[T1]{fontenc}
+\RequirePackage{amsfonts}
+\RequirePackage{textcomp}
+\RequirePackage{mathptmx}  % make Times New Roman the default font
+\RequirePackage[semibold]{sourcesanspro} % sans-serif font
+
+% Page setup
+\RequirePackage[
+    textwidth=6.5in,
+    textheight=9in
+]{geometry}
+\RequirePackage{parskip}  % set zero \parindent, nonzero default \parskip
+\RequirePackage{titlesec}  % customization of titles and sections
+\RequirePackage{varwidth}  % variable width text blocks
+\RequirePackage{multicol}  % multiple columns
+
+% Algorithms
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\RequirePackage{listings}
+
+% Tables
+\RequirePackage{booktabs}
+\RequirePackage{colortbl}
+\RequirePackage{multirow}
+
+% Figures
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{caption, subcaption}
+
+% TikZ/Graphics
+\RequirePackage{tikz}
+\usetikzlibrary{
+    automata,  % for markov chains
+    arrows.meta,  % arrow tips (technically deprecated)
+    backgrounds,  % background layers
+    decorations,  % decorations applied to paths
+    decorations.markings,  % additional markings on paths
+    decorations.pathmorphing,  % deforming decorations
+    decorations.pathreplacing,  % replacing paths
+    calligraphy,  % for calligraphic brace (must be loaded after decorations)
+    patterns,  % patterns for filling areas
+    positioning,  % better custom positioning
+    shapes,  % various shapes
+    intersections,
+}
+\RequirePackage{forest}
+\RequirePackage{circuitikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{
+    groupplots,  % grouping pgf plots
+}
+
+\RequirePackage{tcolorbox}  % fancy boxes
+\tcbuselibrary{skins}
+
+% References and URLs
+\RequirePackage{url}
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+\RequirePackage[capitalize,noabbrev]{cleveref}
+
+% Additional packages
+\RequirePackage{bbm}  % bold math
+\RequirePackage{xcolor}  % colored text
+\RequirePackage{cancel}  % \cancel formatting
+\RequirePackage{comment}  % comment environments
+% \RequirePackage{enumerate}  % TODO: replace with enumitem at some point
+% \RequirePackage{paralist}  % abbreviated enumerates; TODO: perhaps replace this with enumitem as well?
+\RequirePackage{enumitem}
+\RequirePackage{epsf}  % including eps files
+\RequirePackage{fancyhdr}  % headers
+\RequirePackage{import}  % relative imports
+\RequirePackage{standalone}  % standalone files
+\RequirePackage{marginnote}  % margin notes
+\RequirePackage[ISO]{diffcoeff}[=v4]  % differentials; pinned at v4 since not everybody has the latest package version
+
+\RequirePackage{mleftright}  % fix spacing around \left and \right
+\mleftright  % override \left to be \mleft and \right to be \mright
+
+% Scripting
+\RequirePackage{etoolbox}
+\RequirePackage{suffix}
+\RequirePackage{chngcntr}
+
+%%% Titles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The lecture number is set using e.g. \lecture{6} in the file header
+%% \lecturenumber should be used in all sections, theorems, equations, etc.
+
+\newcounter{lecturenumber}
+\newcommand*\lecture[1]{\setcounter{lecturenumber}{#1}}
+\date{}
+
+% Note: all titles use the Latin Modern Dunhill font family, with font code `lmdh`.
+% There is also a `cmdh` font family, but the font sizing is slightly different.
+
+% custom \maketitle
+\renewcommand{\maketitle}{\begingroup
+    \fontfamily{lmdh}\selectfont
+    % top line
+    \rule{\textwidth}{6pt}\vspace{0.7em}
+    % first row of text
+    \makebox[1.3in][l]{\Large \coursenumber}
+    {\Large \class}
+    \newline
+    % second row of text
+    \makebox[1.3in][l]{\Large \semester}
+    {\Large \instructor}\hfill
+    {\huge \title}
+    % bottom line
+    \rule{\textwidth}{6pt}
+\endgroup}
+
+% custom section font
+\titleformat*{\section}{\fontfamily{lmdh}\selectfont\Large}
+\titleformat*{\subsection}{\fontfamily{lmdh}\selectfont\Large}
+
+%%% Page Headings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% header text
+\fancyhead[L,C,R]{}
+\renewcommand{\headrulewidth}{0pt}
+% footer text
+\fancyfoot[L]{\footnotesize \coursenumber, \semester, \title}
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize \thepage}
+% use fancy page styles
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% additional symbols or names for them
+
+\newcommand{\comp}{\mathsf{c}}
+\newcommand{\im}{\mathsf{i}}
+\newcommand{\entails}{\models}
+\DeclareMathOperator{\lcm}{lcm}
+
+\DeclarePairedDelimiter{\@ceil}{\lceil}{\rceil}
+\newcommand{\ceil}[1]{\@ceil*{#1}}
+\DeclarePairedDelimiter{\@floor}{\lfloor}{\rfloor}
+\newcommand{\floor}[1]{\@floor*{#1}}
+\DeclarePairedDelimiter{\@abs}{\lvert}{\rvert}
+\newcommand{\abs}[1]{\@abs*{#1}}
+
+\newcommand{\cents}{\text{\textcent{}}}
+
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\msf}[1]{\mathsf{#1}}
+
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\e{\mathrm{e}}  % for e = 2.718...
+\def\Q{\mathbb{Q}}
+\def\Z{\mathbb{Z}}
+\def\F{\mathbb{F}}
+
+% Other math commands.
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\egcd}{egcd}
+\DeclareMathOperator{\Bin}{Binomial}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Expo}{Exponential}
+\DeclareMathOperator{\Geom}{Geometric}
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\Pois}{Poisson}
+\DeclareMathOperator{\Unif}{Uniform}
+\newcommand\one{\mathbbm{1}}
+\newcommand\mmid{\mathbin{\parallel}}
+
+\newcommand\Ex[1]{\operatorname{\mathbb{E}}\left[#1\right]}
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\var}{\Var}  % alias for compatibility
+\def\Aset{\mathcal{A}}
+\def\Bset{\mathcal{B}}
+
+\newcommand\Norm{N}  % normal distribution
+
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}}
+
+% differentials (configuring diffcoeff)
+\newcommand{\dd}{\dl3}
+\WithSuffix\newcommand\dd*{\dl0}  % derivative d without any prior space (to be used by itself with inline text)
+
+\graphicspath{{figures/}}
+
+% theorems
+\newtheorem{theorem}{Theorem}[lecturenumber]
+\newtheorem{definition}{Definition}[lecturenumber]
+\newtheorem{lemma}{Lemma}[lecturenumber]
+\newtheorem{corollary}{Corollary}[lecturenumber]
+\newtheorem{proposition}{Proposition}[lecturenumber]
+\newtheorem{claim}{Claim}[lecturenumber]
+\newtheorem{observation}{Observation}[lecturenumber]
+
+% false proof environment
+\newcommand*{\myproofname}{Proof?}
+\newenvironment{falseproof}[1][\myproofname]{\begin{proof}[#1]\renewcommand*{\qedsymbol}{$\spadesuit$}}{\end{proof}}
+
+% override default references
+\crefname{equation}{}{}  % no prefix for equations inline
+\Crefname{equation}{Equation}{Equations}  % but still write out the prefix if at beginning of sentence
+
+% exercise references
+\crefname{exercise}{Exercise}{Exercises}
+
+% subpart references
+\crefname{part}{part}{parts}
+\Crefname{part}{Part}{Parts}
+% by default all references are capitalized, but labels for lines generally shouldn't be
+\crefname{line}{line}{lines}
+
+% use en dash for part ranges
+\crefrangelabelformat{part}{#3#1#4--#5#2#6}
+
+% underlines
+\newcommand\ul[1]{\underline{#1}}
+
+% ensure that footnotes never split across pages
+\interfootnotelinepenalty=\@M
+
+% restore \parskip within minipages
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+
+% questions and parts
+\newcommand{\Question}[1]{\section{#1}}
+
+\newlist{Parts}{enumerate}{3}
+\setlist[Parts,1]{label=(\alph*)}  % top level is of the form (a), (b), (c), ...
+\setlist[Parts,2]{label=(\roman*)}  % second level is of the form (i), (ii), (iii), ...
+\setlist[Parts,3]{label=(\arabic*)}  % second level is of the form (1), (2), (3), ...
+\newcommand\Part{\item}
+
+% box with top and bottom borders only, and a little padding
+\newtcolorbox{horizontalborderbox}{
+enhanced,frame hidden,notitle,
+boxsep=4pt,left=0pt,right=0pt,top=0pt,bottom=0pt,
+sharp corners,
+borderline north={0.5pt}{0pt}{black},
+borderline south={0.5pt}{0pt}{black},
+colframe=black,colback=white,
+parbox=false
+}
+\newcommand{\concept}[1]{\begin{horizontalborderbox}\emph{Concept check!} #1\end{horizontalborderbox}}
+\newcommand{\life}[1]{\begin{horizontalborderbox}\emph{Life lesson.} #1\end{horizontalborderbox}}
+\newcommand{\exercise}[1]{\begin{horizontalborderbox}\emph{Exercise.} #1\end{horizontalborderbox}}
+
+% box with full borders (used as alternative to boxes from the framed package)
+\newtcolorbox{borderbox}{
+enhanced,sharp corners,
+boxsep=8pt,left=0pt,right=0pt,top=0pt,bottom=0pt,
+colframe=black,colback=white,
+boxrule=0.5pt,
+parbox=false,
+}
+
+% teaching notes environment
+\newenvironment{teachingnotes}{\color{red}\textbf{Teaching Notes:}}{}
+
+% fancy box for margin notes
+\newtcolorbox{notelinks@marginbox}{enhanced,frame hidden,notitle,colback=gray!10,boxsep=4pt,left=0pt,right=0pt,top=0pt,bottom=0pt,width=45pt,nobeforeafter}
+\reversemarginpar
+\newcommand\notelinks@link[1]{{#1}\\}
+% margin notes for note links; one comma separated list of links
+% if the question has only enumerate items, this should go in the first item for alignment purposes
+\newcommand\notelinks[1]{\ifstandalone\else\leavevmode\ignorespaces\marginnote{\begin{notelinks@marginbox}\centering\small\forcsvlist{\notelinks@link}{#1}\end{notelinks@marginbox}}\ignorespaces\fi}
+% starred version for enumerate environments;
+% remove one line + spacing before enumerate
+\WithSuffix\newcommand\notelinks*[1]{\ifstandalone\else\leavevmode\marginnote{\begin{notelinks@marginbox}\centering\small\forcsvlist{\notelinks@link}{#1}\end{notelinks@marginbox}}\vspace{-\baselineskip-\parskip-\topsep}\ignorespaces\fi}
+
+%%% Solutions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{solution}{\color{blue} \smallskip \textbf{Solution:}}{}
+
+\newif\ifsol
+\newif\ifnosol
+\newcommand\nosolspace[1]{\ifnosol\vspace{#1}\fi}
+
+% final space after a question text; automatically added by discussion template
+\newcommand\addfinalspace{\nosolspace{4cm}}
+\newcommand\removefinalspace{\nosolspace{-4cm}}
+
+%%% Shapes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+\node[shape=circle,draw,inner sep=1](char) {#1};}}
+
+
+%%% Backwards Compatibility %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\noanswer}{}
+

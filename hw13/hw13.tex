@@ -1,0 +1,213 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 13}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 4/26, 4:00 PM \\
+    Grace period until Saturday, 4/26, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you 
+worked on it. Who else did you work with?  List names and email addresses. (In 
+case of homework party, you can just describe the group.)
+
+\begin{center}
+    \textcolor{blue}{
+        Zachary Brandt \\
+        \nolinkurl{zbrandt@berkeley.edu}
+    }
+\end{center}
+
+\vspace{15pt}
+
+\Question{Estimating \texorpdfstring{$\pi$}{pi}}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n17.pdf}{Note 17}}
+In this problem, we discuss one way that you could probabilistically estimate 
+$\pi$. We'll use a square dartboard of side length 2, and a circular target 
+drawn inscribed in the square dartboard with radius 1. A dart is then thrown 
+uniformly at random in the square. Let $p$ be the probability that the dart 
+lands inside the circle.
+
+\begin{Parts}
+    \item What is $p$?
+	\item Suppose we throw $N$ darts uniformly at random in the square. Let 
+    $\hat{p}$ be the proportion of darts that land inside the circle. Create an 
+    unbiased estimator $X$ for $\pi$ using $\hat{p}$.
+	\item Using Chebyshev's Inequality, compute the minimum value of $N$ such 
+    that your estimate is within $\varepsilon$ of $\pi$ with $1 - \delta$ 
+    confidence. Your answer should be in terms of $\varepsilon$ and $\delta$. 
+    Note that since we are estimating $\pi$, your answer should not have $\pi$ 
+    in it.
+\end{Parts}
+
+\begin{solution}
+
+\begin{Parts}
+    
+\Part The probability that the dart lands in the circle is $p=
+\frac{\pi \cdot 1^2}{2^2} = \frac{\pi}{4}$.
+
+\Part An unbiased estimator $X$ for $\pi$ using $\hat{p}$ would be $X = 4\hat{p}$. 
+The expected value of $X$ is $\E[X] =  4 \E[\hat{p}] =  4 p = \pi$ since, 
+$\hat{p} = \frac{1}{N} \sum_{i=0}^{N} X_i$, where $X_i$ is an indicator variable
+for if the $i$th dart is in the circle or not, with probability $p$. 
+
+\Part From Chebyshev's Inequality, $\Pr[|X-\pi| \geq \epsilon] \leq 
+\frac{\Var(X)}{\epsilon^2}$. The variance of $X$ is 
+\[
+    \Var(X) = \Var(4\hat{p}) = 16 \Var(\hat{p}).
+\]
+
+The variance of $\hat{p}$ is
+\[
+    \Var(\hat{p}) = \frac{1}{N^2} \sum_{i=1}^{N} \Var(I_i) = \frac{p(1-p)}{N}.
+\]
+
+The answer cannot have $\pi$ in it, so, to get rid of $p$, the worst-case scenario
+for $p(1-p)$ is $\frac{1}{4}$. Then, the probability that $X$ deviates from $\pi$ 
+by some $\epsilon$ is
+\[
+    \frac{\Var(X)}{\epsilon^2} = \frac{16 \times 1 / 4N}{\epsilon^2} = \frac{4}{N\epsilon^2}
+    \leq \delta,
+\]
+which is set to less than some $\delta$ for the confidence level. Therefore, the
+answer is $N \geq \frac{4}{\delta \epsilon^2}$. 
+
+\end{Parts}
+
+\end{solution}
+
+\Question{Deriving the Chernoff Bound}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n17.pdf}{Note 17}}
+We've seen the Markov and Chebyshev inequalities already, but these inequalities 
+tend to be quite loose in most cases. In this question, we'll derive the 
+\emph{Chernoff bound}, which is an \emph{exponential} bound on probabilities.
+
+The Chernoff bound is a natural extension of the Markov and Chebyshev 
+inequalities: in Markov's inequality, we utilize only information about $\E[X]$; 
+in Chebyshev's inequality, we utilize only information about $\E[X]$ and 
+$\E[X^2]$ (in the form of the variance). In the Chernoff bound, we'll end up 
+using information about $\E[X^k]$ for \emph{all} $k$, in the form of the 
+\emph{moment generating function} of $X$, defined as $\E[e^{tX}]$. (It can be 
+shown that the $k$th derivative of the moment generating function evaluated at 
+$t = 0$ gives $\E[X^k]$.)
+
+Here, we'll derive the Chernoff bound for the binomial distribution. Suppose $X 
+\sim \Bin(n, p)$.
+
+\begin{Parts}
+    \item\label[part]{part:binomial-mgf}
+        We'll start by computing the \emph{moment generating function} of $X$. 
+        That is, what is $\E[e^{tX}]$ for a fixed constant $t > 0$? (Your answer 
+        should have no summations.)
+
+        \emph{Hint}: It can be helpful to rewrite $X$ as a sum of Bernoulli RVs.
+
+    \item\label[part]{part:binomial-mgf-bound}
+        A useful inequality that we'll use is that
+        \[
+            1 - \alpha \le e^{-\alpha}
+        ,\]
+        for any $\alpha$. Since we'll be working a lot with exponentials here, use the above to find an upper bound for your answer in \cref{part:binomial-mgf} as a single exponential function. (This will make the expressions a little nicer to work with in later parts.)
+
+    \item\label[part]{part:markov-exponential}
+        Use Markov's inequality to give an upper bound for $\Pr[e^{tX} \ge e^{t(1 + \delta) \mu}]$, for $\mu = \E[X] = np$ and a constant $\delta > 0$. 
+
+        Use this to deduce an upper bound on $\Pr[X \ge (1 + \delta) \mu]$ for any constant $\delta > 0$. (Your bound should be a single exponential of the form $\exp(f(t))$, for a function $f$ that should also depend on $\mu = np$ and $\delta$.)
+
+    \item\label[part]{part:binomial-chernoff-bound}
+        Notice that so far, we've kept this new parameter $t$ in our bound---the last step is to optimize this bound by choosing a value of $t$ that minimizes our upper bound.
+
+        Take the derivative of your expression with respect to $t$ to find the value of $t$ that minimizes the bound. Note that from \cref{part:binomial-mgf}, we require that $t > 0$; make sure you verify that this is the case!
+
+        Use your value of $t$ to verify the following Chernoff bound on the binomial distribution:
+        \[
+            \Pr[X \ge (1 + \delta) \mu] \le \exp(-\mu(1 + \delta)\ln(1 + \delta) + \delta \mu)
+        .\]
+        \emph{Note: As an aside, if we carried out the computations without using the bound in \cref{part:binomial-mgf-bound}, we'd get a better Chernoff bound, but the math is a lot uglier. Furthermore, instead of looking at the binomial distribution (i.e. the sum of independent and identical Bernoulli trials), we could have also looked at the sum of independent but \emph{not necessarily identical} Bernoulli trials as well; this would give a more general but very similar Chernoff bound.}
+
+    \item Let's now look at how the Chernoff bound compares to the Markov and Chebyshev inequalities. Let $X \sim \Bin(n = 100, p = \frac{1}{5})$. We'd like to find $\Pr[X \ge 30]$.
+
+        \begin{Parts}
+            \item Use Markov's inequality to find an upper bound on $\Pr[X \ge 30]$.
+
+            \item Use Chebyshev's inequality to find an upper bound on $\Pr[X \ge 30]$.
+
+            \item Use the Chernoff bound from \cref{part:binomial-chernoff-bound} to find an upper bound on $\Pr[X \ge 30]$.
+
+            \item Now use a calculator to find the exact value of $\Pr[X \ge 30]$. How did the three bounds compare? That is, which bound was the closest and which bound was the furthest from the exact value?
+        \end{Parts}
+
+    \item Let $X \sim \Bin(n = 100, p =\frac{1}{2})$. We'll look at upper bounds on the probability $\Pr[X \ge k]$ for a few values of $k > np = 50$, using Chebyshev's inequality and using the Chernoff bound, comparing the two results.
+
+        In particular, there are three regions of $k \in [51, 100]$ that are interesting to note, where the best bound swaps between Chebyshev's inequality and the Chernoff bound. Describe these three regions, and indicate which bound is best in each region (you don't need to give the exact intervals; a high level description suffices).
+\end{Parts}
+
+
+
+\Question{Max of Uniforms}
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
+Let $X_1,...X_n$ be independent Uniform$(0,1)$ random variables, and let $X = \max(X_1,...X_n)$. 
+Compute each of the following in terms of $n$.
+\begin{Parts}
+	\Part What is the cdf of $X$?
+	\Part What is the pdf of $X$?
+	\Part What is $\E[X]$?
+	\Part What is $\Var(X)$?
+\end{Parts}
+
+\Question{Short Answer}
+
+\notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
+\begin{Parts}
+    \Part Let $X$ be uniform on the interval $[0,2]$, and define $Y = 4X^2 + 1$. Find the PDF, CDF, expectation, and variance of $Y$.
+
+    \Part Let $X$ and $Y$ have joint distribution 
+    \[
+        f(x,y) = \begin{cases}
+            c x y + \frac{1}{4} & \text{$x \in [1,2]$ and $y \in [0,2]$} \\
+            0 & \text{otherwise.}
+        \end{cases}
+    \]
+    Find the constant $c$ (Hint: remember that the PDF must integrate to 1). Are $X$ and $Y$ independent?
+
+    \Part Let $X \sim \Exp(3)$. 
+    \begin{Parts}
+    	\item Find probability that $X \in [0, \,1]$.
+    	\item Let $Y = \lfloor X \rfloor$, where the floor operator is defined as:  $(\forall x \in [k, k+1))(\lfloor x \rfloor = k)$. For each $k \in \N$, what is the probability that $Y = k$? Write the distribution of $Y$ in terms of one of the famous distributions; provide that distribution's name and parameters.
+    \end{Parts}
+
+    \Part Let $X_i \sim \Exp(\lambda_i)$ for $i = 1,\ldots,n$ be mutually independent. It is a (very nice) fact that $\min(X_1,\ldots,X_n) \sim \Exp(\mu)$. Find $\mu$.
+\end{Parts}
+
+\Question{Darts with Friends}
+
+\notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
+Michelle and Alex are playing darts.
+Being the better player, Michelle's aim follows a uniform distribution over a disk of radius $1$ around the center. Alex's aim follows a uniform distribution over a disk of radius $2$ around the center. 
+
+\begin{Parts}
+    \Part Let the distance of Michelle's throw from the center be denoted by the random variable $X$ and let the distance of Alex's throw from the center be denoted by the random variable $Y$.
+    \begin{enumerate}
+    \item[(i)] What's the cumulative distribution function of $X$?
+    \item[(ii)] What's the cumulative distribution function of $Y$?
+    \item[(iii)] What's the probability density function of $X$?
+    \item[(iv)] What's the probability density function of $Y$?
+    \end{enumerate}
+    
+    \Part What's the probability that Michelle's throw is closer to the center than Alex's throw? What's the probability that Alex's throw is closer to the center? 
+    
+    \Part What's the cumulative distribution function of $U = \max(X,Y)$?
+
+    
+        
+\end{Parts}
+
+\end{document}
