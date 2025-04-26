@@ -115,47 +115,136 @@ Here, we'll derive the Chernoff bound for the binomial distribution. Suppose $X
         \[
             1 - \alpha \le e^{-\alpha}
         ,\]
-        for any $\alpha$. Since we'll be working a lot with exponentials here, use the above to find an upper bound for your answer in \cref{part:binomial-mgf} as a single exponential function. (This will make the expressions a little nicer to work with in later parts.)
+        for any $\alpha$. Since we'll be working a lot with exponentials here, 
+        use the above to find an upper bound for your answer in 
+        \cref{part:binomial-mgf} as a single exponential function. (This will 
+        make the expressions a little nicer to work with in later parts.)
 
     \item\label[part]{part:markov-exponential}
-        Use Markov's inequality to give an upper bound for $\Pr[e^{tX} \ge e^{t(1 + \delta) \mu}]$, for $\mu = \E[X] = np$ and a constant $\delta > 0$. 
+        Use Markov's inequality to give an upper bound for $\Pr[e^{tX} \ge 
+        e^{t(1 + \delta) \mu}]$, for $\mu = \E[X] = np$ and a constant 
+        $\delta > 0$. 
 
-        Use this to deduce an upper bound on $\Pr[X \ge (1 + \delta) \mu]$ for any constant $\delta > 0$. (Your bound should be a single exponential of the form $\exp(f(t))$, for a function $f$ that should also depend on $\mu = np$ and $\delta$.)
+        Use this to deduce an upper bound on $\Pr[X \ge (1 + \delta) \mu]$ for 
+        any constant $\delta > 0$. (Your bound should be a single exponential of 
+        the form $\exp(f(t))$, for a function $f$ that should also depend on 
+        $\mu = np$ and $\delta$.)
 
     \item\label[part]{part:binomial-chernoff-bound}
-        Notice that so far, we've kept this new parameter $t$ in our bound---the last step is to optimize this bound by choosing a value of $t$ that minimizes our upper bound.
+        Notice that so far, we've kept this new parameter $t$ in our bound---the 
+        last step is to optimize this bound by choosing a value of $t$ that 
+        minimizes our upper bound.
 
-        Take the derivative of your expression with respect to $t$ to find the value of $t$ that minimizes the bound. Note that from \cref{part:binomial-mgf}, we require that $t > 0$; make sure you verify that this is the case!
+        Take the derivative of your expression with respect to $t$ to find the 
+        value of $t$ that minimizes the bound. Note that from 
+        \cref{part:binomial-mgf}, we require that $t > 0$; make sure you verify 
+        that this is the case!
 
-        Use your value of $t$ to verify the following Chernoff bound on the binomial distribution:
+        Use your value of $t$ to verify the following Chernoff bound on the 
+        binomial distribution:
         \[
-            \Pr[X \ge (1 + \delta) \mu] \le \exp(-\mu(1 + \delta)\ln(1 + \delta) + \delta \mu)
+            \Pr[X \ge (1 + \delta) \mu] \le \exp(-\mu(1 + \delta)\ln(1 + \delta) 
+            + \delta \mu)
         .\]
-        \emph{Note: As an aside, if we carried out the computations without using the bound in \cref{part:binomial-mgf-bound}, we'd get a better Chernoff bound, but the math is a lot uglier. Furthermore, instead of looking at the binomial distribution (i.e. the sum of independent and identical Bernoulli trials), we could have also looked at the sum of independent but \emph{not necessarily identical} Bernoulli trials as well; this would give a more general but very similar Chernoff bound.}
+        \emph{Note: As an aside, if we carried out the computations without using 
+        the bound in \cref{part:binomial-mgf-bound}, we'd get a better Chernoff 
+        bound, but the math is a lot uglier. Furthermore, instead of looking at 
+        the binomial distribution (i.e. the sum of independent and identical 
+        Bernoulli trials), we could have also looked at the sum of independent 
+        but \emph{not necessarily identical} Bernoulli trials as well; this would 
+        give a more general but very similar Chernoff bound.}
 
-    \item Let's now look at how the Chernoff bound compares to the Markov and Chebyshev inequalities. Let $X \sim \Bin(n = 100, p = \frac{1}{5})$. We'd like to find $\Pr[X \ge 30]$.
+    \item Let's now look at how the Chernoff bound compares to the Markov and 
+    Chebyshev inequalities. Let $X \sim \Bin(n = 100, p = \frac{1}{5})$. We'd 
+    like to find $\Pr[X \ge 30]$.
 
         \begin{Parts}
-            \item Use Markov's inequality to find an upper bound on $\Pr[X \ge 30]$.
+            \item Use Markov's inequality to find an upper bound on $\Pr[X \ge 
+            30]$.
 
-            \item Use Chebyshev's inequality to find an upper bound on $\Pr[X \ge 30]$.
+            \item Use Chebyshev's inequality to find an upper bound on $\Pr[X 
+            \ge 30]$.
 
-            \item Use the Chernoff bound from \cref{part:binomial-chernoff-bound} to find an upper bound on $\Pr[X \ge 30]$.
+            \item Use the Chernoff bound from \cref{part:binomial-chernoff-bound} 
+            to find an upper bound on $\Pr[X \ge 30]$.
 
-            \item Now use a calculator to find the exact value of $\Pr[X \ge 30]$. How did the three bounds compare? That is, which bound was the closest and which bound was the furthest from the exact value?
+            \item Now use a calculator to find the exact value of $\Pr[X \ge 
+            30]$. How did the three bounds compare? That is, which bound was the 
+            closest and which bound was the furthest from the exact value?
         \end{Parts}
 
-    \item Let $X \sim \Bin(n = 100, p =\frac{1}{2})$. We'll look at upper bounds on the probability $\Pr[X \ge k]$ for a few values of $k > np = 50$, using Chebyshev's inequality and using the Chernoff bound, comparing the two results.
+    \item Let $X \sim \Bin(n = 100, p =\frac{1}{2})$. We'll look at upper bounds 
+    on the probability $\Pr[X \ge k]$ for a few values of $k > np = 50$, using 
+    Chebyshev's inequality and using the Chernoff bound, comparing the two 
+    results.
 
-        In particular, there are three regions of $k \in [51, 100]$ that are interesting to note, where the best bound swaps between Chebyshev's inequality and the Chernoff bound. Describe these three regions, and indicate which bound is best in each region (you don't need to give the exact intervals; a high level description suffices).
+    In particular, there are three regions of $k \in [51, 100]$ that are 
+    interesting to note, where the best bound swaps between Chebyshev's 
+    inequality and the Chernoff bound. Describe these three regions, and 
+    indicate which bound is best in each region (you don't need to give the 
+    exact intervals; a high level description suffices).
 \end{Parts}
 
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part $X$ can be rewritten as a sum of Bernoulli random variables, e.g., $X = 
+X_1 + X_2 + \dots + X_n$, where $X_i$ is the outcome of the $i$th trial with 
+probability $p$. Then, $e^{tX}$ equals
+\[
+    \begin{split}
+        e^{tX} &= e^{t \times (X_1 + X_2 + \dots + X_n)} \\
+        &= e^{tX_1} \cdot e^{tX_2} \cdots.
+    \end{split}
+\]
 
+The expected value of which is 
+\[
+    \begin{split}
+        \E[e^{tX}] &= \E[e^{tX_1} \cdot e^{tX_2} \cdots ] \\
+        \text{independence} \quad &= \E[e^{tX_1}] \cdot \E[e^{tX_2}] \cdots  \\
+        &= (1-p \times 1 + p \times e^t) \cdot (1-p \times 1 + p \times e^t) \cdots \\
+        &= (1-p \times 1 + p \times e^t)^n.
+    \end{split}
+\]
+
+\Part First, I say $\alpha = p-pe^t$. Then,
+\[
+    \begin{split}
+        1-\alpha &\leq e^{-\alpha} \\
+        1-p+pe^t &\leq e^{-p+pe^t} \\
+        (1-p+pe^t)^n &\leq e^{-np+npe^t} \\
+    \end{split}
+\]
+
+\Part Using Markov's inequality, an upper bound is
+\[
+    \begin{split}
+        \Pr[e^{tX} \ge e^{t(1 + \delta) \mu}] &\leq \frac{\E[e^{tx}]}{e^{t(1+ \delta) \mu}} \\
+        &\leq \frac{(1-p+pe^t)^n}{e^{t(1+\delta) \mu}} \\
+        \text{upper bound} \quad &\leq \frac{e^{-np+npe^t}}{e^{t(1+\delta) \mu}} \\
+        &\leq \frac{e^{-\mu(1+e^t)}}{e^{t(1+\delta) \mu}}
+    \end{split}
+\]
+
+This then becomes the $f(t)$ which bounds $\Pr[X \geq (1+\delta)\mu]$:
+\[
+    \Pr[X \geq (1+\delta)\mu] = \Pr[e^X \geq e^{(1+\delta)\mu}]
+    = \Pr[e^{tX} \geq e^{(1+\delta)\mu}]
+\]
+
+for $t > 0$. This is probability we solved for before and therefore $f(t) = 
+\frac{e^{-\mu(1+e^t)}}{e^{t(1+\delta) \mu}}$.
+
+\end{Parts}
+
+\end{solution}
 
 \Question{Max of Uniforms}
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
-Let $X_1,...X_n$ be independent Uniform$(0,1)$ random variables, and let $X = \max(X_1,...X_n)$. 
-Compute each of the following in terms of $n$.
+Let $X_1,...X_n$ be independent Uniform$(0,1)$ random variables, and let $X = 
+\max(X_1,...X_n)$. Compute each of the following in terms of $n$.
 \begin{Parts}
 	\Part What is the cdf of $X$?
 	\Part What is the pdf of $X$?
