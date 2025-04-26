@@ -252,6 +252,75 @@ Let $X_1,...X_n$ be independent Uniform$(0,1)$ random variables, and let $X =
 	\Part What is $\Var(X)$?
 \end{Parts}
 
+\begin{solution}
+
+\begin{Parts}
+    
+\Part The cumulative distribution function of $X$ is
+\[
+    \begin{split}
+        F_X(t) &= \Pr[X < t] \\
+        &= \Pr[X_1 < t] \cdot \Pr[X_2 < t] \cdots \Pr[X_n < t] \\
+        &= F_{X_1}(t) \cdot F_{X_2}(t) \cdots F_{X_n}(t) \\
+        &= \begin{cases}
+            0, & \text{for } t < a \\
+            \frac{(t-a)^n}{(b-a)^n}, & \text{for } a \leq t \leq b \\
+            1, & \text{for } b < t
+        \end{cases} \\
+        &= \begin{cases}
+            0, & \text{for } t < 0 \\
+            t^n, & \text{for } 0 \leq t \leq 1 \\
+            1, & \text{for } 1 < t
+        \end{cases}
+    \end{split}
+\]
+
+since all of $X_1, \dots X_n$ must be less than $t$ for $X$ to be less than $t$,
+and the variables are independent and uniform over (0, 1).
+
+\Part From the fundamental thereom of calculus,
+\[
+    \begin{split}
+        \frac{d}{dt} F_X(t) &= \begin{cases}
+            0, & \text{for } t < 0 \\
+            n \cdot t^{n-1}, & \text{for } 0 \leq t \leq 1 \\
+            0, & \text{for } 1 < t
+        \end{cases} \\
+        &= f_X(t)
+    \end{split}
+\]
+and is the probability density function. 
+
+\Part The expected value of $X$ is
+\[
+    \begin{split}
+        \E[X] &= \int_{-\infty}^{\infty} t \cdot f_X(t) \, dt \\
+        &= \int_{-\infty}^{0} 0 \, dt + \int_{0}^{1} n \cdot t^{n-1} \, dt + \int_{1}^{\infty} 0 \, dt \\
+        &= \frac{n}{n+1} \left. (t^{n+1}) \right|_0^1 \\
+        &= \frac{n}{n+1}.
+    \end{split}
+\]
+
+\Part To find the variance of $X$, I will first find the expected value of 
+$X^2$, which is
+\[
+    \begin{split}
+        \E[X^2] &= \int_{-\infty}^{\infty} t^2 \cdot f_X(t) \, dt \\
+        &= n \int_{0}^{1} t^2 \cdot t^{n-1}  \, dt \\
+        &= \frac{n}{n+2} \left. (t^{n+1}) \right|_0^1 \\
+        &= \frac{n}{n+2}.
+    \end{split}
+\]
+
+Then, the variance of $X$ is
+\[
+    \Var(X) = \E[X^2] - (\E[X])^2 = \frac{n}{n+2} - \left( \frac{n}{n+1} \right)^2.
+\]
+
+\end{Parts}
+
+\end{solution}
+
 \Question{Short Answer}
 
 \notelinks*{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
