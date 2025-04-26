@@ -509,10 +509,14 @@ which takes on the same form as $F_X(t) = 1 - e^{-\lambda t}$, and so $\mu =
 
 \notelinks{\href{https://www.eecs70.org/assets/pdf/notes/n21.pdf}{Note 21}}
 Michelle and Alex are playing darts.
-Being the better player, Michelle's aim follows a uniform distribution over a disk of radius $1$ around the center. Alex's aim follows a uniform distribution over a disk of radius $2$ around the center. 
+Being the better player, Michelle's aim follows a uniform distribution over a 
+disk of radius $1$ around the center. Alex's aim follows a uniform distribution 
+over a disk of radius $2$ around the center. 
 
 \begin{Parts}
-    \Part Let the distance of Michelle's throw from the center be denoted by the random variable $X$ and let the distance of Alex's throw from the center be denoted by the random variable $Y$.
+    \Part Let the distance of Michelle's throw from the center be denoted by the 
+    random variable $X$ and let the distance of Alex's throw from the center be 
+    denoted by the random variable $Y$.
     \begin{enumerate}
     \item[(i)] What's the cumulative distribution function of $X$?
     \item[(ii)] What's the cumulative distribution function of $Y$?
@@ -520,12 +524,52 @@ Being the better player, Michelle's aim follows a uniform distribution over a di
     \item[(iv)] What's the probability density function of $Y$?
     \end{enumerate}
     
-    \Part What's the probability that Michelle's throw is closer to the center than Alex's throw? What's the probability that Alex's throw is closer to the center? 
+    \Part What's the probability that Michelle's throw is closer to the center 
+    than Alex's throw? What's the probability that Alex's throw is closer to 
+    the center? 
     
     \Part What's the cumulative distribution function of $U = \max(X,Y)$?
-
-    
         
 \end{Parts}
+
+\begin{solution}
+    
+\begin{Parts}
+    
+\Part The CDF of $X$ is $F_X(r) = \Pr[X < r] = \frac{\pi r^2}{\pi \cdot 1^2} = 
+r^2$. The CDF of $Y$ is $F_Y(r) = \Pr[Y < r] = \frac{\pi r^2}{\pi \cdot 4} = 
+\frac{r^2}{4}$. The PDF of $X$ is then $2r$, and the PDF of $Y$ is then 
+$\frac{r}{2}$.
+
+\Part The probability that Michelle throws closer to Alex is 
+\[
+    \begin{split}
+        \Pr[X < Y] &= \int_{0}^{2} \Pr[X < Y \mid Y = y] \Pr[Y = y] \, dy \\
+        &= \int_{0}^{1} y^2 \cdot \frac{y}{2} \, dy + \int_{1}^{2} 1 \cdot \frac{y}{2} \, dy \\
+        &= \frac{1}{2} \cdot \frac{1}{4} + \frac{1}{2} \cdot \left( 2- \frac{1}{2} \right) \\
+        &= \frac{7}{8}
+    \end{split}
+\]
+
+since it is guaranteed Michelle's throw will be closer than Alex's after $r=1$,
+and before it is the CDF given Alex's throw. The probability that Alex's throw 
+is closer to the center is the complement of this probability so $\Pr[Y < X] = 
+\frac{1}{8}$.
+
+\Part The CDF of $U$ is $\Pr[U < r] = \Pr[X < r, Y < r]$ since both need to be 
+less than to evade the maximum selector function. So, $\Pr[X < r, Y < r] = 
+\Pr[X < r] \cdot \Pr[Y < r]$ given independence. Although this varies depending
+on what $r$ is in question, i.e., 
+\[
+    F_U(r) = \begin{cases}
+        r^2 \times \frac{r^2}{4}, & \text{for } r < 1 \\
+        \frac{r^2}{4}, & \text{for } 1 \leq r \leq 2 \\
+        1, & \text{for } 2 < r
+    \end{cases}
+\]
+
+\end{Parts}
+
+\end{solution}
 
 \end{document}
