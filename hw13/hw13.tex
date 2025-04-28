@@ -224,7 +224,7 @@ The expected value of which is
         \Pr[e^{tX} \ge e^{t(1 + \delta) \mu}] &\leq \frac{\E[e^{tx}]}{e^{t(1+ \delta) \mu}} \\
         &\leq \frac{(1-p+pe^t)^n}{e^{t(1+\delta) \mu}} \\
         \text{upper bound} \quad &\leq \frac{e^{-np+npe^t}}{e^{t(1+\delta) \mu}} \\
-        &\leq \frac{e^{-\mu(1+e^t)}}{e^{t(1+\delta) \mu}}
+        &\leq \frac{e^{-\mu(1-e^t)}}{e^{t(1+\delta) \mu}}
     \end{split}
 \]
 
@@ -235,7 +235,82 @@ This then becomes the $f(t)$ which bounds $\Pr[X \geq (1+\delta)\mu]$:
 \]
 
 for $t > 0$. This is probability we solved for before and therefore $f(t) = 
-\frac{e^{-\mu(1+e^t)}}{e^{t(1+\delta) \mu}}$.
+\frac{e^{-\mu(1-e^t)}}{e^{t(1+\delta) \mu}}$.
+
+\Part The derivative of this expression with respect to $t$ is
+\[
+    \begin{split}
+        \frac{d}{dt} f(t) &= \frac{d}{dt} \left( e^{\mu e^t - \mu -\mu t (1 + \delta)} \right) \\
+        &= (\mu e^t - \mu (1 + \delta))e^{\mu e^t - \mu -\mu t (1 + \delta)} \\
+        \text{minimize} \quad 0 &= (\mu e^t - \mu (1 + \delta))e^{\mu e^t - \mu -\mu t (1 + \delta)} \\
+        \text{exp never zero} \quad 0 &= (\mu e^t - \mu (1 + \delta)) \\
+        \mu (1 + \delta) &= \mu e^t \\
+        (1 + \delta) &= e^t \\
+        t &= \ln(1 + \delta).
+    \end{split}
+\]
+
+Now using this value of $t$ verifies
+\[
+    \begin{split}
+        \Pr[X \geq (1+\delta)\mu] &= e^{\mu e^t - \mu -\mu t (1 + \delta)} \\
+        &= e^{\mu e^{\ln(1 + \delta)} - \mu -\mu \ln(1 + \delta) (1 + \delta)} \\
+        &= e^{\mu (1 + \delta) - \mu -\mu \ln(1 + \delta) (1 + \delta)} \\
+        &= e^{-\mu \ln(1 + \delta) (1 + \delta)+\mu \delta} \\
+    \end{split}
+\]
+
+\Part Using Markov's inequality, the upper bound for (i) is
+\[
+    \begin{split}
+        \Pr[X \geq 30] &\leq \frac{\E[X]}{30} \\
+        &\leq \frac{100 \times 0.2}{30} \\
+        &\leq \frac{2}{3}.
+    \end{split}
+\]
+
+Using Chebyshev's inequality, the upper bound for (ii) is 
+\[
+    \begin{split}
+        \Pr[X \geq 30] &= \Pr[X - 20 \geq 10] \\
+        &= \Pr[X - \mu \geq 10] \\
+        &\leq \frac{\Var(X)}{10^2} \\  
+        &\leq \frac{100 \times 0.2(0.8)}{100} \\
+        &\leq \frac{16}{100}
+    \end{split}
+\]
+
+Using the Chernoff bound, the upper bound for (iii) is
+\[
+    \begin{split}
+        \Pr[X \geq 30] &= \Pr[X \geq (1 + 0.5)20] \\
+        \text{$\delta = 0.5$} \quad &= e^{-20(1.5) \ln(1.5) + 10} \\
+        &= e^{-30 \ln(1.5) + 10} \\
+        &\approx 0.11487
+    \end{split}
+\]
+
+Using an `exact calculator', the value is the following (from the binomial):
+\[
+    \Pr[X \geq 30] = \sum_{x=30}^{100} \Pr[X = x] = 
+    \sum_{x=30}^{100} \binom{100}{x} 0.2^x \cdot 0.8^{100-x} \approx
+    0.00112.
+\]
+
+The Chernoff bound is closest and the Markoff bound is furthest. 
+\pagebreak
+\Part 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{graph.png} 
+    \caption{Part (f) graph}
+\end{figure}
+
+Chebyshev is below Chernoff between roughly $56 \leq t \leq 66$, and above
+elsewhere. The $\delta$ value is $\frac{t-50}{50}$. For Chebyshev, 
+\[
+    \Pr[X \geq t] = \Pr[X ]
+\]
 
 \end{Parts}
 
